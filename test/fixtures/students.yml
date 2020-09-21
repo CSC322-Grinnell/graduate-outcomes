@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  class_year: MyString
+  student_id: MyString
+  major1: MyString
+  major2: MyString
+  gender: MyString
+  fed_group: MyString
+  intern: MyString
+  research: MyString
+  service: MyString
+  career_related: MyString
+  job_field: MyString
+
+two:
+  class_year: MyString
+  student_id: MyString
+  major1: MyString
+  major2: MyString
+  gender: MyString
+  fed_group: MyString
+  intern: MyString
+  research: MyString
+  service: MyString
+  career_related: MyString
+  job_field: MyString

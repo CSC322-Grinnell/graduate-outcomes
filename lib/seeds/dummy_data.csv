@@ -1,0 +1,101 @@
+class_year,student_id,major1,major2,gender,fed_group,intern,research,service,career_related,job_field
+2020,00008,PHY,n/a,F,international,TRUE,TRUE,TRUE,moderately,business admin/management
+2020,00016,ENG,n/a,F,international,TRUE,TRUE,TRUE,completely,business admin/management
+2020,00043,IND,n/a,F,white,TRUE,FALSE,TRUE,moderately,business admin/management
+2020,00001,ENG,n/a,M,two+,FALSE,FALSE,TRUE,moderately,communications/media
+2020,00019,ARTH,n/a,F,white,FALSE,TRUE,TRUE,moderately,communications/media
+2020,00051,CSC,n/a,M,hispanic,FALSE,FALSE,TRUE,slightly,communications/media
+2020,00089,GWSS,n/a,M,white,TRUE,FALSE,FALSE,moderately,communications/media
+2020,00090,CHM,n/a,F,black/afamer,FALSE,TRUE,TRUE,moderately,communications/media
+2020,00003,CSC,POL,M,black/afamer,FALSE,TRUE,TRUE,moderately,computing/technology
+2020,00010,POL,n/a,M,white,FALSE,FALSE,TRUE,moderately,computing/technology
+2020,00013,BCM,n/a,F,hispanic,FALSE,TRUE,FALSE,slightly,computing/technology
+2020,00037,ARTS,n/a,F,unknown,FALSE,FALSE,TRUE,slightly,computing/technology
+2020,00057,SOC,n/a,F,white,TRUE,FALSE,TRUE,slightly,computing/technology
+2020,00061,PSY,n/a,M,white,FALSE,FALSE,FALSE,not at all,computing/technology
+2020,00072,FRN,BIO,M,black/afamer,FALSE,TRUE,TRUE,moderately,computing/technology
+2020,00074,ECN,n/a,F,white,TRUE,TRUE,TRUE,completely,computing/technology
+2020,00099,ECN,n/a,M,asian-amer,FALSE,FALSE,TRUE,moderately,computing/technology
+2020,00023,ECN,n/a,M,international,TRUE,TRUE,TRUE,moderately,consulting
+2020,00077,ANT,ECN,F,white,TRUE,FALSE,TRUE,completely,consulting
+2020,00004,ECN,BCM,F,asian-amer,TRUE,FALSE,FALSE,slightly,creative/performing arts
+2020,00012,PHY,n/a,M,white,FALSE,TRUE,TRUE,slightly,creative/performing arts
+2020,00029,ARTH,n/a,M,two+,FALSE,TRUE,TRUE,moderately,creative/performing arts
+2020,00058,CSC,n/a,M,two+,TRUE,TRUE,FALSE,moderately,creative/performing arts
+2020,00066,POL,CHM,F,white,TRUE,TRUE,TRUE,slightly,creative/performing arts
+2020,00087,PHY,n/a,F,white,TRUE,FALSE,TRUE,slightly,creative/performing arts
+2020,00100,POL,n/a,F,unknown,FALSE,FALSE,FALSE,moderately,creative/performing arts
+2020,00056,BCM,n/a,M,white,FALSE,TRUE,FALSE,moderately,data science/analytics
+2020,00007,POL,REL,M,black/afamer,TRUE,FALSE,TRUE,completely,education
+2020,00009,PSY,n/a,F,white,TRUE,FALSE,FALSE,slightly,education
+2020,00015,BIO,CSC,M,two+,FALSE,TRUE,FALSE,moderately,education
+2020,00017,POL,RUS,M,hispanic,TRUE,TRUE,FALSE,moderately,education
+2020,00024,MAT,n/a,F,white,TRUE,TRUE,TRUE,moderately,education
+2020,00031,ECN,n/a,M,white,TRUE,FALSE,FALSE,slightly,education
+2020,00032,POL,ECN,F,hispanic,FALSE,TRUE,FALSE,slightly,education
+2020,00033,ARTH,n/a,M,international,FALSE,TRUE,FALSE,completely,education
+2020,00034,POL,n/a,M,hispanic,TRUE,FALSE,TRUE,moderately,education
+2020,00036,SOC,GRM,M,white,FALSE,FALSE,TRUE,moderately,education
+2020,00038,ECN,PHI,F,white,TRUE,TRUE,TRUE,slightly,education
+2020,00039,ECN,n/a,M,white,TRUE,TRUE,FALSE,moderately,education
+2020,00044,MAT,PHY,M,white,TRUE,TRUE,FALSE,slightly,education
+2020,00067,PSY,n/a,F,white,TRUE,TRUE,TRUE,slightly,education
+2020,00068,CHM,SPN,M,white,FALSE,TRUE,TRUE,moderately,education
+2020,00069,SOC,FRN,F,white,TRUE,TRUE,TRUE,moderately,education
+2020,00073,POL,FRN,M,hispanic,TRUE,FALSE,TRUE,moderately,education
+2020,00080,CSC,n/a,F,unknown,TRUE,TRUE,TRUE,slightly,education
+2020,00083,PHY,n/a,M,two+,FALSE,FALSE,TRUE,slightly,education
+2020,00086,PHY,n/a,M,white,FALSE,FALSE,TRUE,moderately,education
+2020,00091,BIO,POL,F,white,FALSE,FALSE,TRUE,slightly,education
+2020,00092,PHI,n/a,M,white,FALSE,TRUE,TRUE,moderately,education
+2020,00094,HIS,n/a,F,asian-amer,TRUE,TRUE,TRUE,slightly,education
+2020,00020,FRN,n/a,F,international,FALSE,TRUE,FALSE,completely,finance
+2020,00053,ECN,n/a,M,unknown,FALSE,TRUE,FALSE,moderately,finance
+2020,00071,ECN,n/a,M,white,FALSE,FALSE,FALSE,moderately,finance
+2020,00076,PHY,n/a,F,white,TRUE,TRUE,FALSE,slightly,finance
+2020,00002,BIO,n/a,F,white,TRUE,FALSE,TRUE,slightly,computing/technology
+2020,00021,ECN,n/a,F,white,FALSE,TRUE,TRUE,slightly,research/science
+2020,00026,BIO,n/a,M,asian-amer,TRUE,TRUE,TRUE,moderately,social services
+2020,00060,SOC,SPN,F,white,FALSE,TRUE,FALSE,moderately,business admin/management
+2020,00062,BIO,n/a,M,international,TRUE,TRUE,FALSE,moderately,creative/performing arts
+2020,00070,ARTS,n/a,F,white,FALSE,FALSE,FALSE,completely,computing/technology
+2020,00084,POL,n/a,F,white,TRUE,FALSE,FALSE,moderately,law/legal services
+2020,00095,BIO,n/a,M,asian-amer,TRUE,TRUE,FALSE,completely,social services
+2020,00006,SOC,n/a,F,two+,FALSE,FALSE,TRUE,slightly,government/public policy
+2020,00011,HIS,n/a,M,asian-amer,TRUE,FALSE,TRUE,moderately,government/public policy
+2020,00018,ENG,n/a,F,white,FALSE,TRUE,FALSE,slightly,government/public policy
+2020,00054,POL,GRM,M,white,TRUE,FALSE,FALSE,moderately,government/public policy
+2020,00005,BIO,n/a,F,black/afamer,TRUE,FALSE,FALSE,moderately,healthcare
+2020,00030,PHY,n/a,F,international,TRUE,TRUE,TRUE,moderately,healthcare
+2020,00063,POL,ECN,F,white,TRUE,FALSE,FALSE,completely,healthcare
+2020,00065,BIO,n/a,F,unknown,FALSE,TRUE,FALSE,slightly,healthcare
+2020,00075,BCM,n/a,M,asian-amer,FALSE,TRUE,TRUE,completely,healthcare
+2020,00041,IND,n/a,F,white,TRUE,TRUE,FALSE,not at all,law/legal services
+2020,00064,BIO,n/a,F,international,TRUE,FALSE,FALSE,moderately,law/legal services
+2020,00014,POL,n/a,F,white,TRUE,FALSE,TRUE,completely,research/science
+2020,00025,CSC,n/a,F,white,TRUE,FALSE,TRUE,moderately,research/science
+2020,00027,BIO,n/a,M,white,TRUE,TRUE,FALSE,moderately,research/science
+2020,00028,CSC,n/a,F,white,TRUE,TRUE,TRUE,moderately,research/science
+2020,00035,BCM,FRN,F,white,FALSE,TRUE,FALSE,slightly,research/science
+2020,00042,SOC,GWSS,F,white,FALSE,FALSE,TRUE,moderately,research/science
+2020,00045,PSY,n/a,F,international,TRUE,FALSE,TRUE,moderately,research/science
+2020,00047,BCM,n/a,F,white,TRUE,TRUE,FALSE,moderately,research/science
+2020,00049,ECN,ARTS,F,white,TRUE,FALSE,TRUE,slightly,research/science
+2020,00050,ECN,n/a,M,two+,TRUE,TRUE,TRUE,slightly,research/science
+2020,00052,CHM,n/a,M,unknown,TRUE,TRUE,FALSE,not at all,research/science
+2020,00055,ENG,n/a,F,white,TRUE,FALSE,TRUE,slightly,research/science
+2020,00078,ARTH,MAT,M,asian-amer,TRUE,TRUE,TRUE,moderately,research/science
+2020,00081,HIS,n/a,F,white,FALSE,TRUE,TRUE,moderately,research/science
+2020,00082,CSC,n/a,M,asian-amer,TRUE,FALSE,TRUE,completely,research/science
+2020,00085,BIO,n/a,F,white,FALSE,TRUE,TRUE,moderately,research/science
+2020,00093,ANT,n/a,F,white,FALSE,TRUE,FALSE,moderately,research/science
+2020,00096,PHY,n/a,F,international,FALSE,FALSE,TRUE,slightly,research/science
+2020,00097,BCM,FRN,F,international,FALSE,TRUE,TRUE,completely,research/science
+2020,00098,PSY,ENG,M,unknown,FALSE,TRUE,TRUE,slightly,research/science
+2020,00046,ARTH,n/a,M,white,TRUE,FALSE,FALSE,moderately,sales/marketing
+2020,00048,ANT,n/a,M,white,TRUE,TRUE,TRUE,not at all,sales/marketing
+2020,00088,BIO,n/a,M,international,FALSE,TRUE,TRUE,not at all,sales/marketing
+2020,00022,GPSY,n/a,F,international,FALSE,FALSE,TRUE,moderately,social services
+2020,00040,PHI,PSY,F,hispanic,TRUE,FALSE,FALSE,moderately,social services
+2020,00059,BIO,n/a,F,white,TRUE,TRUE,TRUE,completely,social services
+2020,00079,BCM,n/a,F,white,TRUE,TRUE,TRUE,moderately,social services
