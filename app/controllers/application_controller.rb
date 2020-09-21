@@ -1,13 +1,13 @@
 class ApplicationController < ActionController::Base
     def visualize
-         render html: "This is dashboard page"
+         render "features/visualize"
     end
     
     def create
-         render html: "This is create visualization page"
+         render "features/create"
     end
     
     def upload
-         render html: "This is upload data page"
+         render "features/upload"
     end
 end
