@@ -66,5 +66,11 @@ class StudentTest < ActiveSupport::TestCase
     @student.job_field = " "
     assert_not @student.valid?
   end
+  
+  test "student ids should be unique" do
+    duplicate_student = @student.dup
+    @student.save
+    assert_not duplicate_student.valid?
+  end
 
 end
