@@ -1,2 +1,0 @@
-class ComingSoonController < ApplicationController
-end
