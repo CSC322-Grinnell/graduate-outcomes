@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  root 'application#temporary'
+  get 'upload/index'
+  get 'visualization/index'
+  get 'visualization/show'
+  get 'visualization/new'
+  # TODO resources :visualization
+  root 'visualization#index'
 end
