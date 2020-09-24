@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class VisualizationControllerTest < ActionDispatch::IntegrationTest
+  
   test "should get index" do
     get visualization_index_path
     assert_response :success
@@ -13,11 +14,6 @@ class VisualizationControllerTest < ActionDispatch::IntegrationTest
 
   test "should get new" do
     get visualization_new_path
-    assert_response :success
-  end
-
-  test "should get create" do
-    get visualization_create_path
     assert_response :success
   end
 

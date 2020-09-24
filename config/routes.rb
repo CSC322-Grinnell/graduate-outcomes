@@ -3,6 +3,6 @@ Rails.application.routes.draw do
   get 'visualization/index'
   get 'visualization/show'
   get 'visualization/new'
-  get 'visualization/create'
+  # TODO resources :visualization
   root 'visualization#index'
 end
