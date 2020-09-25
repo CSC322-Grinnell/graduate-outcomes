@@ -12,7 +12,10 @@
 
 <body>
     <%= render 'layouts/navbar'%>
-    <%= yield %>
+    <div class="site-wrapper">
+        <%= yield %>
+    </div>
+    <%= render 'layouts/footer'%>
 </body>
 
 </html>
