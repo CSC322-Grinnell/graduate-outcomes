@@ -14,14 +14,24 @@
  *= require_self
  */
 
+ /* General Layout Styles */
  html, body{
      margin: auto 0;
      font-family: Verdana, Geneva, Tahoma, sans-serif;
      width: 100%;
      height: 100%;
-     display: flex;
-     flex-direction: column;
+     font-size: 15px;
  }
+
+ .site-wrapper{
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px 50px;
+}
+
+ /* Navbar Styles */
 
  .navbar-container{
      background-color: #001857;
@@ -55,5 +65,53 @@
  }
 
  .navbar-container a:hover{
+    text-decoration: underline;
+}
+
+/* Footer Styles */
+.footer-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #F6F6F6;
+    padding: 50px 10vw;
+    justify-content: flex-start;
+    align-items: flex-start;
+    color: #001857;
+}
+
+.footer-section{
+    display: flex;
+    flex-direction: column;
+    padding-right: 6vw;
+}
+
+.footer-section-title{
+    font-weight: 600;
+    align-self: baseline;
+    font-size: 1em;
+    color: rgba(0,24,87,0.99);
+    max-width: 15em;
+}
+
+.footer-section-content{
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-address{
+    margin:0
+}
+
+.footer-section-content a,
+.footer-section-content p{
+    text-decoration: none;
+    color: rgba(0,24,87,1);
+    line-height: 1.8;
+}
+
+.footer-container a:hover{
+    color: rgba(0,24,87,0.9);
     text-decoration: underline;
 }
