@@ -14,8 +14,8 @@
         <p class="footer-section-title"> Pages</p>
         <div class="footer-section-content">
             <%= link_to  "Preview", visualization_index_path %>
-            <%= link_to  "Visualize", visualization_index_path %>
-            <%= link_to  "Upload", visualization_index_path %>
+            <%= link_to  "Visualize", visualization_new_path %>
+            <%= link_to  "Upload", upload_index_path %>
         </div>
 
     </div>
@@ -24,7 +24,6 @@
         <p class="footer-section-title"> Help</p>
         <div class="footer-section-content">
             <%= link_to  "About", '#' %>
-            <%= link_to  "Contact CLS", visualization_index_path %>
             <%= link_to  "Documentation", '#' %>
             <%= link_to  "FAQ", '#' %>
         </div>
@@ -33,8 +32,9 @@
     <div class="footer-section">
         <p class="footer-section-title"> External Links</p>
         <div class="footer-section-content">
-            <%= link_to  "Grinnell Website", '#' %>
-            <%= link_to  "CLS Page", '#' %>
+            <%= link_to  "Grinnell Website", 'https://www.grinnell.edu' %>
+            <%= link_to  "CLS Page", 'https://www.grinnell.edu/after-grinnell/cls' %>
+            <%= link_to  "Handshake", 'https://grinnell.joinhandshake.com/login' %>
         </div>
     </div>
 
