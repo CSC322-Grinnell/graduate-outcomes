@@ -1,2 +1,9 @@
 <h1>Upload#index</h1>
 <p>Find me in app/views/upload/index.html.erb</p>
+<h1>Upload CSV File</h1>
+<div>
+  <%= form_with url: import_uploads_path, multipart: true do %>
+    <%= file_field_tag :file %>
+    <%= submit_tag "Import CSV" %>
+  <% end %>
+</div>
