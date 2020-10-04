@@ -63,7 +63,15 @@
            <label for="name_job_field">Job Field</label>
            
            <label for="role">Role</label>
-           <% variables_form.text_field :role %>
+           
+           <%= variables_form.radio_button :role, 'independent' %>
+           <label for="role_independent">Independent</label>
+           
+           <%= variables_form.radio_button :role, 'dependent' %>
+           <label for="role_dependent">Dependent</label>
+           
+           <%= variables_form.radio_button :role, 'group_by' %>
+           <label for="role_group_by">Group By</label>
          </li>
         <% end %>
        </ul>
