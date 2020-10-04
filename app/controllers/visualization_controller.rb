@@ -7,6 +7,8 @@ class VisualizationController < ApplicationController
   end
 
   def new
+    @visualization = Visualization.new
+    2.times { @visualization.variables.build }
   end
 
   def create
