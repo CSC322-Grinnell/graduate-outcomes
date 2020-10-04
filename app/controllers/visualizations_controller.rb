@@ -12,5 +12,19 @@ class VisualizationsController < ApplicationController
   end
 
   def create
+      @visualization = Visualization.new(visualization_params)
+      if @visualization.save
+         flash[:success] = "Visualization created!"
+         redirect_to visualizations_path
+      else
+         redirect_to new_visualization_path
+      end
   end
+  
+  private
+  
+    def visualization_params
+      params.require(:visualization).permit(:chart_type, :x_axis_title, :y_axis_title, :chart_title, variables_attributes: [:name, :role])
+    end
+  
 end
