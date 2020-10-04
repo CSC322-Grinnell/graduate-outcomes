@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_21_230918) do
+ActiveRecord::Schema.define(version: 2020_10_04_030314) do
 
   create_table "students", force: :cascade do |t|
     t.string "class_year"
@@ -24,6 +24,24 @@ ActiveRecord::Schema.define(version: 2020_09_21_230918) do
     t.string "service"
     t.string "career_related"
     t.string "job_field"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "variables", force: :cascade do |t|
+    t.integer "visualization_id"
+    t.string "name"
+    t.string "role"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["visualization_id"], name: "index_variables_on_visualization_id"
+  end
+
+  create_table "visualizations", force: :cascade do |t|
+    t.string "chart_type"
+    t.string "x_axis_title"
+    t.string "y_axis_title"
+    t.string "chart_title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

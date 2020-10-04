@@ -4,9 +4,10 @@ Rails.application.routes.draw do
   #resources :uploads do
   #  collection { post :import }
   #end
-  get 'visualization/index'
-  get 'visualization/show'
-  get 'visualization/new'
+  #get 'visualization/index'
+  #get 'visualization/show'
+  #get 'visualization/new'
+  resources :visualizations
   # TODO resources :visualization
-  root 'visualization#index'
+  root 'visualizations#index'
 end

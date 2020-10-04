@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class VisualizationControllerTest < ActionDispatch::IntegrationTest
+class VisualizationsControllerTest < ActionDispatch::IntegrationTest
   
   test "should get index" do
     get visualization_index_path
