@@ -32,35 +32,38 @@
          <li>
            <label for="name">Name</label>
            
-           <%= f.radio_button :name, 'class_year' %>
+           <%= variables_form.radio_button :name, 'class_year' %>
            <label for="name_class_year">Class Year</label>
            
-           <%= f.radio_button :name, 'major1' %>
+           <%= variables_form.radio_button :name, 'major1' %>
            <label for="name_major1">Major 1</label>
            
-           <%= f.radio_button :name, 'major2' %>
+           <%= variables_form.radio_button :name, 'major2' %>
            <label for="name_major2">Major 2</label>
            
-           <%= f.radio_button :name, 'gender' %>
+           <%= variables_form.radio_button :name, 'gender' %>
            <label for="name_gender">Gender</label>
            
-           <%= f.radio_button :name, 'fed_group' %>
+           <%= variables_form.radio_button :name, 'fed_group' %>
            <label for="name_fed_group">Fed Group</label>
            
-           <%= f.radio_button :name, 'intern' %>
+           <%= variables_form.radio_button :name, 'intern' %>
            <label for="name_intern">Intern</label>
            
-           <%= f.radio_button :name, 'research' %>
+           <%= variables_form.radio_button :name, 'research' %>
            <label for="name_research">Research</label>
            
-           <%= f.radio_button :name, 'service' %>
+           <%= variables_form.radio_button :name, 'service' %>
            <label for="name_service">Service</label>
            
-           <%= f.radio_button :name, 'career_related' %>
+           <%= variables_form.radio_button :name, 'career_related' %>
            <label for="name_career_related">Career Related</label>
            
-           <%= f.radio_button :name, 'job_field' %>
+           <%= variables_form.radio_button :name, 'job_field' %>
            <label for="name_job_field">Job Field</label>
+           
+           <label for="role">Role</label>
+           <% variables_form.text_field :role %>
          </li>
         <% end %>
        </ul>
