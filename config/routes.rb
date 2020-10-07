@@ -8,6 +8,5 @@ Rails.application.routes.draw do
   #get 'visualization/show'
   #get 'visualization/new'
   resources :visualizations
-  # TODO resources :visualization
   root 'visualizations#index'
 end
