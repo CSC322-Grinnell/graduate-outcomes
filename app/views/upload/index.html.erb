@@ -1,10 +1,11 @@
-<h1>Upload#index</h1>
-<p>Find me in app/views/upload/index.html.erb</p>
-<h1>Upload CSV File</h1>
+<h1 class="page-title">Upload</h1>
+<p>1. Kindly select a .csv file from your system to upload and visualize graduate outcome data.</p>
+<p>2. After you have uploaded the file, click import to load the file into the system.</p>
+
 <div>
   <%= form_with url: upload_import_path, multipart: true do %>
     <%= file_field_tag :file %>
     <br>
-    <%= submit_tag "Import CSV" %>
+    <%= submit_tag "Import" %>
   <% end %>
 </div>
