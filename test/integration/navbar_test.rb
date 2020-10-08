@@ -6,7 +6,7 @@ class NavbarTest < ActionDispatch::IntegrationTest
         assert_template 'visualization/index'
         assert_select "a[href=?]", visualization_index_path
         assert_select "a[href=?]", visualization_new_path
-        assert_select "a[href=?]", upload_index_path
+        assert_select "a[href=?]", upload_index_pathh
 	end
 	
 end
