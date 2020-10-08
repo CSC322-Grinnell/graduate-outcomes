@@ -2,14 +2,14 @@
 
 one:
   variable_name: MyText
-  type: MyText
+  filter_type: MyText
   value1: MyText
   value2: MyText
   visualization: one
 
 two:
   variable_name: MyText
-  type: MyText
+  filter_type: MyText
   value1: MyText
   value2: MyText
   visualization: two

@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_08_142920) do
+ActiveRecord::Schema.define(version: 2020_10_08_151428) do
 
   create_table "filters", force: :cascade do |t|
     t.text "variable_name"
-    t.text "type"
+    t.text "filter_type"
     t.text "value1"
     t.text "value2"
     t.integer "visualization_id", null: false
