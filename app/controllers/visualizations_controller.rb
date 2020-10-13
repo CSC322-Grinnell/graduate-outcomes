@@ -4,6 +4,7 @@ class VisualizationsController < ApplicationController
   end
 
   def show
+    
   end
 
   def new
