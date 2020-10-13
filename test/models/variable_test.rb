@@ -6,7 +6,7 @@ class VariableTest < ActiveSupport::TestCase
   # end
   def setup
     @Visualization = Visualization.new(chart_title: "Dummy", x_axis_title: "x-axis", y_axis_title: "y-axis", chart_type: "bar" )
-    @Variable = Variable.new(name: "dingleberry", role: "fun", visualization_id: @Visualization.id )
+    @Variable = @Visualization.variables.new(name: "dingleberry", role: "fun", visualization_id: @Visualization.id )
   end
   
   test "Variable should be valid" do
