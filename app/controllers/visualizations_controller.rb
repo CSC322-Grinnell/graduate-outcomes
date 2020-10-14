@@ -29,7 +29,7 @@ class VisualizationsController < ApplicationController
                                             :x_axis_title, 
                                             :y_axis_title, 
                                             :chart_title, 
-                                            variables_attributes: [:name, :role]
+                                            variables_attributes: [:name, :role],
                                             filters_attributes: [:variable_name, :type, :value1, :value2]
                                           )
     end
