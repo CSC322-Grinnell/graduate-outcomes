@@ -25,7 +25,13 @@ class VisualizationsController < ApplicationController
   private
   
     def visualization_params
-      params.require(:visualization).permit(:chart_type, :x_axis_title, :y_axis_title, :chart_title, variables_attributes: [:name, :role])
+      params.require(:visualization).permit(:chart_type, 
+                                            :x_axis_title, 
+                                            :y_axis_title, 
+                                            :chart_title, 
+                                            variables_attributes: [:name, :role],
+                                            filters_attributes: [:variable_name, :type, :value1, :value2]
+                                          )
     end
   
 end
