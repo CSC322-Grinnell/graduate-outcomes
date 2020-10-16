@@ -127,3 +127,19 @@
     margin-bottom: 20px;
     color: rgb(17, 37, 88);
 }
+
+/* Form errors */
+#error_explanation {
+   color: red;
+   ul {
+      color: red;
+      margin: 0 0 30px 0;
+   }
+}
+
+.field_with_errors {
+   @extend .has-error;
+   .form-control {
+      color: $state-danger-text;
+   }
+}

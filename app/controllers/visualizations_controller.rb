@@ -19,8 +19,7 @@ class VisualizationsController < ApplicationController
          flash[:success] = "Visualization created!"
          redirect_to visualizations_path
       else
-        flash[:error] = "Please complete required fields!"
-        redirect_to new_visualization_path
+        render 'new'
       end
   end
   
