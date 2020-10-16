@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  get 'uploads/index'
+  #get 'uploads/index'
+  resources :uploads
   post 'uploads/import'
   #resources :uploads do
   #  collection { post :import }
