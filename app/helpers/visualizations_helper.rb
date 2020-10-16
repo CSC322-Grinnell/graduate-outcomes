@@ -1,6 +1,19 @@
 module VisualizationsHelper
     def get_form_variable_names
-        Student.column_names.reject {|c| ["id", "student_id", "updated_at", "created_at"].include? c}
+        [
+            ["---", ""],
+            ["class_year", "class_year"],
+            ["major1", "major1"],
+            ["major2", "major2"],
+            ["gender", "gender"],
+            ["fed_group", "fed_group"],
+            ["intern", "intern"],
+            ["research", "research"],
+            ["service", "service"],
+            ["career_related", "career_related"],
+            ["job_field", "job_field"]
+        ]
+        # Student.column_names.reject {|c| ["id", "student_id", "updated_at", "created_at"].include? c}
     end
 
 
@@ -17,13 +30,17 @@ module VisualizationsHelper
     def get_form_variable_roles
         # Each element has format [<Display Name>, <Value>]
         [
-            ["Group By", "group"]
+            ["---", ""],
+            ["Group By", "group"],
+            ["Independent", "independent"],
+            ["Dependent", "dependent"]
         ]
     end
 
 
     def get_form_filter_types
         [
+            ["---", ""],
             ["From..To", "from_to"],
             ["Equals", "equals"],
             ["Is Greater Than", "greater_than"],
