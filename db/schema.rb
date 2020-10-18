@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_04_030314) do
+ActiveRecord::Schema.define(version: 2020_10_08_142920) do
+
+  create_table "filters", force: :cascade do |t|
+    t.integer "visualization_id", null: false
+    t.text "variable_name"
+    t.text "filter_type"
+    t.text "value1"
+    t.text "value2"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["visualization_id"], name: "index_filters_on_visualization_id"
+  end
 
   create_table "students", force: :cascade do |t|
     t.string "class_year"
@@ -46,4 +57,5 @@ ActiveRecord::Schema.define(version: 2020_10_04_030314) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "filters", "visualizations"
 end

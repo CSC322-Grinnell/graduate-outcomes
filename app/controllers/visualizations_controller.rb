@@ -1,6 +1,6 @@
 class VisualizationsController < ApplicationController
   def index
-    
+    @visualizations = Visualization.order(updated_at: :desc)
   end
 
   def show
@@ -10,6 +10,7 @@ class VisualizationsController < ApplicationController
   def new
     @visualization = Visualization.new
     2.times { @visualization.variables.build }
+    2.times { @visualization.filters.build }
   end
 
   def create
@@ -18,14 +19,20 @@ class VisualizationsController < ApplicationController
          flash[:success] = "Visualization created!"
          redirect_to visualizations_path
       else
-         redirect_to new_visualization_path
+        render 'new'
       end
   end
   
   private
   
     def visualization_params
-      params.require(:visualization).permit(:chart_type, :x_axis_title, :y_axis_title, :chart_title, variables_attributes: [:name, :role])
+      params.require(:visualization).permit(:chart_type, 
+                                            :x_axis_title, 
+                                            :y_axis_title, 
+                                            :chart_title, 
+                                            variables_attributes: [:name, :role],
+                                            filters_attributes: [:variable_name, :filter_type, :value1, :value2]
+                                          )
     end
   
 end

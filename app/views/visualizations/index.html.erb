@@ -1,2 +1,8 @@
-<h1 class="page-title">Preview</h1>
-<p>See all your visualizations here! Coming soon...</p>
+<h1 class="page-title">Review</h1>
+<p>See all your visualizations on this page! Visualizations are ordered by the time they were last edited.</p>
+
+<div class="viz-thumbnail-group">
+<%@visualizations.each do |visualization|%>
+    <%= render "thumbnail", locals: {visualization: visualization}%>
+<%end%>
+</div>
