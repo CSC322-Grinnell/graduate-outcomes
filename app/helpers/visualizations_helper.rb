@@ -36,7 +36,6 @@ module VisualizationsHelper
 
     def get_form_variable_roles
         # Each element has format [<Display Name>, <Value>]
-        empty_option +
         [
             ["---", ""],
             ["Group By", "group"],
@@ -87,6 +86,7 @@ module VisualizationsHelper
         chart_info = Hash.new
         chart_info[:data] = data
         chart_info[:chart_type] = chart_type
+        chart_info[:options] = get_chart_options(visualization_id)
         # Render visualization partial. This partial should have logic to determine which chart to graph
         return chart_info
     end
@@ -161,11 +161,11 @@ module VisualizationsHelper
             end
     end
 
+    # should return options such as the axis titles and so forth
     def get_chart_options(visualization_id)
         visualization = Visualization.find(visualization_id)
         options = Hash.new
-
-        options[]
+        return options
 
     end
 
