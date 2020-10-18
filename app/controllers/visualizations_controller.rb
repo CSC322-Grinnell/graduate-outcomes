@@ -10,6 +10,7 @@ class VisualizationsController < ApplicationController
   def new
     @visualization = Visualization.new
     2.times { @visualization.variables.build }
+    2.times { @visualization.filters.build }
   end
 
   def create
@@ -18,7 +19,7 @@ class VisualizationsController < ApplicationController
          flash[:success] = "Visualization created!"
          redirect_to visualizations_path
       else
-         redirect_to new_visualization_path
+        render 'new'
       end
   end
   
@@ -30,7 +31,7 @@ class VisualizationsController < ApplicationController
                                             :y_axis_title, 
                                             :chart_title, 
                                             variables_attributes: [:name, :role],
-                                            filters_attributes: [:variable_name, :type, :value1, :value2]
+                                            filters_attributes: [:variable_name, :filter_type, :value1, :value2]
                                           )
     end
   

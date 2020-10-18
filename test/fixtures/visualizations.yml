@@ -1,13 +1,1 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  chart_type: MyString
-  x_axis_title: MyString
-  y_axis_title: MyString
-  chart_title: MyString
-
-two:
-  chart_type: MyString
-  x_axis_title: MyString
-  y_axis_title: MyString
-  chart_title: MyString

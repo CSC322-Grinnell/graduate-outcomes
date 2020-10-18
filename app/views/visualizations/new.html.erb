@@ -1,100 +1,89 @@
 <h1 class="page-title">Visualize</h1>
 
 <div class="row">
-    <div class="col-md-8 col-md-offset-1">
-        <%= form_with(model: @visualization, local: true) do |f| %>
+   <div class="col-md-20 col-md-offset-1">
+     <%= form_with(model: @visualization, local: true) do |f| %>
+     <%= render 'shared/error_messages' %>
 
-        <div class="viz-form-section">
-            <h4>Step 1 - Filter Data</h4>
-            <ul>
-                <%= f.fields_for :filters do |filters_form| %>
-                <div style="display:flex; flex-direction: row; justify-content: flex-start;">
-                    <div class="viz-form-group">
-                        <label for="variable_name">Variable</label>
-                        <%= filters_form.select :variable_name, options_for_select(get_form_variable_names) %>
-                    </div>
-
-                    <div class="viz-form-group">
-                        <label for="filter_type">Filter Type</label>
-                        <%= filters_form.select :filter_type, options_for_select(get_form_filter_types) %>
-                    </div>
-
-                    <div class="viz-form-group">
-                        <label for="value1">Value1</label>
-                        <%= filters_form.text_field :value1 %>
-                    </div>
-
-                    <div class="viz-form-group">
-                        <label for="value2">Value2</label>
-                        <%= filters_form.text_field :value2 %>
-                    </div>
-
-                </div>
-                <% end %>
-            </ul>
-        </div>
-
-        <div class="viz-form-section">
-            <h4>Step 2 - Select Chart Type</h4>
-            <label for="chart_type">Chart Type</label>
-            <%= f.select :chart_type, options_for_select(get_form_chart_types) %>
-        </div>
-
-
-        <div class="viz-form-section">
-            <h4>Step 3 - Fill Chart Details (titles, variables etc.)</h4>
-
+     <div class="viz-form-section">
+        <h4>Step 1 - Filter Data</h4>
+        <ul>
+          <%= f.fields_for :filters do |filters_form| %>
+          <li>
             <div class="viz-form-group">
-                <label for="chart_title">Chart Title</label>
-                <%= f.text_field :chart_title %>
+              <label for="variable_name">Variable</label>
+              <%= filters_form.select :variable_name, options_for_select(get_form_variable_names), class: 'form-control' %>
             </div>
 
             <div class="viz-form-group">
-                <label for="x_axis_title">X Axis Title</label>
-                <%= f.text_field :x_axis_title %>
+              <label for="filter_type">Filter Type</label>
+              <%= filters_form.select :filter_type, options_for_select(get_form_filter_types), class: 'form-control' %>
             </div>
 
             <div class="viz-form-group">
-                <label for="y_axis_title">Y Axis Title</label>
-                <%= f.text_field :y_axis_title %>
+              <label for="value1">Value1</label>
+              <%= filters_form.text_field :value1, class: 'form-control' %>
             </div>
 
-            <b>Chart Variables:</b>
-            <ul>
-                <%= f.fields_for :variables do |variables_form| %>
-                <div style="display:flex; flex-direction: row; justify-content: flex-start;">
+            <div class="viz-form-group">
+              <label for="value2">Value2</label>
+              <%= filters_form.text_field :value2, class: 'form-control' %>
+            </div>
 
-                    <div class="viz-form-group">
-                        <label for="role">Role</label>
-                        <%= variables_form.select :role, options_for_select(get_form_variable_roles) %>
-                    </div>
+          </li>
+          <% end %>
+        </ul>
+       </div>
 
-                    <div class="viz-form-group">
-                        <label for="name">Variable</label>
-                        <%= variables_form.select :name, options_for_select(get_form_variable_names) %>
-                    </div>
-                </div>
-                <% end %>
-            </ul>
+       <div class="viz-form-section">
+          <h4>Step 2 - Select Chart Type</h4>
+          <label for="chart_type">Chart Type</label> 
+          <%= f.select :chart_type, options_for_select(get_form_chart_types), class: 'form-control' %>
+       </div>
+       
+       
+       <div class="viz-form-section">
+          <h4>Step 3 - Fill Chart Details (titles, variables etc.)</h4>
 
-            <b>Summarize by:</b>
-            <ul>
-                <div style="display:flex; flex-direction: row; justify-content: flex-start;">
-                    <div class="viz-form-group">
-                        <label for="summarize_by">Method</label>
-                        <%= f.select :summarize_by, options_for_select(get_form_summarize_methods) %>
-                    </div>
+          <div class="viz-form-group">
+            <label for="chart_title">Chart Title</label>
+            <%= f.text_field :chart_title, class: 'form-control' %>
+          </div>
 
-                    <div class="viz-form-group">
-                        <label for="summarize_variable">Variable</label>
-                        <%= f.select :summarize_variable, options_for_select(get_form_variable_names) %>
-                    </div>
-                </div>
-            </ul>
-        </div>
+          <div class="viz-form-group">
+            <label for="x_axis_title">X Axis Title</label>
+            <%= f.text_field :x_axis_title, class: 'form-control' %>
+          </div>
+
+          <div class="viz-form-group">
+            <label for="y_axis_title">Y Axis Title</label>
+            <%= f.text_field :y_axis_title, class: 'form-control' %>
+          </div>
+          
+          <b>Chart Variables:</b>
+          <ul>
+            <%= f.fields_for :variables do |variables_form| %>
+
+            <li>
+             
+              <div class="viz-form-group">
+                <label for="name">Name</label>
+                <%= variables_form.select :name, options_for_select(get_form_variable_names), class: 'form-control' %>
+              </div>
+
+              <div class="viz-form-group">
+                <label for="role">Role</label>
+                <%= variables_form.select :role, options_for_select(get_form_variable_roles), class: 'form-control' %>
+              </div>
+
+            </li>
+            <% end %>
+          </ul>
+       </div>
 
 
-        <%= f.submit "Create Visualization!", class: "btn btn-primary" %>
-        <% end %>
-    </div>
+       <%= f.submit "Create Visualization!", class: "btn btn-primary" %>
+      <% end %>
+   </div>
 </div>
+  

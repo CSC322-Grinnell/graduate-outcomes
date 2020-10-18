@@ -1,0 +1,14 @@
+<h1 class="page-title">Upload</h1>
+<p>1. Please choose a .csv file from your system containing graduate outcomes data that you would like to upload to the website.</p>
+
+<div>
+  <%= form_with url: uploads_import_path, multipart: true do %>
+    <%= file_field_tag :file %>
+    <br>
+    <p>2. After you have chosen the file, click Submit to store the .csv file's data on the website.</p>
+    <%= submit_tag "Submit" %>
+  <% end %>
+<br>
+<p>3. After repeating steps 1 and 2 as many times as necessary to upload all of your .csv data files, navigate to the Visualize page in order to use your uploaded data to create visualizations.</p>
+<%= link_to "Visualize", new_visualization_path, class: "btn btn-primary" %>
+</div>

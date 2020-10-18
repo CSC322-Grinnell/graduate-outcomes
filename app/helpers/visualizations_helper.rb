@@ -1,11 +1,24 @@
 module VisualizationsHelper
 
     def empty_option
-        [["-", ""]]
+        [["---", ""]]
     end
 
     def get_form_variable_names
-       empty_option + Student.column_names.reject {|c| ["id", "student_id", "updated_at", "created_at"].include? c}
+        [
+            ["---", ""],
+            ["class_year", "class_year"],
+            ["major1", "major1"],
+            ["major2", "major2"],
+            ["gender", "gender"],
+            ["fed_group", "fed_group"],
+            ["intern", "intern"],
+            ["research", "research"],
+            ["service", "service"],
+            ["career_related", "career_related"],
+            ["job_field", "job_field"]
+        ]
+        # Student.column_names.reject {|c| ["id", "student_id", "updated_at", "created_at"].include? c}
     end
 
 
@@ -24,16 +37,17 @@ module VisualizationsHelper
         # Each element has format [<Display Name>, <Value>]
         empty_option +
         [
-            ["Group", "group"],
-            ["Independent (Group)", "independent"],
-            ["Dependent", "dependent"],
+            ["---", ""],
+            ["Group By", "group"],
+            ["Independent", "independent"],
+            ["Dependent", "dependent"]
         ]
     end
 
 
     def get_form_filter_types
-        empty_option +
         [
+            ["---", ""],
             ["From..To", "from_to"],
             ["Equals", "equals"],
             ["Is Greater Than", "greater_than"],
@@ -45,7 +59,6 @@ module VisualizationsHelper
     end
 
     def get_form_summarize_methods
-        empty_option +
         [
             ["count"],
             ["sum"],

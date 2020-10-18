@@ -1,15 +1,1 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  variable_name: MyText
-  filter_type: MyText
-  value1: MyText
-  value2: MyText
-  visualization: one
-
-two:
-  variable_name: MyText
-  filter_type: MyText
-  value1: MyText
-  value2: MyText
-  visualization: two
