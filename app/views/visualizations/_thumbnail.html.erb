@@ -1,0 +1,8 @@
+<div class="viz-thumbnail-wrapper">
+<%= link_to visualization_path(locals[:visualization]), class: "viz-thumbnail" do %>
+    <div class="viz-thumbnail-info">
+        <p class="viz-thumbnail-title"><%= locals[:visualization].chart_title%></p>
+        <p class="">Last edited @<%= locals[:visualization].updated_at%></p>
+    </div>
+<%end%>
+</div>
