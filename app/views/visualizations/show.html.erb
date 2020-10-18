@@ -1,4 +1,4 @@
-<h1 class="page-title">Visualization #XYZ</h1>
+<h1 class="page-title">Visualization #<%=@visualization.id%>: <%=@visualization.chart_title%></h1>
 
 <%# Setup %>
 <% chart_info = get_chart_info(params[:id]) %>
@@ -12,8 +12,10 @@
         <% when 'line_chart'%>
             <%= line_chart chart_data %>
         <% when 'pie_chart'%>
-            <%= pie_chart chart_data %>
+            <%= pie_chart chart_data, donut: true %>
         <% when 'bar_chart'%>
             <%= bar_chart chart_data %>
+        <% when 'column_chart'%>
+            <%= column_chart chart_data %>
     <% end %>
 </div>

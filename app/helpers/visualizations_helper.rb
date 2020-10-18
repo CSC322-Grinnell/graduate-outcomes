@@ -27,6 +27,7 @@ module VisualizationsHelper
         empty_option +
         [
             ["Bar", "bar_chart"],
+            ["Column", "column_chart"],
             ["Pie", "pie_chart"],
             ["Line", "line_chart"]
         ]
@@ -73,12 +74,14 @@ module VisualizationsHelper
         chart_type = visualization.chart_type
 
         # Repeatedly apply each filter on the dataset
-        visualization.filters.each do |filter|
+        visualization.filters.each_with_index do |filter, index|
             data = apply_filter(data, filter)
+            puts ">> Applied filter #{index + 1}: #{filter.inspect}"
         end
 
-        visualization.variables.each do |variable|
+        visualization.variables.each_with_index do |variable, index|
             data = set_variable(data, variable, chart_type)
+            puts ">> Set variable #{index + 1} : #{variable.inspect}"
         end
 
         chart_info = Hash.new
@@ -92,7 +95,6 @@ module VisualizationsHelper
 
     # Applies a single filter on the dataset
     def apply_filter(data, filter_model)
-
         filter_type = filter_model.filter_type
         variable_name = filter_model.variable_name;
         value1 = filter_model.value1
@@ -157,6 +159,14 @@ module VisualizationsHelper
             when 'count'
                 data = data.count(variable)
             end
+    end
+
+    def get_chart_options(visualization_id)
+        visualization = Visualization.find(visualization_id)
+        options = Hash.new
+
+        options[]
+
     end
 
 
