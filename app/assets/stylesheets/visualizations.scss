@@ -2,12 +2,52 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+.viz-page{
+   // box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+   width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+}
+
+.viz-step{
+    font-weight: 600;
+    font-size: 1.2em;
+    margin-bottom: 1.5em;
+    margin-top: 4px;
+    text-decoration: underline;
+}
+
 .viz-form-section {
-    margin-bottom: 50px;
+    padding: 8px 0px;
+    margin-bottom: 8px;
+
+
+    label{
+       font-weight: 600; 
+       color: rgba(0, 0, 0, 0.8)
+    }
+
+    ul{
+        margin:0;
+        padding: 0;
+    }
+
+    select{
+        border-color: #ccc;
+        border-radius: 4px;
+        height: 32px;
+        padding: 4px 4px;
+        box-sizing: border-box;
+    }
 }
 
 .viz-form-group{
-    margin-bottom: 12px;
+    margin-right: 8px;
+    width: auto;
+    display: flex;
+    flex-direction: column;
 }
 
 .viz-thumbnail-group{
@@ -62,5 +102,35 @@
 
     .viz-thumbnail-title{
         font-weight: bold;
+  }
+}
+
+.form-row{
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;    
+    border: solid 1px #ccc;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    padding: 24px 24px;
+    box-sizing: border-box;
+}
+
+.chart-details{
+    margin-bottom: 16px;
+
+    .viz-form-group{
+        margin-bottom: 16px;
+    }
+}
+
+.chart-details.form-row{
+    flex-direction: column;
+}
+
+.chart-variables{
+    b{
+        margin-bottom: 8px;
+        display: block;
     }
 }
