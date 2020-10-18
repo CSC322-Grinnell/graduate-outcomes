@@ -4,7 +4,7 @@ class VisualizationsController < ApplicationController
   end
 
   def show
-    
+    @visualization = Visualization.find(params[:id])
   end
 
   def new
@@ -17,7 +17,7 @@ class VisualizationsController < ApplicationController
       @visualization = Visualization.new(visualization_params)
       if @visualization.save
          flash[:success] = "Visualization created!"
-         redirect_to visualizations_path
+         redirect_to @visualization #show visualization that was just created
       else
         render 'new'
       end
