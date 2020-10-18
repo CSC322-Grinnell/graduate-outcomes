@@ -1,7 +1,25 @@
 <nav class="navbar-container">
     <ul>
-        <li class="nav-item"> <%= image_tag  "navbar/bar-chart.svg" %> <%= link_to "Preview", visualizations_path  %></li>
-        <li class="nav-item"><%= image_tag  "navbar/plus-circle.svg" %> <%= link_to "Visualize", new_visualization_path %></li>
-        <li class="nav-item"><%= image_tag  "navbar/upload.svg" %> <%= link_to "Upload", uploads_path %></li>
+        <%= link_to visualizations_path do %>
+            <li class="nav-item"> 
+                <%= image_tag  "navbar/bar-chart.svg" %> 
+                <div class="nav-text">Review</div>
+            </li>
+        <%end%>
+
+        <%= link_to new_visualization_path do %>
+            <li class="nav-item"> 
+                <%= image_tag  "navbar/plus-circle.svg" %> 
+                <div class="nav-text">Visualize</div>
+            </li>
+        <%end%>
+
+         <%= link_to uploads_path do %>
+            <li class="nav-item"> 
+                <%= image_tag  "navbar/upload.svg" %> 
+                <div class="nav-text">Upload</div>
+            </li>
+        <%end%>
+
     </ul>
 </nav>

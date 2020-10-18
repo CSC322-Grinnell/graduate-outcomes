@@ -1,6 +1,6 @@
 class VisualizationsController < ApplicationController
   def index
-    
+    @visualizations = Visualization.order(updated_at: :desc)
   end
 
   def show
