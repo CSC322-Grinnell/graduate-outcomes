@@ -149,3 +149,8 @@
       color: $state-danger-text;
    }
 }
+
+.alert-error{
+    background-color: rgba($color: red, $alpha: 0.2);
+    color: red;
+}
