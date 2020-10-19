@@ -54,34 +54,33 @@
 .viz-thumbnail-group{
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
     flex-wrap: wrap;
-    width: 80vw;
-    align-self: center;
     margin-top: 5vh;
 }
 
 .viz-thumbnail-wrapper{
     position: relative;
-    width: 392px;
-    height: 392px;
+    width: 456px;
+    height: 456px;
     margin-right: 32px;
     margin-bottom: 32px;
 }
 
 .viz-thumbnail{
-    width: 376px;
-    height: 376px;
+    width: 440px;
+    height: 440px;
     background-color: white;
     box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    
     position: relative;
     color: black;
     display: block;
 
     &:hover{
-        width: 392px;
-        height: 392px;
+        width: 456px;
+        height: 456px;
         transition: .2s;
         margin-top: -8px;
         margin-left: -8px;
@@ -134,6 +133,14 @@
     border-radius: 10px;
     padding: 10vh 4vw;
     margin-top: 4vh;
+    margin-bottom: 8vh;
+}
+
+.thumbnail-chart{
+    display: block;
+    width: auto;
+    padding-top: 32px;
+    margin-left: -36px;
 }
 
 .chart-container{
