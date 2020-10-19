@@ -189,13 +189,10 @@ module VisualizationsHelper
             .reject{|c| ["id", "student_id", "updated_at", "created_at"].include? c}
             .each do |name|  
                 possible_values = Student.distinct.pluck(name)
-                puts "Possible values #{possible_values}"
                 possible_values.each do |value| 
                     options = options + [["#{name}:#{value}", "#{value}"]]
                 end
             end
-
-        puts "All options #{options}"
         return options
     end
 
