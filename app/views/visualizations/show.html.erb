@@ -1,26 +1,3 @@
 <h1 class="page-title">Visualization #<%=@visualization.id%>: <%=@visualization.chart_title%></h1>
 
-<%# Setup %>
-<% chart_info = get_chart_info(params[:id]) %>
-<% chart_type = chart_info[:chart_type] %>
-<% chart_data = chart_info[:data] %>
-<% chart_options = chart_info[:options] %>
-
-
-
-<%# Plotting %>
-<div class="chart-container">
-
-<div class="full-chart">
-    <% case chart_type %>
-        <% when 'line_chart'%>
-            <%= line_chart chart_data, chart_options %>
-        <% when 'pie_chart'%>
-            <%= pie_chart chart_data, chart_options %>
-        <% when 'bar_chart'%>
-            <%= bar_chart chart_data, chart_options %>
-        <% when 'column_chart'%>
-            <%= column_chart chart_data, chart_options %>
-    <% end %>
-</div>
-</div>
+<%= render "chart", locals: {id: params[:id]}%>

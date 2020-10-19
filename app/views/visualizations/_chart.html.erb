@@ -1,0 +1,28 @@
+<%# Setup %>
+<% chart_info = get_chart_info(locals[:id]) %>
+<% chart_type = chart_info[:chart_type] %>
+<% chart_data = chart_info[:data] %>
+<% chart_options = chart_info[:options] %>
+<% chart_options[:width] = "70vw" %>
+<% chart_options[:height] = "50vh" %>
+
+
+
+
+
+<%# Plotting %>
+<div class="chart-container">
+
+<div class="full-chart">
+    <% case chart_type %>
+        <% when 'line_chart'%>
+            <%= line_chart chart_data, chart_options %>
+        <% when 'pie_chart'%>
+            <%= pie_chart chart_data, chart_options %>
+        <% when 'bar_chart'%>
+            <%= bar_chart chart_data, chart_options %>
+        <% when 'column_chart'%>
+            <%= column_chart chart_data, chart_options %>
+    <% end %>
+</div>
+</div>
