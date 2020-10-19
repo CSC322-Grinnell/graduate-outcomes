@@ -2,7 +2,7 @@
 <p>See all your visualizations on this page! Visualizations are ordered by the time they were last edited.</p>
 
 <div class="viz-thumbnail-group">
-<%@visualizations.each do |visualization|%>
+    <%@visualizations.each do |visualization|%>
     <%= render "thumbnail", locals: {visualization: visualization}%>
-<%end%>
+    <%end%>
 </div>
