@@ -1,3 +1,35 @@
 // Place all the styles related to the uploads controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.datasets-section{
+    margin-top: 5vh;
+
+}
+
+.uploads-thumbnail-group{
+    margin-top: 2vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.uploads-thumbnail{
+    padding: 8px 16px;
+    width: 360px;
+    height: 120px;
+    box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-right: 16px;
+}
+
+.uploads-thumbnail-info{
+    
+}
+
+.uploads-thumbnail-trash{
+    align-self: flex-end;
+}

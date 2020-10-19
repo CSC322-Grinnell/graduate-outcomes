@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   #get 'uploads/index'
-  resources :uploads
+  resources :uploads do
+    collection do
+      get 'delete_class_year'
+    end
+  end
   post 'uploads/import'
   #resources :uploads do
   #  collection { post :import }
