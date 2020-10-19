@@ -1,10 +1,6 @@
 module VisualizationsHelper
-    def empty_option
-        [["--", ""]]
-    end
 
     def get_form_variable_names
-        empty_option +
         [
             ["class_year", "class_year"],
             ["major1", "major1"],
@@ -23,7 +19,6 @@ module VisualizationsHelper
 
     def get_form_chart_types
         # Each element has format [<Display Name>, <Value>]
-        empty_option +
         [
             ["Bar", "bar_chart"],
             ["Column", "column_chart"],
@@ -35,7 +30,6 @@ module VisualizationsHelper
 
     def get_form_variable_roles
         # Each element has format [<Display Name>, <Value>]
-        empty_option +
         [
             ["Group By", "group"],
             ["Independent", "independent"],
@@ -45,7 +39,6 @@ module VisualizationsHelper
 
 
     def get_form_filter_types
-        empty_option +
         [
             ["From..To", "from_to"],
             ["Equals", "equals"],
@@ -183,7 +176,7 @@ module VisualizationsHelper
 
 
     def get_form_filter_values
-        options = empty_option
+        options = []
 
         Student.column_names
             .reject{|c| ["id", "student_id", "updated_at", "created_at"].include? c}
