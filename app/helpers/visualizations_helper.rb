@@ -1,12 +1,11 @@
 module VisualizationsHelper
-
     def empty_option
-        [["---", ""]]
+        [["--", ""]]
     end
 
     def get_form_variable_names
+        empty_option +
         [
-            ["---", ""],
             ["class_year", "class_year"],
             ["major1", "major1"],
             ["major2", "major2"],
@@ -36,8 +35,8 @@ module VisualizationsHelper
 
     def get_form_variable_roles
         # Each element has format [<Display Name>, <Value>]
+        empty_option +
         [
-            ["---", ""],
             ["Group By", "group"],
             ["Independent", "independent"],
             ["Dependent", "dependent"]
@@ -46,8 +45,8 @@ module VisualizationsHelper
 
 
     def get_form_filter_types
+        empty_option +
         [
-            ["---", ""],
             ["From..To", "from_to"],
             ["Equals", "equals"],
             ["Is Greater Than", "greater_than"],
@@ -58,6 +57,7 @@ module VisualizationsHelper
         ]
     end
 
+    # not being used yet. In future allow user to select kind of summarization. 
     def get_form_summarize_methods
         [
             ["count"],
@@ -78,10 +78,14 @@ module VisualizationsHelper
             puts ">> Applied filter #{index + 1}: #{filter.inspect}"
         end
 
-        visualization.variables.each_with_index do |variable, index|
+        # Reverse since for some reason it groups in the wrong order without reversing.
+        visualization.variables.reverse.each_with_index do |variable, index|
             data = set_variable(data, variable, chart_type)
             puts ">> Set variable #{index + 1} : #{variable.inspect}"
         end
+
+        # Final summarization before rendering. Make this more dynamic in the future to support max, min, etc.
+        data = summarize(data, 'count')
 
         chart_info = Hash.new
         chart_info[:data] = data
@@ -139,17 +143,16 @@ module VisualizationsHelper
         case role
             when 'group'
                 data = data.group(variable_name)
-                data = summarize(data, 'count')
             when 'independent'
-                data = data.count
+                data = data.group(variable_name)
             when 'dependent'
-                data = data.count
+                data = data.group(variable_name)
             else
                 data.count
         end
     end
 
-
+    # Not being used yet. 
     def summarize(data, summarization_method, variable=nil)
         case summarization_method
             when 'sum'
@@ -165,9 +168,35 @@ module VisualizationsHelper
     def get_chart_options(visualization_id)
         visualization = Visualization.find(visualization_id)
         options = Hash.new
+
+        options[:title] = visualization.chart_title
+        options[:download] = true
+        options[:xtitle] = visualization.x_axis_title
+        options[:ytitle] = visualization.y_axis_title
+        options[:donut] = true;
+
+
+
         return options
 
     end
 
+
+    def get_form_filter_values
+        options = empty_option
+
+        Student.column_names
+            .reject{|c| ["id", "student_id", "updated_at", "created_at"].include? c}
+            .each do |name|  
+                possible_values = Student.distinct.pluck(name)
+                puts "Possible values #{possible_values}"
+                possible_values.each do |value| 
+                    options = options + [["#{name}:#{value}", "#{value}"]]
+                end
+            end
+
+        puts "All options #{options}"
+        return options
+    end
 
 end
