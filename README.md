@@ -118,6 +118,7 @@ Our project includes controller, integration, and model tests. We have extensive
 - [Filter Graph](https://filtergraph.com/)
 - [Chartkick](https://chartkick.com/)
 - [Figma] (https://figma.com/)
+- [Upload Functionality:] (https://mattboldt.com/importing-massive-data-into-rails/)
 
 # References
 
