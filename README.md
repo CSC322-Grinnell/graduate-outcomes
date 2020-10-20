@@ -1,4 +1,4 @@
-# Visualizing Graudate Outcomes
+# Visualizing Graduate Outcomes
 
 A Ruby on Rails application visualizing the graduate outcome data of Grinnell students.
 
