@@ -85,7 +85,7 @@ Rails command.
 
 ## Tests
 
-Our project includes controller, integration, and model tests. We have extensive student model testing, but all testing needs to be expanded upon. Part of the reason why we are missing a lot of the `visualization`, `variable`, and `filter` tests was because we were still wrapping our heads around everything works together until the last sprint. Now that we have a basic functionality that allows users to create and view their visualizations, we need to create rigorous model tests. We detail some tests we did not have time to start in the  TODOs document.
+Our project includes controller, integration, and model tests. We have extensive student model testing, but all testing needs to be expanded upon. Part of the reason why we are missing a lot of the `visualization`, `variable`, and `filter` tests was because we were still wrapping our heads around everything works together until the last sprint. Now that we have a basic functionality that allows users to create and view their visualizations, we need to create rigorous model tests.
 
 - Our controller tests just make sure that we get responses when getting the appropriately named paths. These can by expanded upon.
 
@@ -97,22 +97,29 @@ Our project includes controller, integration, and model tests. We have extensive
 
 - Our `filter` model test only validates a valid filter. We need to create more tests for invalid filters, as well as add a conditional validation for the presence of the `value2` attribute in the model.
 
-# Features left to complete
-- Make the create visualization form dynamic
-- Add more options for creating chart type
-- Add more filter variables
-- Add more unit tests
-- Polish UI
+# To-Dos
+- Live previews of the chart while form is being created/edited
+- Change form depending on what chart type user selects
+- Add more chart types (i.e. scatter plots, line charts)
+- Add multiple filters functionality (so user can add as many filters as needed)
+- More comprehensive integration test
+- Unit tests for uploading files
+- Consider Filter implementation (as described in the 'Tests' section)
+- Re-think visualization create form for readability
 
+# Notes & Considerations
+- Currently, empty filters are being saved into the database on form creation due to a lack of robust validation.  Moving forward, we would like to add more conditional validations that check if a filter is empty before attempting to save -- this is an issue we have because if we validate the model, the form does not allow an empty filter input.
+- In the form, we hard coded all graphs to display variables by count.  Eventually, users should be able to choose to display graphs by count, average, max, min, etc.
+- In the form, we hard coded two filter options.  Eventually, users should be able to choose how many filters they want to apply.
+- In the form, we hard coded two variables options.  Eventually, useres should be able to choose how many variables, depending on the chart type, they want to apply.
 
 # Tools & Learning Resources
 - Ruby on Rails Tutorial by Hartl 
 - [Filter Graph](https://filtergraph.com/)
 - [Chartkick](https://chartkick.com/)
-
-
-
+- [Figma] (https://figma.com/)
 
 # References
 
-- Reference Hartl ??
+- A lot of this material is directly from the Ruby on Rails Tutorial by Hartl
+- 
