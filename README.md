@@ -90,6 +90,12 @@ Our project includes controller, integration, and model tests. We have extensive
 
 - Our `filter` model test only validates a valid filter. We need to create more tests for invalid filters, as well as add a conditional validation for the presence of the `value2` attribute in the model.
 
+# Tools & Learning Resources
+- Ruby on Rails Tutorial by Hartl 
+- [Filter Graph](https://filtergraph.com/)
+- [Chartkick](https://chartkick.com/)
+
+
 # References
 
 - Reference Hartl ??
