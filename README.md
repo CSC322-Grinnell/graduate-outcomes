@@ -12,6 +12,13 @@ A Ruby on Rails application visualizing the graduate outcome data of Grinnell st
 
 The goal of this project is to create an efficient web application that facilitates the data analysis process so that the CLS can visualize graduate outcomes data based on demographic factors. The web application should provide the flexibility to explore various visualizations of the data based on the choice of specific dependent and independent variables. Ultimately, by using this tool, the CLS can identify any disparities in student trajectories and target key points of intervention. For example, if it is discovered that students identifying as ‘Hispanic’ are finding significantly less career-related jobs after graduation than other students, the CLS may develop certain programming in collaboration with organizations such as the Student Organization of Latinxs (SOL).
 
+# Functionalities
+- The user should be able to upload data containing student records. The web application should validate the data and inform the user of erroneous input. The uploaded data should follow the same format (same columns) as the dummy data excel sheet we were originally given.
+- The user should be able to create a variety of visualizations.
+- The user should be able to toggle variables and apply filters to selected data to create meaningful visualizations and analyses.
+- The user should be able to preview and manage all of the visualizations they created so far. This includes seeing what they have created so far, exporting the visualizations as images, and going back and being able to edit visualizations.
+
+
 # Prerequisites
 
 * Amazon Cloud9 setup
@@ -90,10 +97,20 @@ Our project includes controller, integration, and model tests. We have extensive
 
 - Our `filter` model test only validates a valid filter. We need to create more tests for invalid filters, as well as add a conditional validation for the presence of the `value2` attribute in the model.
 
+# Features left to complete
+- Make the create visualization form dynamic
+- Add more options for creating chart type
+- Add more filter variables
+- Add more unit tests
+- Polish UI
+
+
 # Tools & Learning Resources
 - Ruby on Rails Tutorial by Hartl 
 - [Filter Graph](https://filtergraph.com/)
 - [Chartkick](https://chartkick.com/)
+
+
 
 
 # References
