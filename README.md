@@ -16,30 +16,34 @@ The goal of this project is to create an efficient web application that facilita
 
 * Amazon Cloud9 setup
 * Yarn
-* Github
 * Ruby version 2.6.3
 * Ubuntu Operating System
 
 # Setting up the project on Amazon C9:
-1. Check prerequisites
-2. Make sure yarn is installed
+
+1. If you are using an Amazon Cloud9 environment, follow Hartl's tutorial to properly set one up. We highly recommend that instead of using the free Cloud9 tier, apply for a free [AWS education account](https://aws.amazon.com/education/awseducate/). Then, when creating a new environment select the largest education tier, `m5.xlarge`.
+
+2. Make sure that you have all the required prerequisites.
+
+3. Make sure yarn is installed
+
 `source <(curl -sL https://cdn.learnenough.com/yarn_install)`
 
-3. Clone the repository to your computer
+4. Clone the repository to your computer
 
-`   https://github.com/CSC322-Grinnell/graduate-outcomes.git                                                             `
+`https://github.com/CSC322-Grinnell/graduate-outcomes.git                                                             `
 
 After this, navigate to the project directory in your C9 environment
 
-4. Install necessary gems
+5. Install necessary gems
 
-`bundle install`         
+`bundle install --without production`         
 
 # Running the project:
 
  Run this command in the top level directory of your project
 
-`   rails server`
+`rails server`
 
 
 # Project Components
