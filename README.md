@@ -106,6 +106,7 @@ Our project includes controller, integration, and model tests. We have extensive
 - Unit tests for uploading files
 - Consider Filter implementation (as described in the 'Tests' section)
 - Re-think visualization create form for readability
+- Add deletion functionality for visualizations
 
 # Notes & Considerations
 - Currently, empty filters are being saved into the database on form creation due to a lack of robust validation.  Moving forward, we would like to add more conditional validations that check if a filter is empty before attempting to save -- this is an issue we have because if we validate the model, the form does not allow an empty filter input.
@@ -123,4 +124,3 @@ Our project includes controller, integration, and model tests. We have extensive
 # References
 
 - A lot of this material is directly from the Ruby on Rails Tutorial by Hartl
-- 
