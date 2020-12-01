@@ -11,6 +11,7 @@ require("channels")
 // Additional packages
 require("chartkick")
 require("chart.js")
+//= require visualization
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
