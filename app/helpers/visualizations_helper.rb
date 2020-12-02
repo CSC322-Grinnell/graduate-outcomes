@@ -186,10 +186,5 @@ module VisualizationsHelper
             end
         return options
     end
-    
-    def get_form_filter_values_2(name)
-        options = Student.distinct.pluck("major_1")
-        return options
-    end
 
 end
