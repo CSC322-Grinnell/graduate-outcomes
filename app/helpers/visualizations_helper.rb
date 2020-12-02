@@ -154,7 +154,7 @@ module VisualizationsHelper
                 data = data.maximum(variable)
             when 'count'
                 data = data.count(variable)
-            end
+        end
     end
 
     # should return options such as the axis titles and so forth
@@ -167,8 +167,6 @@ module VisualizationsHelper
         options[:xtitle] = visualization.x_axis_title
         options[:ytitle] = visualization.y_axis_title
         options[:donut] = true;
-
-
 
         return options
 
@@ -190,7 +188,7 @@ module VisualizationsHelper
     end
     
     def get_form_filter_values_2(name)
-        options = Student.distinct.pluck(name)
+        options = Student.distinct.pluck("major_1")
         return options
     end
 
