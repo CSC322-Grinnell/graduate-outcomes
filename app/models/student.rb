@@ -21,5 +21,4 @@ class Student < ApplicationRecord
       Student.create(row.to_hash)
     end
   end
-  
 end
