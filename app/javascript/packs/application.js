@@ -21,3 +21,13 @@ require("chart.js")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
+import $ from 'jquery';
+
+$(document).ready(function() {
+    
+    alert( $("#visualization_filters_attributes_0_variable_name"));
+    $("#visualization_filters_attributes_0_variable_name").on('change', function () {
+        alert("a");
+    });
+});

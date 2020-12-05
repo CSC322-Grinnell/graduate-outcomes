@@ -1,10 +1,3 @@
-<script>
- $(document).ready(function(){
-  $("#visualization_filters_attributes_0_variable_name").on('change', function () {
-    alert($(this).val());
-});
-</script>
-
 <div class="col-md-10 col-md-offset-1">
      <%= form_with(model: @visualization, local: true) do |f| %>
      <%= render 'shared/error_messages' %>
