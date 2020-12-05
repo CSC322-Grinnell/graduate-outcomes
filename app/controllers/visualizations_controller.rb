@@ -13,8 +13,10 @@ class VisualizationsController < ApplicationController
 
   def new
     @visualization = Visualization.new
-    2.times { @visualization.variables.build }
-    2.times { @visualization.filters.build }
+    @visualization.variables.build
+    @visualization.filters.build
+    #2.times { @visualization.variables.build }
+    #2.times { @visualization.filters.build }
   end
 
   def create
