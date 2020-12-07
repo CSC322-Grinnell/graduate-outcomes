@@ -24,10 +24,14 @@ require("chart.js")
 
 import $ from 'jquery';
 
-$(document).ready(function() {
+$(document).on('turbolinks:load', function() {
+    var fil_val1 = $('#visualization_filters_attributes_0_value1').html()
     
-    alert( $("#visualization_filters_attributes_0_variable_name"));
     $("#visualization_filters_attributes_0_variable_name").on('change', function () {
-        alert("a");
+        var fil_var =  $('#visualization_filters_attributes_0_variable_name :selected').text()
+        alert(fil_var);
+          
+          $("#visualization_filters_attributes_0_filter_type option").filter(function() {
+    		return !$(this).text().includes(fil_var); }).css("display","none");
     });
 });
