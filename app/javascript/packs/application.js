@@ -25,13 +25,18 @@ require("chart.js")
 import $ from 'jquery';
 
 $(document).on('turbolinks:load', function() {
+    var values = $("#visualization_filters_attributes_0_value1 option");
     var fil_val1 = $('#visualization_filters_attributes_0_value1').html()
     
     $("#visualization_filters_attributes_0_variable_name").on('change', function () {
         var fil_var =  $('#visualization_filters_attributes_0_variable_name :selected').text()
-        alert(fil_var);
-          
-          $("#visualization_filters_attributes_0_filter_type option").filter(function() {
-    		return !$(this).text().includes(fil_var); }).css("display","none");
+        // alert(fil_var); // why would alert more than one times?
+        values.prop('disabled', false).css('display', 'block'); // restore the setting from previous change
+        
+        values.filter(function() {
+            return !$(this).text().includes(fil_var); // filter the values
+        }).prop('disabled', true).css('display', 'none');
+        
+        
     });
 });
