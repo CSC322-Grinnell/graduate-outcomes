@@ -1,4 +1,7 @@
 <div class="viz-thumbnail-wrapper">
+    <%= link_to delete_visualization_visualizations_path(:chart_title => locals[:visualization].chart_title), method: :get, class: "viz-thumbnail-trash" do%>
+     <%= image_tag  "trash-2.svg" %>
+    <%end%> 
 <%= link_to visualization_path(locals[:visualization]), class: "viz-thumbnail" do %>
     <%= render "thumbnail_chart", locals: {id: locals[:visualization].id}%>
     <div class="viz-thumbnail-info">

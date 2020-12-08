@@ -5,6 +5,13 @@ class VisualizationsController < ApplicationController
     @visualizations = Visualization.order(updated_at: :desc)
   end
 
+ def delete_visualization
+    chart_title = @visualization
+    Visualization.destroy(chart_title)
+    flash[:success] = "You have deleted the visualization!"
+    redirect_to visualizations_path
+ end
+
   def show
   end
 
@@ -52,4 +59,5 @@ class VisualizationsController < ApplicationController
                                             filters_attributes: [:variable_name, :filter_type, :value1, :value2]
                                           )
     end  
+    
 end
