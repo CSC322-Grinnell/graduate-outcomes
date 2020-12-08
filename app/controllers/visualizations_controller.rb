@@ -6,8 +6,8 @@ class VisualizationsController < ApplicationController
   end
 
  def delete_visualization
-    chart_title = @visualization
-    Visualization.destroy(chart_title)
+   chart_id = params[:id]
+    Visualization.destroy(chart_id)
     flash[:success] = "You have deleted the visualization!"
     redirect_to visualizations_path
  end
