@@ -25,14 +25,16 @@ require("chart.js")
 import $ from 'jquery';
 
 $(document).on('turbolinks:load', function() {
-    var values = $("#visualization_filters_attributes_0_value1 option");
-    var values2 = $("#visualization_filters_attributes_0_value2 option");
     
-    $("#visualization_filters_attributes_0_variable_name").on('change', function () {
-        var fil_var =  $('#visualization_filters_attributes_0_variable_name :selected').text()
-        // alert(fil_var); // why would alert more than one times?
-        values.prop('disabled', false).css('display', 'block'); // restore the setting from previous change
-        values2.prop('disabled', false).css('display', 'block');
+    
+    $(".filter_var").on('change', function (event) {
+        // Selected variable
+        var fil_var =  $("#" + event.target.id + " :selected").text();
+        
+        var dropdown_id = event.target.id.substring(0, 35); // visualization_filters_attributes_(number)_
+        
+        var values = $("#" + dropdown_id+ "value1 option"); 
+        var values2 = $("#" + dropdown_id+ "value2 option"); 
         
         values.filter(function() {
             return !$(this).text().startsWith(fil_var); // filter the values
@@ -42,6 +44,6 @@ $(document).on('turbolinks:load', function() {
             return !$(this).text().startsWith(fil_var); // filter the values
         }).prop('disabled', true).css('display', 'none');
         
-        
     });
+    
 });
