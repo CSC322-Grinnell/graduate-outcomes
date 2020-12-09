@@ -36,14 +36,21 @@ $(document).on('turbolinks:load', function() {
         var values = $("#" + dropdown_id+ "value1 option"); 
         var values2 = $("#" + dropdown_id+ "value2 option"); 
         
+        // Restore the css setting as default
+        values.prop('disabled', false).css('display', 'block');
+        values2.prop('disabled', false).css('display', 'block');
+        
+        
+        // Filter the values
         values.filter(function() {
-            return !$(this).text().startsWith(fil_var); // filter the values
+            return !$(this).text().startsWith(fil_var); 
         }).prop('disabled', true).css('display', 'none');
         
         values2.filter(function() {
-            return !$(this).text().startsWith(fil_var); // filter the values
+            return !$(this).text().startsWith(fil_var); 
         }).prop('disabled', true).css('display', 'none');
         
     });
+    
     
 });

@@ -18,6 +18,11 @@ class VisualizationsController < ApplicationController
     2.times { @visualization.variables.build }
     2.times { @visualization.filters.build }
   end
+  
+  def add_filter
+    #@visualization = Visualization.new
+    @visualization.filters.build
+  end
 
   def create
       @visualization = Visualization.new(visualization_params)
