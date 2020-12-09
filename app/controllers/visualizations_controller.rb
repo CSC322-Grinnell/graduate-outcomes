@@ -13,17 +13,10 @@ class VisualizationsController < ApplicationController
 
   def new
     @visualization = Visualization.new
-    #@visualization.variables.build
-    #@visualization.filters.build
     2.times { @visualization.variables.build }
     2.times { @visualization.filters.build }
   end
   
-  def add_filter
-    #@visualization = Visualization.new
-    @visualization.filters.build
-  end
-
   def create
       @visualization = Visualization.new(visualization_params)
       if @visualization.save
