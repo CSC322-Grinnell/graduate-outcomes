@@ -5,12 +5,17 @@ class VisualizationsController < ApplicationController
     @visualizations = Visualization.order(updated_at: :desc)
   end
 
- def delete_visualization
-   chart_id = params[:id]
-    Visualization.destroy(chart_id)
+  #set associated model's foreign keys to nil
+  # or find associated models and delete them 
+  # variables and filters 
+  def delete_visualization
+    @id = Visualization.find(params[:id])
+    Visualization.find(params[:id]).filters.destroy_all
+    Visualization.find(params[:id]).variables.destroy_all
+    @id.destroy
     flash[:success] = "You have deleted the visualization!"
     redirect_to visualizations_path
- end
+  end
 
   def show
   end

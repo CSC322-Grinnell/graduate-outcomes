@@ -7,6 +7,11 @@
     <%= file_field_tag :file %>
     <br>
     <p>2. After you have chosen the file, click Submit to store the .csv file's data on the website.</p>
+    <%# if @errors %>
+      <%# @errors.each do |message| %>
+        <%#= message %>
+      <%# end %>
+    <%# end %>
     <%= submit_tag "Submit" %>
     <% end %>
     <br>

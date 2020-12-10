@@ -45,13 +45,12 @@ h5 {
     font-size: 13px;
     color: #FF0000;
         margin-bottom: 20px;
-
 }
 
  /* Navbar Styles */
 
  .navbar-container{
-     background-color: #001857;
+     background-color: #212121;
      box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.54);
      width: 100%;
      box-sizing: border-box;
@@ -114,7 +113,7 @@ h5 {
     font-weight: 600;
     align-self: baseline;
     font-size: 1em;
-    color: rgba(0,24,87,0.99);
+    color: #333333;
     max-width: 15em;
 }
 
@@ -143,7 +142,7 @@ h5 {
     font-weight: 600;
     font-size: 1.8em;
     margin-bottom: 20px;
-    color: rgb(17, 37, 88);
+    color: #333333;
 }
 
 /* Form errors */
@@ -165,4 +164,11 @@ h5 {
 .alert-error{
     background-color: rgba($color: red, $alpha: 0.2);
     color: red;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #C61F1F;
+    border-color: #C61F1F; 
+    
 }
