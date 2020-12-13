@@ -18,6 +18,7 @@ class VisualizationsController < ApplicationController
   end
   
   def create
+      
       @visualization = Visualization.new(visualization_params)
       if @visualization.save
          flash[:success] = "Visualization created!"
@@ -41,15 +42,16 @@ class VisualizationsController < ApplicationController
     def set_visualization
       @visualization = Visualization.find(params[:id])
     end
+    
 
     def visualization_params
-      params.require(:visualization).permit(
-                                            :chart_type, 
-                                            :x_axis_title, 
-                                            :y_axis_title, 
-                                            :chart_title, 
-                                            variables_attributes: [:name, :role],
-                                            filters_attributes: [:variable_name, :filter_type, :value1, :value2]
-                                          )
+      params.require(:visualization)
+            .permit(:chart_type, 
+                    :x_axis_title, 
+                    :y_axis_title, 
+                    :chart_title, 
+                    variables_attributes: [:name, :role],
+                    filters_attributes: [:variable_name, :filter_type, :value1, :value2])
+      
     end  
 end
