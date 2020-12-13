@@ -38,7 +38,7 @@
 
 h1, h2, h3, h4, h5, h6{
     font-weight: bold;
-    color: #001857;
+    color: #333333;
 }
 
 h5 {
@@ -113,7 +113,7 @@ h5 {
     font-weight: 600;
     align-self: baseline;
     font-size: 1em;
-    color: #333333;
+    color: #212121;
     max-width: 15em;
 }
 
@@ -129,12 +129,12 @@ h5 {
 .footer-section-content a,
 .footer-section-content p{
     text-decoration: none;
-    color: rgba(0,24,87,1);
+    color: #C61F1F;
     line-height: 1.8;
 }
 
 .footer-container a:hover{
-    color: rgba(0,24,87,0.9);
+    color: #C61F1F;
     text-decoration: underline;
 }
 
@@ -171,4 +171,15 @@ h5 {
     background-color: #C61F1F;
     border-color: #C61F1F; 
     
+}
+
+.btn:hover
+{
+background-image:none;
+background-color:#9c1919;
+}
+
+.form-control
+{
+    border-color: #212121;
 }
