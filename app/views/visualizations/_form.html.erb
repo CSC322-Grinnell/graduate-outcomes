@@ -30,22 +30,11 @@
           </li>
           <% end %>
         </ul>
-        <button type="button" class="addFilterButton">Add Filter</button>
+       
        </div>
 
        <div class="viz-form-section">
-          <h4 class="viz-step">Step 2 - Select Chart Type</h4> 
-          <div class="form-row">
-          <div class="viz-form-group">         
-            <label for="chart_type">Chart Type <span style="color:red;">*</span></label> 
-            <%= f.select :chart_type, options_for_select(get_form_chart_types), prompt: "Select chart", class: 'form-control' %>
-          </div>
-          </div>
-       </div>
-       
-       
-       <div class="viz-form-section">
-          <h4 class="viz-step">Step 3 - Fill Chart Details (titles, variables etc.)</h4>
+          <h4 class="viz-step">Step 2 - Select Chart Variables</h4>
 
             <div class="chart-variables">
             <b>Chart Variables (at least one required) <span style="color:red;">*</span></b>
@@ -68,9 +57,21 @@
               <% end %>
             </ul>
         </div>
-
+        
+        <div class="viz-form-section">
+          <h4 class="viz-step">Step 3 - Select Chart Type</h4> 
+          <div class="form-row">
+          <div class="viz-form-group">         
+            <label for="chart_type">Chart Type <span style="color:red;">*</span></label> 
+            <%= f.select :chart_type, options_for_select(get_form_chart_types), prompt: "Select chart", class: 'form-control' %>
+          </div>
+          </div>
+       </div>
+       
+       <div class="viz-form-section">
+          <h4 class="viz-step">Step 4 - Fill Chart Details (optional) </h4> 
           <div class="chart-details form-row">
-            <div class="viz-form-group">
+          <div class="viz-form-group">
               <label for="chart_title">Chart Title</label>
               <%= f.text_field :chart_title, class: 'form-control' %>
             </div>
@@ -84,6 +85,7 @@
               <label for="y_axis_title">Y Axis Title </label>
               <%= f.text_field :y_axis_title, class: 'form-control' %>
             </div>
+          </div>
           </div>
        </div>
 
