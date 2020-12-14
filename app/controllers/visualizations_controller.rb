@@ -5,6 +5,18 @@ class VisualizationsController < ApplicationController
     @visualizations = Visualization.order(updated_at: :desc)
   end
 
+  #set associated model's foreign keys to nil
+  # or find associated models and delete them 
+  # variables and filters 
+  def delete_visualization
+    @id = Visualization.find(params[:id])
+    Visualization.find(params[:id]).filters.destroy_all
+    Visualization.find(params[:id]).variables.destroy_all
+    @id.destroy
+    flash[:success] = "You have deleted the visualization!"
+    redirect_to visualizations_path
+  end
+
   def show
   end
 
@@ -16,7 +28,7 @@ class VisualizationsController < ApplicationController
     2.times { @visualization.variables.build }
     2.times { @visualization.filters.build }
   end
-  
+
   def create
       @visualization = Visualization.new(visualization_params)
       if @visualization.save
@@ -52,4 +64,5 @@ class VisualizationsController < ApplicationController
                                             filters_attributes: [:variable_name, :filter_type, :value1, :value2]
                                           )
     end  
+    
 end

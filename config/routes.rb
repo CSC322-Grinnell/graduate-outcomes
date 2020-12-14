@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   #get 'visualization/index'
   #get 'visualization/show'
   #get 'visualization/new'
-  resources :visualizations
-  root 'visualizations#index'
+  resources :visualizations do
+    collection do
+      get 'delete_visualization'
+    end
+end 
+root 'visualizations#index'
 end

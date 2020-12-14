@@ -35,7 +35,7 @@
     }
 
     select{
-        border-color: #ccc;
+        border-color: #212121;
         border-radius: 4px;
         height: 32px;
         padding: 4px 4px;
@@ -75,7 +75,7 @@
     box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     position: relative;
-    color: black;
+    color: white;
     display: block;
 
     &:hover{
@@ -89,7 +89,7 @@
 
 .viz-thumbnail-info{
     position: absolute;
-    background-color:white;
+    background-color:#C61F1F;
     box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.1);
     width: 100%;
     bottom: 0;
@@ -110,11 +110,12 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;    
-    border: solid 1px #ccc;
+    border: solid 1px #212121;
     border-radius: 4px;
     margin-bottom: 16px;
     padding: 24px 24px;
     box-sizing: border-box;
+    background-color: #F1D6D6;
 }
 
 .chart-details{
