@@ -2,20 +2,21 @@
 
 A Ruby on Rails application visualizing the graduate outcome data of Grinnell students.
 
-* Contributors: [Rexford Essilfie](https://github.com/RexfordEssilfie), [Tal Rastopchin](https://github.com/trastopchin), [Michael Spicer](https://github.com/Citywideiowa0), [Vijeeth Guggilla](https://github.com/vijeethguggilla), [Giang Khuat](https://github.com/giangkhuat)
+* Fall 1 Contributors: [Rexford Essilfie](https://github.com/RexfordEssilfie), [Tal Rastopchin](https://github.com/trastopchin), [Michael Spicer](https://github.com/Citywideiowa0), [Vijeeth Guggilla](https://github.com/vijeethguggilla), [Giang Khuat](https://github.com/giangkhuat)
+* Fall 2 Contributors: [Caio Carnauba](https://github.com/ccarnauba), [Seoyeon (Stella) Lee](https://github.com/stellasylee), [Reina Shahi](https://github.com/shahirei), [Clare Simpson](https://github.com/clasky777)
 * Alumni Mentor: Ian Young
-* Professor: Barbara Johnson
+* Professor: Barbara Johnson, Fernanda Eliott
 * Community Partner: Sarah Barks
-* Timeline: Fall 1 2020
+* Timeline: Fall 1 & 2 2020
 
 ## Description
 
 The goal of this project is to create an efficient web application that facilitates the data analysis process so that the CLS can visualize graduate outcomes data based on demographic factors. The web application should provide the flexibility to explore various visualizations of the data based on the choice of specific dependent and independent variables. Ultimately, by using this tool, the CLS can identify any disparities in student trajectories and target key points of intervention. For example, if it is discovered that students identifying as ‘Hispanic’ are finding significantly less career-related jobs after graduation than other students, the CLS may develop certain programming in collaboration with organizations such as the Student Organization of Latinxs (SOL).
 
 # Functionalities
-- The user should be able to upload data containing student records. The web application should validate the data and inform the user of erroneous input. The uploaded data should follow the same format (same columns) as the dummy data excel sheet we were originally given.
-- The user should be able to create a variety of visualizations.
-- The user should be able to toggle variables and apply filters to selected data to create meaningful visualizations and analyses.
+- The user should be able to upload data containing student records. The web application should validate the data and inform the user of erroneous input. The uploaded data should follow the same format (same columns) as the description on the webpage.
+- The user should be able to create, edit, and delete a variety of visualizations. The visualization have default value of chart title and x,y axis title.
+- The user should be able to toggle variables and apply filters to selected data to create meaningful visualizations and analyses. The selection of possible value changed dynamically as the user chooses the variable.
 - The user should be able to preview and manage all of the visualizations they created so far. This includes seeing what they have created so far, exporting the visualizations as images, and going back and being able to edit visualizations.
 
 
@@ -98,15 +99,15 @@ Our project includes controller, integration, and model tests. We have extensive
 - Our `filter` model test only validates a valid filter. We need to create more tests for invalid filters, as well as add a conditional validation for the presence of the `value2` attribute in the model.
 
 # To-Dos
+- Accommodating more variables for files
 - Live previews of the chart while form is being created/edited
 - Change form depending on what chart type user selects
+- Restore user selection when the user tries to edit the visualization
 - Add more chart types (i.e. scatter plots, line charts)
-- Add multiple filters functionality (so user can add as many filters as needed)
+- Add & remove multiple filters functionality (so user can add as many filters as needed)
 - More comprehensive integration test
-- Unit tests for uploading files
-- Consider Filter implementation (as described in the 'Tests' section)
-- Re-think visualization create form for readability
-- Add deletion functionality for visualizations
+- Comprehensive testing for visualization
+- Color scheme for visualization
 
 # Notes & Considerations
 - Currently, empty filters are being saved into the database on form creation due to a lack of robust validation.  Moving forward, we would like to add more conditional validations that check if a filter is empty before attempting to save -- this is an issue we have because if we validate the model, the form does not allow an empty filter input.
@@ -120,6 +121,9 @@ Our project includes controller, integration, and model tests. We have extensive
 - [Chartkick](https://chartkick.com/)
 - [Figma] (https://figma.com/)
 - [Upload Functionality:] (https://mattboldt.com/importing-massive-data-into-rails/)
+- [jQuery event calling] (https://api.jquery.com/on/)
+- [jQuery active record callback] (https://guides.rubyonrails.org/active_record_callbacks.html)
+- [Grinnell color scheme](https://www.grinnell.edu/about-grinnell/leadership-and-administration/offices-and-services/communications/our-brand-story)
 
 # References
 
