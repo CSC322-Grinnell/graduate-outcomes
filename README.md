@@ -19,7 +19,6 @@ The goal of this project is to create an efficient web application that facilita
 - The user should be able to toggle variables and apply filters to selected data to create meaningful visualizations and analyses. The selection of possible value changed dynamically as the user chooses the variable.
 - The user should be able to preview and manage all of the visualizations they created so far. This includes seeing what they have created so far, exporting the visualizations as images, and going back and being able to edit visualizations.
 
-
 # Prerequisites
 
 * Amazon Cloud9 setup
@@ -104,10 +103,11 @@ Our project includes controller, integration, and model tests. We have extensive
 - Change form depending on what chart type user selects
 - Restore user selection when the user tries to edit the visualization
 - Add more chart types (i.e. scatter plots, line charts)
+- Have variables automatically determine what chart type is used
 - Add & remove multiple filters functionality (so user can add as many filters as needed)
 - More comprehensive integration test
 - Comprehensive testing for visualization
-- Color scheme for visualization
+- Paying attention to the color scheme of the visualization itself
 
 # Notes & Considerations
 - Currently, empty filters are being saved into the database on form creation due to a lack of robust validation.  Moving forward, we would like to add more conditional validations that check if a filter is empty before attempting to save -- this is an issue we have because if we validate the model, the form does not allow an empty filter input.
@@ -119,11 +119,12 @@ Our project includes controller, integration, and model tests. We have extensive
 - Ruby on Rails Tutorial by Hartl 
 - [Filter Graph](https://filtergraph.com/)
 - [Chartkick](https://chartkick.com/)
-- [Figma] (https://figma.com/)
-- [Upload Functionality:] (https://mattboldt.com/importing-massive-data-into-rails/)
-- [jQuery event calling] (https://api.jquery.com/on/)
-- [jQuery active record callback] (https://guides.rubyonrails.org/active_record_callbacks.html)
+- [Figma](https://figma.com/)
+- [Upload Functionality:](https://mattboldt.com/importing-massive-data-into-rails/)
+- [jQuery event calling](https://api.jquery.com/on/)
+- [jQuery active record callback](https://guides.rubyonrails.org/active_record_callbacks.html)
 - [Grinnell color scheme](https://www.grinnell.edu/about-grinnell/leadership-and-administration/offices-and-services/communications/our-brand-story)
+- [HTML & CSS Resource](https://www.w3schools.com/)
 
 # References
 
