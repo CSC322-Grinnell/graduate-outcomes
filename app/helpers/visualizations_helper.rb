@@ -104,16 +104,16 @@ module VisualizationsHelper
                 data = data.where(filter_hash)
 
             when 'greater_than'
-                data = data.where("#{variable_name} > ?", variable_name, value1)
+                data = data.where("#{variable_name} > ?", value1)
 
             when 'greater_than_or_equal'
                 data = data.where("#{variable_name} >= ?", value1)
 
             when 'less_than'
-                data = data.where("#{variable_name} > ?", value1)
+                data = data.where("#{variable_name} < ?", value1)
 
             when 'less_than_or_equal'
-                data = data.where("#{variable_name} >= ?", value1)
+                data = data.where("#{variable_name} <= ?", value1)
 
             when 'from_to'
                 data = data.where("#{variable_name} >= ? AND #{variable_name} <= ?", value1, value2)
