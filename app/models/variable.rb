@@ -1,7 +1,6 @@
 class Variable < ApplicationRecord
   belongs_to :visualization
-  #validates :name, presence: true
-  #validates :role, presence: true
-  #validates :visualization, presence: true
-  #Commented out because only at least one variable is required for some charts.
+  validates :name, presence: true, unless: -> { role.blank? }
+  validates :role, presence: true, unless: -> { name.blank? }
+  validates :visualization, presence: true
 end
