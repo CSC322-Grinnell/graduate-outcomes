@@ -16,6 +16,11 @@
             <%= link_to  "Preview", visualizations_path %>
             <%= link_to  "Visualize", new_visualization_path %>
             <%= link_to  "Upload", uploads_path %>
+            <% if logged_in? %>
+                <%= link_to  "Log Out", logout_path, method: :delete %>
+            <% else %>
+                <%= link_to  "Log In", login_path %>
+            <% end %>
         </div>
 
     </div>

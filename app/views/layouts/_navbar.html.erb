@@ -13,6 +13,26 @@
                 <div class="nav-text">Upload</div>
             </li>
         <%end%>
+        
+        <% if logged_in? %>
+
+            <%= link_to logout_path, method: :delete do %>
+                <li class="nav-item"> 
+                    <%= image_tag  "navbar/person.svg" %> 
+                    <div class="nav-text">Log Out</div>
+                </li>
+            <%end%>
+
+        <% else %>
+
+            <%= link_to login_path do %>
+                <li class="nav-item"> 
+                    <%= image_tag  "navbar/person.svg" %> 
+                    <div class="nav-text">Log In</div>
+                </li>
+            <%end%>
+
+        <% end %>
 
     </ul>
 </nav>

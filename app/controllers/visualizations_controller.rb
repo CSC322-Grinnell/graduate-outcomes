@@ -1,5 +1,6 @@
 class VisualizationsController < ApplicationController
   before_action :set_visualization, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_user
 
   def index
     @visualizations = Visualization.order(updated_at: :desc)

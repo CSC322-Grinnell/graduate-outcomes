@@ -29,3 +29,5 @@ csv.each do |row|
 end
 
 puts "There are now #{Student.count} records stored"
+
+User.create({email: 'barks@grinnell.edu', password:'gradoutcomes', password_confirmation:'gradoutcomes'})
