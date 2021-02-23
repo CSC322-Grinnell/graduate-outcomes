@@ -21,14 +21,15 @@ The goal of this project is to create an efficient web application that facilita
 
 # Prerequisites
 
-* Amazon Cloud9 setup
+* Amazon Cloud9 setup (optional)
 * Yarn
 * Ruby version 2.6.3
-* Ubuntu Operating System
+* Rails verson 6.0.3.2
+* Ubuntu Operating System (optional)
 
 # Setting up the project on Amazon C9:
 
-1. If you are using an Amazon Cloud9 environment, follow Hartl's tutorial to properly set one up. We highly recommend that instead of using the free Cloud9 tier, apply for a free [AWS education account](https://aws.amazon.com/education/awseducate/). Then, when creating a new environment select the largest education tier, `m5.xlarge`.
+1. If you are using an Amazon Cloud9 environment, follow Hartl's tutorial to properly set one up. We highly recommend that instead of using the free Cloud9 tier, apply for a free [AWS education account](https://aws.amazon.com/education/awseducate/). Then, when creating a new environment select the largest education tier, `m5.xlarge`. Alternatively, you can set up everything on your local computer without Cloud9.
 
 2. Make sure that you have all the required prerequisites.
 
@@ -40,18 +41,21 @@ The goal of this project is to create an efficient web application that facilita
 
 `https://github.com/CSC322-Grinnell/graduate-outcomes.git                                                             `
 
-After this, navigate to the project directory in your C9 environment
+After this, navigate to the project directory in your C9 environment (if applicable)
 
 5. Install necessary gems
 
-`bundle install --without production`         
+`bundle install --without production`
+
+6. Connect to Heroku (ask prof for details) or create new deployment.
+  * See Hartl tutorial "1.4.1: Heroku setup and deployment" for both
+  * Also resources on Heroku website https://devcenter.heroku.com/articles/getting-started-with-ruby
 
 # Running the project:
 
  Run this command in the top level directory of your project
 
 `rails server`
-
 
 # Project Components
 
@@ -126,6 +130,24 @@ Our project includes controller, integration, and model tests. We have extensive
 - [jQuery active record callback](https://guides.rubyonrails.org/active_record_callbacks.html)
 - [Grinnell color scheme](https://www.grinnell.edu/about-grinnell/leadership-and-administration/offices-and-services/communications/our-brand-story)
 - [HTML & CSS Resource](https://www.w3schools.com/)
+
+# Additional Help & Suggestions
+
+Pushing a branch other than master to Heroku:
+
+`git push heroku branchname:master`
+
+## Database Management
+* Update database on Heroku:
+`heroku run rails db:migrate`
+* Reset database locally (removes all data including uploaded datasets):
+`rails db:migrate:reset`
+* Seed database:
+`rails db:seed`
+  * Data currently from lib/seeds/dummy_data.csv
+* Reset Heroku database: `heroku pg:reset`
+  * Deletes database -- destructive action, will yield warning and require confirmation
+  * Will break your app until you run command to update Heroku database `heroku run rails db:migrate` (Don't worry, it's fine!)
 
 # References
 
