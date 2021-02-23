@@ -147,7 +147,7 @@ Pushing a branch other than master to Heroku:
   * Data currently from lib/seeds/dummy_data.csv
 * Reset Heroku database: `heroku pg:reset`
   * Deletes database -- destructive action, will yield warning and require confirmation
-  * Will break your app until you run command to update Heroku database above (Don't worry, it's fine!)
+  * Will break your app until you run command to update Heroku database `heroku run rails db:migrate` (Don't worry, it's fine!)
 
 # References
 
