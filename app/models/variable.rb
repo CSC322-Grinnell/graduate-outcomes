@@ -1,6 +1,6 @@
 class Variable < ApplicationRecord
   belongs_to :visualization
-  validates :name, presence: true, unless: -> { role.blank? }
-  validates :role, presence: true, unless: -> { name.blank? }
+  validates :name, presence: true, if: -> {role.present?}
+  validates :role, presence: true, if: -> {name.present?}
   validates :visualization, presence: true
 end
