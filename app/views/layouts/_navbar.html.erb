@@ -16,7 +16,7 @@
         
         <% if logged_in? %>
 
-            <%= link_to logout_path, method: :delete do %>
+            <%= link_to logout_path, method: :delete, data: {confirm: "Are you sure you want to log out?"} do %>
                 <li class="nav-item"> 
                     <%= image_tag  "navbar/person.svg" %> 
                     <div class="nav-text">Log Out</div>

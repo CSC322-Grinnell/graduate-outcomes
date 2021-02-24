@@ -1,6 +1,6 @@
 <div class="viz-thumbnail-wrapper">
 
-<%= link_to delete_visualization_visualizations_path(:id => locals[:visualization].id), method: :get, class: "viz-thumbnail-trash" do%>
+<%= link_to delete_visualization_visualizations_path(:id => locals[:visualization].id), method: :get, class: "viz-thumbnail-trash", data: {confirm: "Are you sure you want to delete?"} do%>
     <%= image_tag  "trash-2.svg" %>
 <%end%>
     
