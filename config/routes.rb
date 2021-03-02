@@ -23,5 +23,5 @@ delete '/logout',  to: 'sessions#destroy'
 get '/signup', to: 'users#new'
 resources :users
 resources :valid_emails
-root   'sessions#new'
+root visualizations_path
 end
