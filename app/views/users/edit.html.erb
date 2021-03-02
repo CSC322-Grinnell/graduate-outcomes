@@ -3,7 +3,7 @@
 <div class="login-form">
   <div class="login-form-section">
     <%= form_with(model: @user, local: true) do |f| %>
-    <%= render 'shared/error_messages', object: f.object %>
+      <%= render 'shared/error_messages', object: f.object %>
   </div>
   <div class="login-form-section">
       <%= f.label :email %>
