@@ -9,7 +9,7 @@ class User < ApplicationRecord
         BCrypt::Password.create(string, cost: cost)
       end
 
-      def has_email
+      def has_email # Checks that email has a ValidEmail in database
         errors.add(:base, 'Email must be approved') unless ValidEmail.where(:email => self.email).exists?
       end
 end
