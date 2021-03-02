@@ -30,4 +30,5 @@ end
 
 puts "There are now #{Student.count} records stored"
 
+ValidEmail.create({email: 'barks@grinnell.edu'})
 User.create({email: 'barks@grinnell.edu', password:'gradoutcomes', password_confirmation:'gradoutcomes'})
