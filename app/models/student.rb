@@ -1,6 +1,6 @@
 class Student < ApplicationRecord
   require 'csv'
-  
+
   validates :class_year, presence: true
   validates :student_id, presence: true, uniqueness: true
   validates :major1, presence: true
@@ -12,7 +12,11 @@ class Student < ApplicationRecord
   validates :service, presence: true
   validates :career_related, presence: true
   validates :job_field, presence: true
-  
+  validates :FDS_cat, presence: true
+  validates :gs_select, presence: true
+  validates :gs_level, presence: true
+  validates :gs_type, presence: true
+
   # Class method import with file passed through as an argument
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
