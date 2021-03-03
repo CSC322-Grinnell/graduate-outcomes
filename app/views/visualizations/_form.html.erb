@@ -1,9 +1,49 @@
+<!--Form for creating visualizations-->
+<!--Used in app/views/visualizations/new.html.erb-->
 <div class="col-md-10 col-md-offset-1">
      <%= form_with(model: @visualization, local: true) do |f| %>
      <%= render 'shared/error_messages', object: f.object %>
 
+     <!--Section 1: Chart Type [required]-->
      <div class="viz-form-section">
-        <h4 class="viz-step" class="viz-step">Step 1 - Add Filter(s)</h4>
+          <h4 class="viz-step">Step 1 - Select Chart Type</h4> 
+          <div class="form-row">
+          <div class="viz-form-group">         
+            <label for="chart_type">Chart Type <span style="color:red;">*</span></label> 
+            <%= f.select :chart_type, options_for_select(get_form_chart_types), prompt: "Select chart", class: 'form-control' %>
+          </div>
+          </div>
+       </div>
+
+     <!--Section 2: Chart Variable(s) [at least 1 required]-->
+       <div class="viz-form-section">
+          <h4 class="viz-step">Step 2 - Select Chart Variables</h4>
+
+            <div class="chart-variables">
+            <b>Chart Variables (at least one required) <span style="color:red;">*</span></b>
+            <ul>
+              <%= f.fields_for :variables do |variables_form| %>
+
+              <li class="form-row">
+
+                <div class="viz-form-group">
+                  <label for="role">Role</label>
+                  <%= variables_form.select :role, options_for_select(get_form_variable_roles), prompt: "Select role", class: 'form-control' %>
+                </div>
+
+                <div class="viz-form-group">
+                  <label for="name">Variable</label>
+                  <%= variables_form.select :name, options_for_select(get_form_variable_names), prompt: "Select variable", class: 'form-control' %>
+                </div>
+
+              </li>
+              <% end %>
+            </ul>
+        </div>
+
+        <!--Section 3: Filter(s) [optional]-->
+       <div class="viz-form-section">
+        <h4 class="viz-step">Step 3 - Add Filter(s)</h4>
         <ul>
           <%= f.fields_for :filters do |filters_form| %>
           <li class="form-row">
@@ -30,44 +70,9 @@
           </li>
           <% end %>
         </ul>
-       
        </div>
 
-       <div class="viz-form-section">
-          <h4 class="viz-step">Step 2 - Select Chart Variables</h4>
-
-            <div class="chart-variables">
-            <b>Chart Variables (at least one required) <span style="color:red;">*</span></b>
-            <ul>
-              <%= f.fields_for :variables do |variables_form| %>
-
-              <li class="form-row">
-
-                <div class="viz-form-group">
-                  <label for="role">Role</label>
-                  <%= variables_form.select :role, options_for_select(get_form_variable_roles), prompt: "Select role", class: 'form-control' %>
-                </div>
-
-                <div class="viz-form-group">
-                  <label for="name">Variable</label>
-                  <%= variables_form.select :name, options_for_select(get_form_variable_names), prompt: "Select variable", class: 'form-control' %>
-                </div>
-
-              </li>
-              <% end %>
-            </ul>
-        </div>
-        
-        <div class="viz-form-section">
-          <h4 class="viz-step">Step 3 - Select Chart Type</h4> 
-          <div class="form-row">
-          <div class="viz-form-group">         
-            <label for="chart_type">Chart Type <span style="color:red;">*</span></label> 
-            <%= f.select :chart_type, options_for_select(get_form_chart_types), prompt: "Select chart", class: 'form-control' %>
-          </div>
-          </div>
-       </div>
-       
+       <!--Section 4: Chart and Axis Titles [optional; auto-fills]-->
        <div class="viz-form-section">
           <h4 class="viz-step">Step 4 - Fill Chart Details (optional) </h4> 
           <div class="chart-details form-row">

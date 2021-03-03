@@ -18,10 +18,13 @@
  
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "grin_colors.scss";
+
  
 /*-------------------------*----------------------------------------------------
  |  General Layout Styles  |
  *-------------------------*/
+
  html, body{
      margin: auto 0;
      font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -40,13 +43,15 @@
 
 h1, h2, h3, h4, h5, h6{
     font-weight: bold;
+    //color: $grin-black-prime;
     color: #333333;
 }
 
 h5 {
     font-size: 13px;
+    //color: $grin-red-prime;
     color: #FF0000;
-        margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 
@@ -56,6 +61,7 @@ h5 {
 
  .navbar-container{
      background-color: #212121;
+     //background-color: $grin-navy-accent;
      box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.54);
      width: 100%;
      box-sizing: border-box;
@@ -105,6 +111,7 @@ h5 {
     width: 100%;
     box-sizing: border-box;
     background-color: #F6F6F6;
+    //background-color: $grin-gray-tint;
     padding: 50px 10vw;
     justify-content: flex-start;
     align-items: flex-start;
@@ -122,6 +129,7 @@ h5 {
     align-self: baseline;
     font-size: 1em;
     color: #212121;
+    //color: $grin-black-prime;
     max-width: 15em;
 }
 
@@ -138,11 +146,13 @@ h5 {
 .footer-section-content p{
     text-decoration: none;
     color: #C61F1F;
+    //color: $grin-red-prime;
     line-height: 1.8;
 }
 
 .footer-container a:hover{
     color: #C61F1F;
+    //color: $grin-red-prime;
     text-decoration: underline;
 }
 
@@ -155,7 +165,8 @@ h5 {
     font-weight: 600;
     font-size: 1.8em;
     margin-bottom: 20px;
-    color: #333333;
+    //color: #333333;
+    color: $grin-black-prime;
 }
 
 .page-subtitle{
@@ -164,7 +175,8 @@ h5 {
     font-size: 1.4em;
     margin-bottom: 10px;
     margin-top: 50px;
-    color: #333333;
+    //color: #333333;
+    color: $grin-black-prime;
 }
 
 
@@ -200,14 +212,18 @@ h5 {
 .btn-primary {
     color: #fff;
     background-color: #C61F1F;
-    border-color: #C61F1F; 
+    //background-color: $grin-red-prime;
+    border-color: #C61F1F;
+    //border-color: $grin-red-prime;
     
 }
 
 .btn:hover
 {
-background-image:none;
-background-color:#9c1919;
+    background-image:none;
+    background-color:#9c1919;
+    //background-color:$grin-maroon-accent;
+
 }
 
 .form-control
