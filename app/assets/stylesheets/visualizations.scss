@@ -69,8 +69,8 @@
 }
 
 .viz-thumbnail{
-    width: 440px;
-    height: 440px;
+    width: 456px;
+    height: 456px;
     background-color: white;
     box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
@@ -82,8 +82,7 @@
         width: 456px;
         height: 456px;
         transition: .2s;
-        margin-top: -8px;
-        margin-left: -8px;
+        box-shadow: 0px 4px 50px rgba(255, 249, 222, 1)
     }
 }
 
@@ -91,17 +90,37 @@
     position: absolute;
     background-color:#C61F1F;
     box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.1);
-    width: 100%;
+    width: 456px;
     bottom: 0;
     height: 100px;
     padding: 8px 16px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+    color: white;
 
+    .viz-thumbnail-delete {
+        position: relative;
+        
+    .icon {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        background-size: cover;
+    }
+    
+    .trash-2 {
+        background: url('https://api.iconify.design/feather-trash-2.svg?color=RGB(255%2C255%2C255)') no-repeat center center / contain;
+    }
 
-
+    .trash-2:hover,
+    .trash-2:focus {
+        background: url('https://api.iconify.design/feather-trash-2.svg?color=RGB(255%2C249%2C222)') no-repeat center center / contain;
+    }
+ }
+  
     .viz-thumbnail-title{
         font-weight: bold;
+        color: white;
   }
 }
 
