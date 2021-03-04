@@ -25,9 +25,17 @@ csv.each do |row|
   s.service = row['service']
   s.career_related = row['career_related']
   s.job_field = row['job_field']
+  s.FDS_cat = row['FDS_cat']
+  s.gs_select = row['gs_select']
+  s.gs_level = row['gs_level']
+  s.gs_type = row['gs_type']
+
   s.save
 end
 
 puts "There are now #{Student.count} records stored"
+<<<<<<< HEAD
 
 User.create({email: 'barks@grinnell.edu', password:'gradoutcomes', password_confirmation:'gradoutcomes'})
+=======
+>>>>>>> add-variables
