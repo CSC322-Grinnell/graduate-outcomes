@@ -4,10 +4,11 @@ A Ruby on Rails application visualizing the graduate outcome data of Grinnell st
 
 * Fall 1 Contributors: [Rexford Essilfie](https://github.com/RexfordEssilfie), [Tal Rastopchin](https://github.com/trastopchin), [Michael Spicer](https://github.com/Citywideiowa0), [Vijeeth Guggilla](https://github.com/vijeethguggilla), [Giang Khuat](https://github.com/giangkhuat)
 * Fall 2 Contributors: [Caio Carnauba](https://github.com/ccarnauba), [Seoyeon (Stella) Lee](https://github.com/stellasylee), [Reina Shahi](https://github.com/shahirei), [Clare Simpson](https://github.com/clasky777)
+* Spring 1 Contributors: [Ally R](https://github.com/Ally-R), [Vidush Goswami](https://github.com/vidushg), [Erin Scherl](https://github.com/thehelpfulfrog), [Gabby Masini](https://github.com/masiniga), [Xuanhe Chen](https://github.com/Rhopala)
 * Alumni Mentor: Ian Young
 * Professor: Barbara Johnson, Fernanda Eliott
 * Community Partner: Sarah Barks
-* Timeline: Fall 1 & 2 2020
+* Timeline: Fall 1 & 2 2020, Spring 1 2021
 
 ## Description
 
@@ -63,7 +64,7 @@ In this section we will give a high level description of the components of this 
 
 ## Models
 
-Our project uses a `student` model to encode individual students, and a `visualization`, `variable`, and `filter` to encode a single visualization. You can view our original UML model / class diagrams visually detailing our models in the xyz directory. You can view the current state of the database tables in the `/db/schema.rb` file.
+Our project uses a `student` model to encode individual students, and a `visualization`, `variable`, and `filter` to encode a single visualization. There is also a `user` model to encode the profiles of different users of the site, as well as a `valid_email` model to encode the list of emails that are approved to make accounts. You can view our original UML model / class diagrams visually detailing our models in the xyz directory. You can view the current state of the database tables in the `/db/schema.rb` file.
 
 - The `student` model attributes are hard coded based on the sample dummy input data that our community partner shared with us. The model validates the presence of every attribute, and only validates the uniqueness of the `student_id` attribute.
 
@@ -73,6 +74,10 @@ Our project uses a `student` model to encode individual students, and a `visuali
 
 - The `filter` model represents a rule or constraint that meaningfully relates an dependent variable to an independent variable. Each filter has a filter type attribute, which describes the effect of the filter (such as `Equals`, for example) and a variable name, which represents what variable the filter influences. Each filter also has a value1 attribute and an optional value2 attribute. While a filter with filter type `Equals` only needs one input, `From..To` is a filter that can take two values, Eg. from the class year of 2019 to the class year of 2020. So, filter keeps track of a second conditional attribute value2.
 
+- The `user` model includes an email and password digest associated with a user. A user can be created by signing up, but the email used to sign up must already exist in the valid_email database.
+
+- The `valid_email` model consists of an email. In order for a user to be created, a valid_email must exist that corresponds to the email that the user inputs. valid_emails can be added to the database by a logged in user.
+
 It is important to note that designing a model that can represent the many different ways one can visualize data is very complicated. So, we had to make some compromises with our model design so that we could have something to start to work with. We believe that our model design works really well to create visualizations with one dependent variable, one independent variable, two filters, and a displayed count. We encourage developers to take advantage of the fact that each `visualization` has many variables and filters, instead of completely redesigning the model from scratch, when expanding the visualization configuration capabilities.
 
 ## Views
@@ -81,7 +86,7 @@ Our projects views use the `form_with` Rails method to create integrated and val
 
 ## Controllers
 
-Our project has two controllers, a `VisualizationsController` and an `UploadsController`. Both controllers follow the RESTful routes and actions conventions created by including `resources :visualizations` and `resources :uploads` in the `/config/routes.rb` routing file. To get a view of which named routes correspond to which named actions, run the
+Our project has a `VisualizationsController`, an `UploadsController`, a `SessionsController`, a `UsersController`, and a `ValidEmailsController`. The controllers follow the RESTful routes and actions conventions created by including `resources :visualizations`, `resources :uploads`, `resources :users`, and `resources :valid_emails` in the `/config/routes.rb` routing file. To get a view of which named routes correspond to which named actions, run the
 ```
 rake routes
 ```
@@ -100,6 +105,10 @@ Our project includes controller, integration, and model tests. We have extensive
 - We do not have specific `visualization` or `variable` tests, and these needs to be implemented.
 
 - Our `filter` model test only validates a valid filter. We need to create more tests for invalid filters, as well as add a conditional validation for the presence of the `value2` attribute in the model.
+
+- Our `user` model validates the presence of a secure password and the existence of an email in the `valid_emails` database.
+
+- Our `valid_emails` model vaidates the presence and correct formatting of the email.
 
 # To-Dos
 - Accommodating more variables for files

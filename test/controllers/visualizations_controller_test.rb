@@ -2,6 +2,13 @@ require 'test_helper'
 
 class VisualizationsControllerTest < ActionDispatch::IntegrationTest
   
+  def setup
+    @user = users(:test)
+    get login_path
+    post login_path, params: { session: { email: @user.email,
+                                          password: 'password' } }
+  end
+  
   test "should get index" do
     get visualizations_path
     assert_response :success

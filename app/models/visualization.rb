@@ -11,6 +11,8 @@
 #    * Note: these are auto-filled if not filled in by the user. This validates.
 # * User has selected at least one Chart Variable
 
+## Tests are located in test/models/visualization_test.rb
+
 class Visualization < ApplicationRecord
   has_many :variables, inverse_of: :visualization # many slots for chart vars
   has_many :filters, inverse_of: :visualization   # many slots for filters

@@ -34,8 +34,10 @@ csv.each do |row|
 end
 
 puts "There are now #{Student.count} records stored"
-<<<<<<< HEAD
-
-User.create({email: 'barks@grinnell.edu', password:'gradoutcomes', password_confirmation:'gradoutcomes'})
 =======
->>>>>>> add-variables
+#Adds Sarah to the approved emails database (must be first step!)
+ValidEmail.create({email: 'barks@grinnell.edu'})
+
+#Adds Sarah's login info to the users database
+User.create({email: 'barks@grinnell.edu', password:'gradoutcomes', password_confirmation:'gradoutcomes'})
+>>>>>>> d80fd111a4f1feaffa9dc086ab2d93eb76699164

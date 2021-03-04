@@ -1,0 +1,16 @@
+// Place all the styles related to the ValidEmails controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "grin_colors.scss";
+
+.emails {
+    list-style: disc;
+    li {
+      //overflow: auto;
+      padding: 10px 0;
+      border-bottom: 1px solid $grin-gray-tint;
+      margin-bottom: 4px;
+    }
+}

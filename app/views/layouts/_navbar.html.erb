@@ -16,6 +16,20 @@
         
         <% if logged_in? %>
 
+             <%= link_to valid_emails_path do %>
+                <li class="nav-item"> 
+                     <%= image_tag  "navbar/person.svg" %> 
+                    <div class="nav-text">Approve Emails</div>
+                </li>
+            <%end%>
+
+            <%= link_to edit_user_path(current_user) do %>
+                <li class="nav-item"> 
+                    <%= image_tag  "navbar/person.svg" %> 
+                    <div class="nav-text">Settings</div>
+                </li>
+            <%end%>
+
             <%= link_to logout_path, method: :delete, data: {confirm: "Are you sure you want to log out?"} do %>
                 <li class="nav-item"> 
                     <%= image_tag  "navbar/person.svg" %> 
@@ -32,7 +46,13 @@
                 </li>
             <%end%>
 
-        <% end %>
+            <%= link_to signup_path do %>
+                <li class="nav-item"> 
+                    <%= image_tag  "navbar/person.svg" %> 
+                    <div class="nav-text">Sign Up</div>
+                 </li>
+            <%end%>
 
+        <% end %>
     </ul>
 </nav>
