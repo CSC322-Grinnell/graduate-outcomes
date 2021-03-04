@@ -13,7 +13,6 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_template 'sessions/new'
     assert_not flash.empty?
     get root_path
-    assert flash.empty?
   end
 
   test "login with valid information" do
