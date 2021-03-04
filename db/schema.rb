@@ -35,6 +35,10 @@ ActiveRecord::Schema.define(version: 2021_03_02_170853) do
     t.string "service"
     t.string "career_related"
     t.string "job_field"
+    t.string "FDS_cat"
+    t.string "gs_select"
+    t.string "gs_level"
+    t.string "gs_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

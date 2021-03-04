@@ -6,6 +6,7 @@
 This document is meant for all sessions-related formatting, and is currently
 being used to format the login page. See app/views/sessions/new.html.erb.
 */
+@import "grin_colors.scss";
 
 .login-form {
     width: 40%; // width of fill-in area for login email and password

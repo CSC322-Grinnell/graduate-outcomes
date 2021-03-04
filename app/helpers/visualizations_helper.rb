@@ -11,7 +11,11 @@ module VisualizationsHelper
             ["research", "research"],
             ["service", "service"],
             ["career_related", "career_related"],
-            ["job_field", "job_field"]
+            ["job_field", "job_field"],
+            ["FDS_cat", "FDS_cat"],
+            ["gs_select", "gs_select"],
+            ["gs_level", "gs_level"],
+            ["gs_type", "gs_type"]
         ]
         # Student.column_names.reject {|c| ["id", "student_id", "updated_at", "created_at"].include? c}
     end
@@ -50,7 +54,7 @@ module VisualizationsHelper
         ]
     end
 
-    # not being used yet. In future allow user to select kind of summarization. 
+    # not being used yet. In future allow user to select kind of summarization.
     def get_form_summarize_methods
         [
             ["count"],
@@ -125,7 +129,7 @@ module VisualizationsHelper
 
 
     def set_variable(data, variable_model, chart_type)
-        
+
         role = variable_model.role
         variable_name = variable_model.name
         #TO DO: add more variable types (Independent, Dependent)
@@ -145,7 +149,7 @@ module VisualizationsHelper
         end
     end
 
-    # Not being used yet. 
+    # Not being used yet.
     def summarize(data, summarization_method, variable=nil)
         case summarization_method
             when 'sum'
@@ -178,9 +182,9 @@ module VisualizationsHelper
 
         Student.column_names
             .reject{|c| ["id", "student_id", "updated_at", "created_at"].include? c}
-            .each do |name|  
+            .each do |name|
                 possible_values = Student.distinct.pluck(name)
-                possible_values.each do |value| 
+                possible_values.each do |value|
                     options = options + [["#{name}:#{value}", "#{value}"]]
                 end
             end

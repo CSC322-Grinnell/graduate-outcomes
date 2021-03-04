@@ -1,5 +1,7 @@
-<h1 class="page_title">Approved Emails</h1>
+<h1 class="page-title">Approve Emails</h1>
 
+<!--For more info about CSS classes, see app/assets/stylesheets/sessions.scss-->
+<!--and for email list styling (below), see app/assets/stylesheets/users.scss-->
 <div class="login-form">
     <%= form_with(model: @valid_email, local: true) do |f| %>
   <div class="login-form-section">
@@ -12,6 +14,8 @@
   </div>
 </div>
 
+<!--Email list-->
+<h3 class="page-subtitle">List of Current Approved Emails</h3>
 <ul class="emails">
   <% @valid_emails.each do |valid_email| %>
    <li>
