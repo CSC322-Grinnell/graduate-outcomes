@@ -20,6 +20,10 @@
   <% @valid_emails.each do |valid_email| %>
    <li>
      <%= valid_email.email %>
+     <% unless current_user.email.eql?(valid_email.email) %>
+     | <%= link_to "delete", valid_email, method: :delete,
+                                   data: { confirm: "Are you sure you want to delete?" } %>
+      <% end %>
    </li>
   <% end %>
 </ul>

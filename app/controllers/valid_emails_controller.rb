@@ -1,5 +1,5 @@
 class ValidEmailsController < ApplicationController
-  before_action :logged_in_user, only: [:index]
+  before_action :logged_in_user, only: [:index, :destroy]
 
   def index
     @valid_emails = ValidEmail.all
@@ -16,6 +16,13 @@ class ValidEmailsController < ApplicationController
     else
       render 'new'
     end
+  end
+
+
+  def destroy
+    ValidEmail.find(params[:id]).destroy
+    flash[:success] = "Email deleted"
+    redirect_to valid_emails_path
   end
 
   private
