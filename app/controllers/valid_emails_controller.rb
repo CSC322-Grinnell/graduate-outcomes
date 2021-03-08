@@ -14,12 +14,16 @@ class ValidEmailsController < ApplicationController
     if @valid_email.save
       redirect_to valid_emails_path
     else
-      render 'new'
+      redirect_to valid_emails_path
     end
   end
 
 
   def destroy
+    @user = User.find_by(email: ValidEmail.find(params[:id]).email)
+    unless @user.nil?
+      @user.destroy
+    end
     ValidEmail.find(params[:id]).destroy
     flash[:success] = "Email deleted"
     redirect_to valid_emails_path
