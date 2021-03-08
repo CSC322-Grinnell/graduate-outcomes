@@ -23,6 +23,7 @@ class Visualization < ApplicationRecord
   validates :y_axis_title, presence: true
   validates :chart_type, presence: true   # chart type chosen by user
   validate :has_variable                  # at least one chart var selected
+  validate :has_data                      # data exists in the student table
   before_validation :chart_title_default  # run title autofill before validating
   
   private
@@ -38,6 +39,10 @@ class Visualization < ApplicationRecord
     if y_axis_title.empty?
       self.y_axis_title = "Count"
     end
+  end
+
+  def has_data 
+    errors.add(:base, "No student data exists") unless Student.exists?
   end
 
   def has_variable # checks at least one chart var has been selected by user
