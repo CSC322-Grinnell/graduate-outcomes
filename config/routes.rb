@@ -23,6 +23,6 @@ Rails.application.routes.draw do
   get '/signup', to: 'users#new'
   resources :users
   resources :valid_emails
-  root 'sessions#new'
+  root 'visualizations#index'
 
 end
