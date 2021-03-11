@@ -6,7 +6,7 @@
     <%= form_with url: uploads_import_path, multipart: true do %>
     <%= file_field_tag :file %>
     <br>
-    <p>2. After you have chosen the file, click Submit to store the .csv file's data on the website.</p>
+    <p>2. After you have chosen the file, click Submit to store the .csv file's data on the website. <i>Note: Only entries for which all categories have an associated value will be uploaded.</i></p>
     <%# if @errors %>
       <%# @errors.each do |message| %>
         <%#= message %>
