@@ -1,7 +1,15 @@
+/* CSS PAGE FOR VISUALIZATIONS: PAGE & FORM*/
+
 // Place all the styles related to the visualizations controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
 @import "grin_colors.scss";
+
+
+/*------------------------*-----------------------------------------------------
+ |  Main Page Formatting  |
+ *------------------------*/
 
 .viz-page{
    // box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
@@ -19,6 +27,11 @@
     margin-top: 4px;
     text-decoration: underline;
 }
+
+
+/*---------------*--------------------------------------------------------------
+ |  Form Styles  |
+ *---------------*/
 
 .viz-form-section {
     padding: 8px 0px;
@@ -51,6 +64,11 @@
     flex-direction: column;
     margin-bottom: 8px;
 }
+
+
+/*--------------------*---------------------------------------------------------
+ |  Thumbnail Styles  |
+ *--------------------*/
 
 .viz-thumbnail-group{
     display: flex;
@@ -124,6 +142,11 @@
         color: white;
   }
 }
+
+
+/*-----------------------*------------------------------------------------------
+ |  Chart Styles & Misc  |
+ *-----------------------*/
 
 .form-row{
     list-style-type: none;
