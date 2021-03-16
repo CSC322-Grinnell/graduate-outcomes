@@ -26,28 +26,88 @@ class VisualizationsController < ApplicationController
 
   def new
     @visualization = Visualization.new
-    2.times { @visualization.variables.build }
-    2.times { @visualization.filters.build }
+    @visualization.variables.build
+    @visualization.filters.build
   end
 
   def create
-
-      @visualization = Visualization.new(visualization_params)
+    @visualization = Visualization.new(visualization_params)
+    if params[:add_variable]
+      @visualization.variables.build
+      render 'new'
+    elsif params[:remove_variable]
+      render 'new'
+    elsif params[:add_filter]
+      # add empty ingredient associated with @recipe
+      @visualization.filters.build
+      render 'new'
+    elsif params[:remove_filter]
+      # nested model that have _destroy attribute = 1 automatically deleted by rails
+      render 'new'
+    else
+      # save goes like usual
       if @visualization.save
          flash[:success] = "Visualization created!"
          redirect_to @visualization #show visualization that was just created
       else
         render 'new'
       end
+    end
   end
 
   def update
-    if @visualization.update(visualization_params)
-      flash[:success] = "Visualization updated!"
-      redirect_to @visualization #show visualization that was just update
+    @visualization = Visualization.find(params[:id])
+    if params[:add_variable]
+    	# rebuild the ingredient attributes that doesn't have an id
+    	unless params[:variable][:variables_attributes].blank?
+	  for attribute in params[:variable][:variables_attributes]
+	    @visualization.variables.build(attribute.last.except(:_destroy)) unless attribute.last.has_key?(:id)
+	  end
+    	end
+      # add one more empty ingredient attribute
+        @visualization.variables.build
+        render :action => 'edit'
+    elsif params[:remove_variable]
+      # collect all marked for delete ingredient ids
+      removed_variables = params[:visualization][:variables_attributes].collect { |i, att| att[:id] if (att[:id] && att[:_destroy].to_i == 1) }
+      # physically delete the ingredients from database
+      Visualization.delete(removed_variables)
+      flash[:notice] = "Variables removed."
+      for attribute in params[:visualization][:variables_attributes]
+      	# rebuild ingredients attributes that doesn't have an id and its _destroy attribute is not 1
+        @visualization.variables.build(attribute.last.except(:_destroy)) if (!attribute.last.has_key?(:id) && attribute.last[:_destroy].to_i == 0)
+      end
+      render :action => 'edit'
+    elsif params[:add_filter]
+    	# rebuild the ingredient attributes that doesn't have an id
+    	unless params[:filter][:filters_attributes].blank?
+	  for attribute in params[:filter][:filters_attributes]
+	    @visualization.filters.build(attribute.last.except(:_destroy)) unless attribute.last.has_key?(:id)
+	  end
+    	end
+      # add one more empty ingredient attribute
+        @visualization.filters.build
+        render :action => 'edit'
+    elsif params[:remove_filter]
+      # collect all marked for delete ingredient ids
+      removed_filters = params[:visualization][:filters_attributes].collect { |i, att| att[:id] if (att[:id] && att[:_destroy].to_i == 1) }
+      # physically delete the ingredients from database
+      Visualization.delete(removed_filters)
+      flash[:notice] = "Filters removed."
+      for attribute in params[:visualization][:filters_attributes]
+      	# rebuild ingredients attributes that doesn't have an id and its _destroy attribute is not 1
+        @visualization.filters.build(attribute.last.except(:_destroy)) if (!attribute.last.has_key?(:id) && attribute.last[:_destroy].to_i == 0)
+      end
+      render :action => 'edit'
     else
-      flash[:error] = "Visualization could not be updated. Please fill all fields and try again!"
-      redirect_to visualizations_path # ideally stay on edit and show error messages but it appears to be building extra variables/filters
+      # save goes like usual
+      if @visualization.update(visualization_params)
+        flash[:success] = "Visualization updated!"
+        redirect_to @visualization #show visualization that was just update
+      else
+        flash[:error] = "Visualization could not be updated. Please fill all fields and try again!"
+        redirect_to visualizations_path # ideally stay on edit and show error messages but it appears to be building extra variables/filters
+      end
     end
   end
   
