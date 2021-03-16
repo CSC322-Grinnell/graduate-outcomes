@@ -1,20 +1,21 @@
 <nav class="navbar-container">
     <ul>
-        <%= link_to visualizations_path do %>
-            <li class="nav-item"> 
-                <%= image_tag("navbar/bar-chart.svg", alt: "Visualize button") %> 
-                <div class="nav-text">Visualize</div>
-            </li>
-        <%end%>
-        
-         <%= link_to uploads_path do %>
-            <li class="nav-item"> 
-                <%= image_tag("navbar/upload.svg", alt: "Upload button") %> 
-                <div class="nav-text">Upload</div>
-            </li>
-        <%end%>
         
         <% if logged_in? %>
+
+            <%= link_to visualizations_path do %>
+                <li class="nav-item"> 
+                    <%= image_tag("navbar/bar-chart.svg", alt: "Visualize button") %> 
+                    <div class="nav-text">Visualize</div>
+                </li>
+            <%end%>
+        
+            <%= link_to uploads_path do %>
+                <li class="nav-item"> 
+                    <%= image_tag("navbar/upload.svg", alt: "Upload button") %> 
+                    <div class="nav-text">Upload</div>
+                 </li>
+            <%end%>
 
              <%= link_to valid_emails_path do %>
                 <li class="nav-item"> 
