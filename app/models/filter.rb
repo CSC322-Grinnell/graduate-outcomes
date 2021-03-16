@@ -1,6 +1,9 @@
+## Filter Model ##
+
 ## DOC OVERVIEW:
-# This document runs basic validations for Filters field. Other validations
-# can be found in other models, and general validations are in visualization.rb
+# This document defines the filter model, and runs basic validations for Filters
+# field. Other validations can be found in other models, and general validations
+# are in visualization.rb
 
 ## SPECIFIC VALIDATIONS:
 # * A variable name is present if any fields are filled out

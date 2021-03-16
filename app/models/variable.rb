@@ -1,7 +1,9 @@
+## Variable Model ##
+
 ## DOC OVERVIEW:
-# This document runs basic validations for Chart Variables field. Other
-# validations can be found in other models, and general validations are in
-# visualization.rb
+# This document defines the variable model, and runs basic validations for Char
+# Variables field. Other validations can be found in other models, and general
+# validations are in visualization.rb
 
 ## SPECIFIC VALIDATIONS:
 # * The variable belongs to a visualization
