@@ -12,11 +12,11 @@ class NavbarTest < ActionDispatch::IntegrationTest
     assert_redirected_to login_path
     follow_redirect!
     assert_template 'sessions/new'
-    assert_select "a[href=?]", visualizations_path, count: 2
-    assert_select "a[href=?]", new_visualization_path
+    assert_select "a[href=?]", visualizations_path, count: 0
+    assert_select "a[href=?]", new_visualization_path, count: 0
     assert_select "a[href=?]", signup_path, count: 2
     assert_select "a[href=?]", login_path, count: 2
-    assert_select "a[href=?]", uploads_path, count: 2
+    assert_select "a[href=?]", uploads_path, count: 0
     assert_select "a[href=?]", edit_user_path(@user), count: 0
     assert_select "a[href=?]", valid_emails_path, count: 0
     assert_select "a[href=?]", logout_path, count: 0

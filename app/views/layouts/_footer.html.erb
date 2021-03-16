@@ -13,10 +13,10 @@
     <div class="footer-section">
         <p class="footer-section-title"> Pages</p>
         <div class="footer-section-content">
-            <%= link_to  "Preview", visualizations_path %>
-            <%= link_to  "Visualize", new_visualization_path %>
-            <%= link_to  "Upload", uploads_path %>
             <% if logged_in? %>
+                <%= link_to  "Preview", visualizations_path %>
+                <%= link_to  "Visualize", new_visualization_path %>
+                <%= link_to  "Upload", uploads_path %>
                 <%= link_to "Settings", edit_user_path(current_user) %>
                 <%= link_to "Approve Emails", valid_emails_path %>
                 <%= link_to  "Log Out", logout_path, method: :delete, data: {confirm: "Are you sure you want to log out?"} %>
@@ -31,9 +31,8 @@
     <div class="footer-section">
         <p class="footer-section-title"> Help</p>
         <div class="footer-section-content">
-            <%= link_to  "About", '#' %>
-            <%= link_to  "Documentation", '#' %>
-            <%= link_to  "FAQ", '#' %>
+            <%= link_to  "User Guide", '#' %>
+            <%= link_to  "Source Code", 'https://github.com/CSC322-Grinnell/graduate-outcomes' %>
         </div>
     </div>
 
