@@ -46,6 +46,7 @@ module VisualizationsHelper
         [
             ["From..To", "from_to"],
             ["Equals", "equals"],
+            ["Not Equal To", "not_equals"],
             ["Is Greater Than", "greater_than"],
             ["Is Greater Than Or Equal To", "greater_than_or_equal"],
             ["Is Less Than", "less_than"],
@@ -102,10 +103,15 @@ module VisualizationsHelper
         value2 = filter_model.value2
 
         case filter_type
-            when 'equals_to'
+            when 'equals'
                 filter_hash = Hash.new
                 filter_hash[variable_name] = value1
                 data = data.where(filter_hash)
+
+            when 'not_equals'
+                filter_hash = Hash.new
+                filter_hash[variable_name] = value1
+                data = data.where.not(filter_hash)
 
             when 'greater_than'
                 data = data.where("#{variable_name} > ?", value1)

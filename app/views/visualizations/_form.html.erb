@@ -9,7 +9,7 @@
           <h4 class="viz-step">Step 1 - Select Chart Type</h4> 
           <div class="form-row">
           <div class="viz-form-group">         
-            <label for="chart_type">Chart Type <span style="color:red;">*</span></label> 
+            <label for="chart_type">Chart Type <span style="color:red;">*</span></label>
             <%= f.select :chart_type, options_for_select(get_form_chart_types), prompt: "Select chart", class: 'form-control' %>
           </div>
           </div>
@@ -33,7 +33,7 @@
 
                 <div class="viz-form-group">
                   <label for="name">Variable</label>
-                  <%= variables_form.select :name, options_for_select(get_form_variable_names), prompt: "Select variable", class: 'form-control' %>
+                    <%= variables_form.select :name, options_for_select(get_form_variable_names), prompt: "Select variable", class: 'form-control' %>
                 </div>
             <!--<div class="viz-form-group">
 	      <%= variables_form.check_box :_destroy %>
@@ -57,7 +57,9 @@
           <li class="form-row">
             <div class="viz-form-group">
               <label for="variable_name">Variable</label>
-              <div class="filter_var"><%= filters_form.select :variable_name, options_for_select(get_form_variable_names), prompt: "Select variable", class: 'form-control' %> </div>
+              <div class="filter_var">
+		<%= filters_form.select :variable_name, options_for_select(get_form_variable_names), prompt: "Select variable", class: 'form-control' %>
+	      </div>
             </div>
 
             <div class="viz-form-group">

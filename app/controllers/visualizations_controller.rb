@@ -27,6 +27,7 @@ class VisualizationsController < ApplicationController
   end
 
   def edit
+    @visualization = Visualization.find(params[:id])
   end
 
   def new
@@ -108,10 +109,10 @@ class VisualizationsController < ApplicationController
       # save
       if @visualization.update(visualization_params)
         flash[:success] = "Visualization updated!"
-        redirect_to @visualization #show visualization that was just updates
+        redirect_to @visualization and return #show visualization that was just updated
       else
         flash[:error] = "Visualization could not be updated. Please fill all fields and try again!"
-        #render 'edit'
+        #render :action => 'edit'
         redirect_to visualizations_path # ideally stay on edit and show error messages but it appears to be building extra variables/filters
       end
     end

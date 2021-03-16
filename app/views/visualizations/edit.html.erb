@@ -1,8 +1,9 @@
+<!-- Edit visualizaion form-->
 <h1 class="page-title">Visualize - Editing Mode</h1>
 <div class="navigation-options">
-    <%= link_to '< Back', @visualization %> | <%= link_to 'Delete', delete_visualization_visualizations_path(:id => @visualization.id), data: {confirm: "Are you sure you want to delete?"}%>
+    <%= link_to '< Back', @visualization %> | <%= link_to 'Delete', delete_visualization_visualizations_path(:id => @visualization.id), data: {confirm: "Are you sure you want to delete?"} %>
 </div>
 <div class="viz-page">
 <!--Form for visualization located in app/views/visualizations/_form.html.erb-->
-   <%=render 'form', visualization: @visualization%>
+   <%= render 'form', visualization: @visualization %>
 </div>

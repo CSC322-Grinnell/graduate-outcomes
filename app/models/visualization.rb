@@ -1,7 +1,9 @@
+## Visualizations Model ##
+
 ## DOC OVERVIEW:
-# This document runs basic validations for all form fields when creating/editing
-# a visualization. Further validations for specific fields are in other models,
-# such as variable.rb and filter.rb
+# This document defines the visualization model, and runs basic validations for
+# all form fields when creating/editing a visualization. Further validations fo
+# specific fields are in other models, such as variable.rb and filter.rb
 
 ## SPECIFIC VALIDATIONS:
 # * There are multiple Chart Variables and Filters on the form
