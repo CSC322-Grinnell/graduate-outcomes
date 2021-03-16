@@ -64,8 +64,8 @@ class VisualizationsController < ApplicationController
     @visualization = Visualization.find(params[:id])
     if params[:add_variable]
     	# rebuild the variable attributes that don't have an id
-    	unless params[:variable][:variables_attributes].blank?
-	  for attribute in params[:variable][:variables_attributes]
+    	unless params[:visualization][:variables_attributes].blank?
+	  for attribute in params[:visualization][:variables_attributes]
 	    @visualization.variables.build(attribute.last.except(:_destroy)) unless attribute.last.has_key?(:id)
 	  end
     	end
@@ -85,8 +85,8 @@ class VisualizationsController < ApplicationController
       render :action => 'edit'
     elsif params[:add_filter]
     	# rebuild the filter attributes that don't have an id
-    	unless params[:filter][:filters_attributes].blank?
-	  for attribute in params[:filter][:filters_attributes]
+    	unless params[:visualization][:filters_attributes].blank?
+	  for attribute in params[:visualization][:filters_attributes]
 	    @visualization.filters.build(attribute.last.except(:_destroy)) unless attribute.last.has_key?(:id)
 	  end
     	end
@@ -111,6 +111,7 @@ class VisualizationsController < ApplicationController
         redirect_to @visualization #show visualization that was just updates
       else
         flash[:error] = "Visualization could not be updated. Please fill all fields and try again!"
+        #render 'edit'
         redirect_to visualizations_path # ideally stay on edit and show error messages but it appears to be building extra variables/filters
       end
     end
