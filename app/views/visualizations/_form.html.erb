@@ -35,18 +35,16 @@
                   <label for="name">Variable</label>
                     <%= variables_form.select :name, options_for_select(get_form_variable_names), prompt: "Select variable", class: 'form-control' %>
                 </div>
-            <!--<div class="viz-form-group">
-	      <%= variables_form.check_box :_destroy %>
-              <%= variables_form.label :_destroy, 'delete' %>
-	    </div>-->
+		<div class="viz-form-group">
+		  <label for="name">Delete</label>
+	          <%= variables_form.check_box :_destroy %>
+	        </div>
               </li>
               <% end %>
             </ul>
+	    <%= f.submit 'Add variable', :name => 'add_variable' %>
+	    <%= f.submit 'Delete checked variables', :name => 'remove_variable' %>
         </div>
-	<%= f.submit 'Add variable', :name => 'add_variable' %>
-	<!--<%= f.submit 'Delete checked filters', :name => 'remove_variable' %>-->
-        <!-- CURRENTLY NOT SHOWING DELETE OPTION FOR INDIVIDUAL FILTERS -->
-        <!-- BECAUSE IT IS NOT WORKING YET. SEE CONTROLLER FOR BROKEN CODE. -->
         <br><br>
 	    
         <!--Section 3: Filter(s) [optional]-->
@@ -76,19 +74,17 @@
               <label for="value2">Value2</label>
               <%= filters_form.select :value2, options_for_select(get_form_filter_values), prompt: "Select value", class: 'form-control' %>
             </div>
-	    <!--<div class="viz-form-group">
+	    <div class="viz-form-group">
+	      <label for="name">Delete</label>
 	      <%= filters_form.check_box :_destroy %>
-              <%= filters_form.label :_destroy, 'delete' %>
-	    </div>-->
+	    </div>
           </li>
           <% end %>
         </ul>
+	<%= f.submit 'Add filter', :name => 'add_filter' %>
+        <%= f.submit 'Delete checked filters', :name => 'remove_filter' %>
        </div>
-       <%= f.submit 'Add filter', :name => 'add_filter' %>
-       <!--<%= f.submit 'Delete checked filters', :name => 'remove_filter' %>-->
-       <!-- CURRENTLY NOT SHOWING DELETE OPTION FOR INDIVIDUAL FILTERS -->
-       <!-- BECAUSE IT IS NOT WORKING YET. SEE CONTROLLER FOR BROKEN CODE. -->
-       <br><br>
+       <br>
        
 
        <!--Section 4: Chart and Axis Titles [optional; auto-fills]-->

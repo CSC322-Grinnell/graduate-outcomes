@@ -18,7 +18,7 @@
 class Visualization < ApplicationRecord
   has_many :variables, inverse_of: :visualization # many slots for chart vars
   has_many :filters, inverse_of: :visualization   # many slots for filters
-  accepts_nested_attributes_for :variables, :filters # attributes for vars and
+  accepts_nested_attributes_for :variables, :filters, allow_destroy: true # attributes for vars and
                                                      # filters can overlap
   validates :chart_title, presence: true  # chart titles exist
   validates :x_axis_title, presence: true
