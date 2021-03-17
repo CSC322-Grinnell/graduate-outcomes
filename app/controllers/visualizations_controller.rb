@@ -42,19 +42,20 @@ class VisualizationsController < ApplicationController
       @visualization.variables.build
       render 'new'
     elsif params[:remove_variable]
+      # nested models that have _destroy attribute = 1 automatically deleted by rails
       render 'new'
     elsif params[:add_filter] # if button selected to add filt, re-render form
       # add empty filter associated with @visualization
       @visualization.filters.build
       render 'new'
     elsif params[:remove_filter]
-      # nested models that have _destroy attribute = 1 automatically deleted by rails (except not working!!)
+      # nested models that have _destroy attribute = 1 automatically deleted by rails
       render 'new'
     else
       # save
       if @visualization.save
          flash[:success] = "Visualization created!"
-         redirect_to @visualization #show visualization that was just created
+         redirect_to @visualization and return #show visualization that was just created
       else
         render 'new'
       end
@@ -68,6 +69,7 @@ class VisualizationsController < ApplicationController
     	unless params[:visualization][:variables_attributes].blank?
 	  for attribute in params[:visualization][:variables_attributes]
 	    @visualization.variables.build(attribute.last.except(:_destroy)) unless attribute.last.has_key?(:id)
+            ##??##Visualization.find(params[:id]).filters.destroy_all
 	  end
     	end
       # add one more empty variable attribute

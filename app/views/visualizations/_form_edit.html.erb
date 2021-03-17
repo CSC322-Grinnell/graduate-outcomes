@@ -1,0 +1,114 @@
+<!--Form for creating visualizations-->
+<!--Used in app/views/visualizations/new.html.erb-->
+<div class="col-md-10 col-md-offset-1">
+     <%= form_with(model: @visualization, local: true, url: visualization_path(@visualization), method: "patch") do |f| %>
+     <%= render 'shared/error_messages', object: f.object %>
+
+     <!--Section 1: Chart Type [required]-->
+     <div class="viz-form-section">
+          <h4 class="viz-step">Step 1 - Select Chart Type</h4> 
+          <div class="form-row">
+          <div class="viz-form-group">         
+            <label for="chart_type">Chart Type <span style="color:red;">*</span></label>
+            <%= f.select :chart_type, options_for_select(get_form_chart_types, @visualization.chart_type), prompt: "Select chart", class: 'form-control' %>
+          </div>
+          </div>
+       </div>
+
+     <!--Section 2: Chart Variable(s) [at least 1 required]-->
+       <div class="viz-form-section">
+          <h4 class="viz-step">Step 2 - Select Chart Variables</h4>
+
+            <div class="chart-variables">
+            <b>Chart Variables (at least one required) <span style="color:red;">*</span></b>
+            <ul>
+              <%= f.fields_for :variables do |variables_form| %>
+
+              <li class="form-row">
+
+                <div class="viz-form-group">
+                  <label for="role">Role</label>
+                  <%= variables_form.select :role, options_for_select(get_form_variable_roles, @visualization.variables[variables_form.index].role), prompt: "Select role", class: 'form-control' %>
+                </div>
+
+                <div class="viz-form-group">
+                  <label for="name">Variable</label>
+                    <%= variables_form.select :name, options_for_select(get_form_variable_names, @visualization.variables[variables_form.index].name), prompt: "Select variable", class: 'form-control' %>
+                </div>
+		<div class="viz-form-group">
+		  <label for="name">Delete</label>
+	          <%= variables_form.check_box :_destroy %>
+	        </div>
+              </li>
+              <% end %>
+            </ul>
+	    <%= f.submit 'Add variable', :name => 'add_variable' %>
+	    <%= f.submit 'Delete checked variables', :name => 'remove_variable' %>
+        </div>
+        <br><br>
+	    
+        <!--Section 3: Filter(s) [optional]-->
+       <div class="viz-form-section">
+        <h4 class="viz-step">Step 3 - Add Filter(s) (optional)</h4>
+        <ul>
+          <%= f.fields_for :filters do |filters_form| %>
+          <li class="form-row">
+            <div class="viz-form-group">
+              <label for="variable_name">Variable</label>
+              <div class="filter_var">
+		<%= filters_form.select :variable_name, options_for_select(get_form_variable_names, @visualization.filters[filters_form.index].variable_name), prompt: "Select variable", class: 'form-control' %>
+	      </div>
+            </div>
+
+            <div class="viz-form-group">
+              <label for="filter_type">Filter Type</label>
+              <%= filters_form.select :filter_type, options_for_select(get_form_filter_types, @visualization.filters[filters_form.index].filter_type), prompt: "Select filter", class: 'form-control' %>
+            </div>
+
+            <div class="viz-form-group">
+              <label for="value1">Value1</label>
+              <div><%= filters_form.select :value1, options_for_select(get_form_filter_values, @visualization.filters[filters_form.index].value1), prompt: "Select value", class: 'form-control' %></div>
+            </div>
+
+            <div class="viz-form-group">
+              <label for="value2">Value2</label>
+              <%= filters_form.select :value2, options_for_select(get_form_filter_values, @visualization.filters[filters_form.index].value2), prompt: "Select value", class: 'form-control' %>
+            </div>
+	    <div class="viz-form-group">
+	      <label for="name">Delete</label>
+	      <%= filters_form.check_box :_destroy %>
+	    </div>
+          </li>
+          <% end %>
+        </ul>
+	<%= f.submit 'Add filter', :name => 'add_filter' %>
+        <%= f.submit 'Delete checked filters', :name => 'remove_filter' %>
+       </div>
+       <br>
+       
+
+       <!--Section 4: Chart and Axis Titles [optional; auto-fills]-->
+       <div class="viz-form-section">
+          <h4 class="viz-step">Step 4 - Fill Chart Details (optional) </h4> 
+          <div class="chart-details form-row">
+          <div class="viz-form-group">
+              <label for="chart_title">Chart Title</label>
+              <%= f.text_field :chart_title, class: 'form-control' %>
+            </div>
+
+            <div class="viz-form-group">
+              <label for="x_axis_title">X Axis Title</label>
+              <%= f.text_field :x_axis_title, class: 'form-control' %>
+            </div>
+
+            <div class="viz-form-group">
+              <label for="y_axis_title">Y Axis Title </label>
+              <%= f.text_field :y_axis_title, class: 'form-control' %>
+            </div>
+          </div>
+          </div>
+       </div>
+
+       <%= f.submit "Create Visualization!", class: "btn btn-primary" %>
+      <% end %>
+   </div>

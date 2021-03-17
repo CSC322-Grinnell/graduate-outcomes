@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   #get 'visualization/show'
   #get 'visualization/new'
   resources :visualizations do
+    get '/visualizations/:id/edit', to: 'visualizations#edit', as: :edit_visualization
+    patch '/visualizations/:id', to: 'visualizations#update'
     collection do
       get 'delete_visualization'
     end
