@@ -111,17 +111,13 @@ Our project includes controller, integration, and model tests. We have extensive
 - Our `valid_emails` model vaidates the presence and correct formatting of the email.
 
 # To-Dos
-- Accommodating more variables for files
-- Live previews of the chart while form is being created/edited
-- Change form depending on what chart type user selects
-- Restore user selection when the user tries to edit the visualization
-- Add more chart types (i.e. scatter plots, line charts)
+- Restoring user selection when the user tries to edit the visualization 
+- Fix bug where trying to edit a visualization multiple times in a row results in duplication of variable and filter fields
 - Have variables automatically determine what chart type is used
-- Add & remove multiple filters functionality (so user can add as many filters as needed)
-- More comprehensive integration test
-- Comprehensive testing for visualization
-- Paying attention to the color scheme of the visualization itself
-- Fixing position of the delete icons in the Visualize page
+- Comprehensive testing for visualization 
+- Create homepage with links to all the other pages
+- Making the number of variables more flexible when uploading CSV files
+
 
 # Notes & Considerations
 - Currently, empty filters are being saved into the database on form creation due to a lack of robust validation.  Moving forward, we would like to add more conditional validations that check if a filter is empty before attempting to save -- this is an issue we have because if we validate the model, the form does not allow an empty filter input.
