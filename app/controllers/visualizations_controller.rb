@@ -131,8 +131,8 @@ class VisualizationsController < ApplicationController
                     :x_axis_title, 
                     :y_axis_title, 
                     :chart_title, 
-                    variables_attributes: [:name, :role, :_destroy],
-                    filters_attributes: [:variable_name, :filter_type, :value1, :value2, :_destroy])
+                    variables_attributes: [:name, :role, :_destroy, :id],
+                    filters_attributes: [:variable_name, :filter_type, :value1, :value2, :_destroy, :id])
       
     end  
 
