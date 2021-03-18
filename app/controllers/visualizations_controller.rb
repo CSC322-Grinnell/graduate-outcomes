@@ -70,30 +70,17 @@ class VisualizationsController < ApplicationController
     	unless params[:visualization][:variables_attributes].blank?
 	  for attribute in params[:visualization][:variables_attributes]
 	    @visualization.variables.build(attribute.last.except(:_destroy)) unless attribute.last.has_key?(:id)
-            ##??##Visualization.find(params[:id]).filters.destroy_all
 	  end
     	end
       # add one more empty variable attribute
         @visualization.variables.build
         render 'edit' # re-render form
     elsif params[:remove_variable]
-      # collect all marked for delete variable ids
-      #removed_variables = params[:visualization][:variables_attributes].collect { |i, att| att[:id] if (att[:id] && att[:_destroy].to_i == 1) }
-      # physically delete the variables from database (NOT WORKING!!)
-      
-      @visualization.variables.each do |var|
-        if var[:_destroy].to_i == 1
-          @visualization.variables[var[:id]].destroy
-          #Variable.(var[:id])
-        end
+      # physically delete the variables from database
+      for attribute in params[:visualization][:variables_attributes]
+        @visualization.variables.destroy(attribute.last[:id]) if (attribute.last.has_key?(:id) && attribute.last[:_destroy].to_i == 1)
       end
-      #params[:visualization][:variables_attributes].each do |att|
-      #  if att[:id] && att[:_destroy].to_i == 1
-      #    Visualization.delete(att[:id])
-      #  end
-      #end
-      #Visualization.delete(removed_variables)
-      #flash[:success] = "Variables removed."
+      flash[:success] = "Variables removed."
       for attribute in params[:visualization][:variables_attributes]
       	# rebuild variables attributes that don't have an id and whose _destroy attribute is not 1
         @visualization.variables.build(attribute.last.except(:_destroy)) if (!attribute.last.has_key?(:id) && attribute.last[:_destroy].to_i == 0)
@@ -108,12 +95,12 @@ class VisualizationsController < ApplicationController
     	end
       # add one more empty filter attribute
         @visualization.filters.build
-        render :action => 'edit'
+        render 'edit'
     elsif params[:remove_filter]
-      # collect all marked for delete filter ids
-      removed_filters = params[:visualization][:filters_attributes].collect { |i, att| att[:id] if (att[:id] && att[:_destroy].to_i == 1) }
-      # physically delete the filters from database (NOT WORKING!!)
-      Visualization.delete(removed_filters)
+      # physically delete the filters from database
+      for attribute in params[:visualization][:filters_attributes]
+        @visualization.filters.destroy(attribute.last[:id]) if (attribute.last.has_key?(:id) && attribute.last[:_destroy].to_i == 1)
+      end
       flash[:success] = "Filters removed."
       for attribute in params[:visualization][:filters_attributes]
       	# rebuild filter attributes that dont't have an id and whose _destroy attribute is not 1
@@ -127,8 +114,7 @@ class VisualizationsController < ApplicationController
         redirect_to @visualization and return #show visualization that was just updated
       else
         flash[:error] = "Visualization could not be updated. Please fill all fields and try again!"
-        render 'edit'
-        #redirect_to visualizations_path # ideally stay on edit and show error messages but it appears to be building extra variables/filters
+        render 'edit' #show errors and stay on form
       end
     end
   end
