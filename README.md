@@ -146,14 +146,15 @@ Pushing a branch other than master to Heroku:
 ## Database Management
 * Update database on Heroku:
 `heroku run rails db:migrate`
-* Reset database locally (removes all data including uploaded datasets):
+* Reset database locally (removes all data including uploaded datasets, visualizations, and accounts):
 `rails db:migrate:reset`
 * Seed database:
 `rails db:seed`
-  * Data currently from lib/seeds/dummy_data.csv
+  * Data currently from lib/seeds/dummy_data3.csv
 * Reset Heroku database: `heroku pg:reset`
+  * __NOTE: The project is at a stage where this is a bad idea unless absolutely necessary.__ This will re-set all created visualizations, will remove access to all users except Sarah, and will reset Sarah's password to the default, which is not secure (it is visible on GitHub). If you must do this, please talk with our community partner first as it will delete their work if they are using the site.
   * Deletes database -- destructive action, will yield warning and require confirmation
-  * Will break your app until you run command to update Heroku database `heroku run rails db:migrate` (Don't worry, it's fine!)
+  * Will break your app until you run command to update Heroku database `heroku run rails db:migrate`
 
 # References
 
