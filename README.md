@@ -19,6 +19,7 @@ The goal of this project is to create an efficient web application that facilita
 - The user should be able to create, edit, and delete a variety of visualizations. The visualization have default value of chart title and x,y axis title.
 - The user should be able to toggle variables and apply filters to selected data to create meaningful visualizations and analyses. The selection of possible value changed dynamically as the user chooses the variable.
 - The user should be able to preview and manage all of the visualizations they created so far. This includes seeing what they have created so far, exporting the visualizations as images, and going back and being able to edit visualizations.
+- The user should be able to create an account, log in, and add to a database of emails that are approved to create new accounts.
 
 # Prerequisites
 
@@ -94,15 +95,11 @@ Rails command.
 
 ## Tests
 
-Our project includes controller, integration, and model tests. We have extensive student model testing, but all testing needs to be expanded upon. Part of the reason why we are missing a lot of the `visualization`, `variable`, and `filter` tests was because we were still wrapping our heads around everything works together until the last sprint. Now that we have a basic functionality that allows users to create and view their visualizations, we need to create rigorous model tests.
+Our project includes controller, integration, and model tests. We have extensive student model testing, but all testing needs to be expanded upon. 
 
 - Our controller tests just make sure that we get responses when getting the appropriately named paths. These can by expanded upon.
 
-- We have one integration test that checks to make sure that the proper HTML links appear in the navigation bar. This can be expanded on.
-
 - Our `student` model test has the proper presence and uniqueness tests for each of the model's attributes.
-
-- We do not have specific `visualization` or `variable` tests, and these needs to be implemented.
 
 - Our `filter` model test only validates a valid filter. We need to create more tests for invalid filters, as well as add a conditional validation for the presence of the `value2` attribute in the model.
 
@@ -111,24 +108,25 @@ Our project includes controller, integration, and model tests. We have extensive
 - Our `valid_emails` model vaidates the presence and correct formatting of the email.
 
 # To-Dos
-- Restoring user selection when the user tries to edit the visualization 
-- Fix bug where trying to edit a visualization multiple times in a row results in duplication of variable and filter fields
-- Have variables automatically determine what chart type is used
-- Comprehensive testing for visualization 
-- Create homepage with links to all the other pages
+- Display previews of visualization while form is being edited
+- Have variables automatically determine what chart type to use
+- Comprehensive testing for visualization
+- Create homepage and make it the new landing page for the site (along with login)
 - Making the number of variables more flexible when uploading CSV files
+- Ability to upload entries that have certain blank fields
+- Create a “User Guide” page that instructs people in the CLS, who may have little to no prior experience, on how to build visualizations that may be useful to them
+- Better visualization handling of more than two variables
 
 
 # Notes & Considerations
-- Currently, empty filters are being saved into the database on form creation due to a lack of robust validation.  Moving forward, we would like to add more conditional validations that check if a filter is empty before attempting to save -- this is an issue we have because if we validate the model, the form does not allow an empty filter input.
 - In the form, we hard coded all graphs to display variables by count.  Eventually, users should be able to choose to display graphs by count, average, max, min, etc.
-- In the form, we hard coded two filter options.  Eventually, users should be able to choose how many filters they want to apply.
-- In the form, we hard coded two variables options.  Eventually, useres should be able to choose how many variables, depending on the chart type, they want to apply.
+- Eventually, the number of variables the user chooses should be restricted by the chart type they chose.
 
 # Tools & Learning Resources
 - Ruby on Rails Tutorial by Hartl 
 - [Filter Graph](https://filtergraph.com/)
 - [Chartkick](https://chartkick.com/)
+- [SimpleCov](https://github.com/simplecov-ruby/simplecov)
 - [Figma](https://figma.com/)
 - [Upload Functionality:](https://mattboldt.com/importing-massive-data-into-rails/)
 - [jQuery event calling](https://api.jquery.com/on/)
