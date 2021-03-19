@@ -29,7 +29,7 @@ The goal of this project is to create an efficient web application that facilita
 * Rails verson 6.0.3.2
 * Ubuntu Operating System (optional)
 
-# Setting up the project on Amazon C9:
+# Setting up the project:
 
 1. If you are using an Amazon Cloud9 environment, follow Hartl's tutorial to properly set one up. We highly recommend that instead of using the free Cloud9 tier, apply for a free [AWS education account](https://aws.amazon.com/education/awseducate/). Then, when creating a new environment select the largest education tier, `m5.xlarge`. Alternatively, you can set up everything on your local computer without Cloud9.
 
@@ -87,7 +87,7 @@ Our projects views use the `form_with` Rails method to create integrated and val
 
 ## Controllers
 
-Our project has a `VisualizationsController`, an `UploadsController`, a `SessionsController`, a `UsersController`, and a `ValidEmailsController`. The controllers follow the RESTful routes and actions conventions created by including `resources :visualizations`, `resources :uploads`, `resources :users`, and `resources :valid_emails` in the `/config/routes.rb` routing file. To get a view of which named routes correspond to which named actions, run the
+Our project has a `VisualizationsController`, an `UploadsController`, a `SessionsController`, a `UsersController`, and a `ValidEmailsController`. The controllers follow the RESTful routes and actions conventions created by including `resources :visualizations`, `resources :uploads`, `resources :users`, and `resources :valid_emails` in the `/config/routes.rb` routing file. The `VisualizationsController` contains the code that controlls dynamic addition and deletion of variables and filters for the visualization form, and these methods need to be updated to be less dangerous. More information about this is in the team report. To get a view of which named routes correspond to which named actions, run the
 ```
 rake routes
 ```
@@ -113,9 +113,12 @@ Our project includes controller, integration, and model tests. We have extensive
 - Comprehensive testing for visualization
 - Create homepage and make it the new landing page for the site (along with login)
 - Making the number of variables more flexible when uploading CSV files
-- Ability to upload entries that have certain blank fields
+   * Ability to upload entries that have certain blank fields (e.g. gs_level blank if gs_select is 'no')
 - Create a “User Guide” page that instructs people in the CLS, who may have little to no prior experience, on how to build visualizations that may be useful to them
 - Better visualization handling of more than two variables
+- Restrict number of variables to 1 for pie charts - currently creates empty graph with label "undefined". Other similar changes to help users create meaningful forms.
+- Implement functionality behind independent and dependent selections for variables. Currently these selections do nothing (default back to group by).
+- Fix implementation of adding and deleting variables and filters to be more safe (see `app/controllers/visualizations_controller.rb`)
 
 
 # Notes & Considerations
@@ -143,14 +146,15 @@ Pushing a branch other than master to Heroku:
 ## Database Management
 * Update database on Heroku:
 `heroku run rails db:migrate`
-* Reset database locally (removes all data including uploaded datasets):
+* Reset database locally (removes all data including uploaded datasets, visualizations, and accounts):
 `rails db:migrate:reset`
 * Seed database:
 `rails db:seed`
-  * Data currently from lib/seeds/dummy_data.csv
+  * Data currently from lib/seeds/dummy_data3.csv
 * Reset Heroku database: `heroku pg:reset`
+  * __NOTE: The project is at a stage where this is a bad idea unless absolutely necessary.__ This will re-set all created visualizations, will remove access to all users except Sarah, and will reset Sarah's password to the default, which is not secure (it is visible on GitHub). If you must do this, please talk with our community partner first as it will delete their work if they are using the site.
   * Deletes database -- destructive action, will yield warning and require confirmation
-  * Will break your app until you run command to update Heroku database `heroku run rails db:migrate` (Don't worry, it's fine!)
+  * Will break your app until you run command to update Heroku database `heroku run rails db:migrate`
 
 # References
 
