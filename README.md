@@ -29,7 +29,7 @@ The goal of this project is to create an efficient web application that facilita
 * Rails verson 6.0.3.2
 * Ubuntu Operating System (optional)
 
-# Setting up the project on Amazon C9:
+# Setting up the project:
 
 1. If you are using an Amazon Cloud9 environment, follow Hartl's tutorial to properly set one up. We highly recommend that instead of using the free Cloud9 tier, apply for a free [AWS education account](https://aws.amazon.com/education/awseducate/). Then, when creating a new environment select the largest education tier, `m5.xlarge`. Alternatively, you can set up everything on your local computer without Cloud9.
 
@@ -87,7 +87,7 @@ Our projects views use the `form_with` Rails method to create integrated and val
 
 ## Controllers
 
-Our project has a `VisualizationsController`, an `UploadsController`, a `SessionsController`, a `UsersController`, and a `ValidEmailsController`. The controllers follow the RESTful routes and actions conventions created by including `resources :visualizations`, `resources :uploads`, `resources :users`, and `resources :valid_emails` in the `/config/routes.rb` routing file. To get a view of which named routes correspond to which named actions, run the
+Our project has a `VisualizationsController`, an `UploadsController`, a `SessionsController`, a `UsersController`, and a `ValidEmailsController`. The controllers follow the RESTful routes and actions conventions created by including `resources :visualizations`, `resources :uploads`, `resources :users`, and `resources :valid_emails` in the `/config/routes.rb` routing file. The `VisualizationsController` contains the code that controlls dynamic addition and deletion of variables and filters for the visualization form, and these methods need to be updated to be less dangerous. More information about this is in the team report. To get a view of which named routes correspond to which named actions, run the
 ```
 rake routes
 ```
