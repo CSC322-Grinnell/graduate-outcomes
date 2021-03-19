@@ -197,4 +197,10 @@ module VisualizationsHelper
         return options
     end
 
+    def shorten_title(title)
+        if title.length > 45
+            return title[0..45] + "..."
+        else return title
+        end
+    end
 end
