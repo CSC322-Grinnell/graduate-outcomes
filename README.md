@@ -113,9 +113,12 @@ Our project includes controller, integration, and model tests. We have extensive
 - Comprehensive testing for visualization
 - Create homepage and make it the new landing page for the site (along with login)
 - Making the number of variables more flexible when uploading CSV files
-- Ability to upload entries that have certain blank fields
+   * Ability to upload entries that have certain blank fields (e.g. gs_level blank if gs_select is 'no')
 - Create a “User Guide” page that instructs people in the CLS, who may have little to no prior experience, on how to build visualizations that may be useful to them
 - Better visualization handling of more than two variables
+- Restrict number of variables to 1 for pie charts - currently creates empty graph with label "undefined". Other similar changes to help users create meaningful forms.
+- Implement functionality behind independent and dependent selections for variables. Currently these selections do nothing (default back to group by).
+- Fix implementation of adding and deleting variables and filters to be more safe (see `app/controllers/visualizations_controller.rb`)
 
 
 # Notes & Considerations
