@@ -17,6 +17,8 @@
 	<label for="chart_type">Chart Type <span style="color:red;">*</span></label>
 	<%= f.select :chart_type, options_for_select(get_form_chart_types, @visualization.chart_type), prompt: "Select chart", class: 'form-control' %>
 	<!--dropdown for char types-->
+	<!--how options_for_select works: -->
+	<!--  options_for_select([value1, value2, value3], default) -->
       </div>
     </div>
   </div>
