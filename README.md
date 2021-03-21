@@ -61,9 +61,7 @@ After this, navigate to the project directory in your C9 environment (if applica
 
 # Running SimpleCov
 
-SimpleCov will run when `rails test` is called. To view a detailed breakdown of test coverage, run this command: 
-
-`open coverage/index.html`
+SimpleCov will run when `rails test` is called. To view a detailed breakdown of test coverage, run `open coverage/index.html`. If the code coverage seems to low, try running `Spring stop` before `rails test`.
 
 # Project Components
 
