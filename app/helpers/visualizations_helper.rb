@@ -2,6 +2,7 @@ module VisualizationsHelper
 
     def get_form_variable_names
         [
+          # These represent the display names and the actual values
             ["class_year", "class_year"],
             ["major1", "major1"],
             ["major2", "major2"],

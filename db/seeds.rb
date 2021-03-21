@@ -6,6 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+
+# Note that when uploading a csv file, currently all attributes of students are required.
+# Also, note that the current dummy data (dummy_data3.csv) does not necessarily make sense as real data,
+# and they are just filled with a lot of place holder values for the sake of testing.
 require 'csv'
 
 csv_text = File.read(Rails.root.join('lib', 'seeds', 'dummy_data3.csv'))
