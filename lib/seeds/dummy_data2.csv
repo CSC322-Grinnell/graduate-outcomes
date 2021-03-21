@@ -1,0 +1,101 @@
+class_year,student_id,major1,major2,gender,fed_group,intern,research,service,career_related,job_field,FDS_cat
+2020,8,PHY,n/a,F,international,TRUE,TRUE,TRUE,moderately,business admin/management,conted
+2020,16,ENG,n/a,F,international,TRUE,TRUE,TRUE,completely,business admin/management,employ
+2020,43,IND,n/a,F,white,TRUE,FALSE,TRUE,moderately,business admin/management,fellow
+2020,1,ENG,n/a,M,two+,FALSE,FALSE,TRUE,moderately,communications/media,gradsch
+2020,19,ARTH,n/a,F,white,FALSE,TRUE,TRUE,moderately,communications/media,service
+2020,51,CSC,n/a,M,hispanic,FALSE,FALSE,TRUE,slightly,communications/media,other/seek
+2020,89,GWSS,n/a,M,white,TRUE,FALSE,FALSE,moderately,communications/media,gradsch
+2020,90,CHM,n/a,F,black/afamer,FALSE,TRUE,TRUE,moderately,communications/media,employ
+2020,3,CSC,POL,M,black/afamer,FALSE,TRUE,TRUE,moderately,computing/technology,employ
+2020,10,POL,n/a,M,white,FALSE,FALSE,TRUE,moderately,computing/technology,employ
+2020,13,BCM,n/a,F,hispanic,FALSE,TRUE,FALSE,slightly,computing/technology,fellow
+2020,37,ARTS,n/a,F,unknown,FALSE,FALSE,TRUE,slightly,computing/technology,other/seek
+2020,57,SOC,n/a,F,white,TRUE,FALSE,TRUE,slightly,computing/technology,service
+2020,61,PSY,n/a,M,white,FALSE,FALSE,FALSE,not at all,computing/technology,conted
+2020,72,FRN,BIO,M,black/afamer,FALSE,TRUE,TRUE,moderately,computing/technology,conted
+2020,74,ECN,n/a,F,white,TRUE,TRUE,TRUE,completely,computing/technology,gradsch
+2020,99,ECN,n/a,M,asian-amer,FALSE,FALSE,TRUE,moderately,computing/technology,employ
+2020,23,ECN,n/a,M,international,TRUE,TRUE,TRUE,moderately,consulting,employ
+2020,77,ANT,ECN,F,white,TRUE,FALSE,TRUE,completely,consulting,service
+2020,4,ECN,BCM,F,asian-amer,TRUE,FALSE,FALSE,slightly,creative/performing arts,gradsch
+2020,12,PHY,n/a,M,white,FALSE,TRUE,TRUE,slightly,creative/performing arts,service
+2020,29,ARTH,n/a,M,two+,FALSE,TRUE,TRUE,moderately,creative/performing arts,employ
+2020,58,CSC,n/a,M,two+,TRUE,TRUE,FALSE,moderately,creative/performing arts,employ
+2020,66,POL,CHM,F,white,TRUE,TRUE,TRUE,slightly,creative/performing arts,employ
+2020,87,PHY,n/a,F,white,TRUE,FALSE,TRUE,slightly,creative/performing arts,gradsch
+2020,100,POL,n/a,F,unknown,FALSE,FALSE,FALSE,moderately,creative/performing arts,employ
+2020,56,BCM,n/a,M,white,FALSE,TRUE,FALSE,moderately,data science/analytics,employ
+2020,7,POL,REL,M,black/afamer,TRUE,FALSE,TRUE,completely,education,service
+2020,9,PSY,n/a,F,white,TRUE,FALSE,FALSE,slightly,education,employ
+2020,15,BIO,CSC,M,two+,FALSE,TRUE,FALSE,moderately,education,other/seek
+2020,17,POL,RUS,M,hispanic,TRUE,TRUE,FALSE,moderately,education,other/seek
+2020,24,MAT,n/a,F,white,TRUE,TRUE,TRUE,moderately,education,conted
+2020,31,ECN,n/a,M,white,TRUE,FALSE,FALSE,slightly,education,gradsch
+2020,32,POL,ECN,F,hispanic,FALSE,TRUE,FALSE,slightly,education,employ
+2020,33,ARTH,n/a,M,international,FALSE,TRUE,FALSE,completely,education,employ
+2020,34,POL,n/a,M,hispanic,TRUE,FALSE,TRUE,moderately,education,fellow
+2020,36,SOC,GRM,M,white,FALSE,FALSE,TRUE,moderately,education,employ
+2020,38,ECN,PHI,F,white,TRUE,TRUE,TRUE,slightly,education,gradsch
+2020,39,ECN,n/a,M,white,TRUE,TRUE,FALSE,moderately,education,gradsch
+2020,44,MAT,PHY,M,white,TRUE,TRUE,FALSE,slightly,education,employ
+2020,67,PSY,n/a,F,white,TRUE,TRUE,TRUE,slightly,education,employ
+2020,68,CHM,SPN,M,white,FALSE,TRUE,TRUE,moderately,education,employ
+2020,69,SOC,FRN,F,white,TRUE,TRUE,TRUE,moderately,education,service
+2020,73,POL,FRN,M,hispanic,TRUE,FALSE,TRUE,moderately,education,employ
+2020,80,CSC,n/a,F,unknown,TRUE,TRUE,TRUE,slightly,education,gradsch
+2020,83,PHY,n/a,M,two+,FALSE,FALSE,TRUE,slightly,education,gradsch
+2020,86,PHY,n/a,M,white,FALSE,FALSE,TRUE,moderately,education,employ
+2020,91,BIO,POL,F,white,FALSE,FALSE,TRUE,slightly,education,employ
+2020,92,PHI,n/a,M,white,FALSE,TRUE,TRUE,moderately,education,employ
+2020,94,HIS,n/a,F,asian-amer,TRUE,TRUE,TRUE,slightly,education,service
+2020,20,FRN,n/a,F,international,FALSE,TRUE,FALSE,completely,finance,fellow
+2020,53,ECN,n/a,M,unknown,FALSE,TRUE,FALSE,moderately,finance,employ
+2020,71,ECN,n/a,M,white,FALSE,FALSE,FALSE,moderately,finance,service
+2020,76,PHY,n/a,F,white,TRUE,TRUE,FALSE,slightly,finance,gradsch
+2020,2,BIO,n/a,F,white,TRUE,FALSE,TRUE,slightly,computing/technology,service
+2020,21,ECN,n/a,F,white,FALSE,TRUE,TRUE,slightly,research/science,employ
+2020,26,BIO,n/a,M,asian-amer,TRUE,TRUE,TRUE,moderately,social services,employ
+2020,60,SOC,SPN,F,white,FALSE,TRUE,FALSE,moderately,business admin/management,employ
+2020,62,BIO,n/a,M,international,TRUE,TRUE,FALSE,moderately,creative/performing arts,gradsch
+2020,70,ARTS,n/a,F,white,FALSE,FALSE,FALSE,completely,computing/technology,employ
+2020,84,POL,n/a,F,white,TRUE,FALSE,FALSE,moderately,law/legal services,employ
+2020,95,BIO,n/a,M,asian-amer,TRUE,TRUE,FALSE,completely,social services,service
+2020,6,SOC,n/a,F,two+,FALSE,FALSE,TRUE,slightly,government/public policy,employ
+2020,11,HIS,n/a,M,asian-amer,TRUE,FALSE,TRUE,moderately,government/public policy,other/seek
+2020,18,ENG,n/a,F,white,FALSE,TRUE,FALSE,slightly,government/public policy,other/seek
+2020,54,POL,GRM,M,white,TRUE,FALSE,FALSE,moderately,government/public policy,conted
+2020,5,BIO,n/a,F,black/afamer,TRUE,FALSE,FALSE,moderately,healthcare,gradsch
+2020,30,PHY,n/a,F,international,TRUE,TRUE,TRUE,moderately,healthcare,employ
+2020,63,POL,ECN,F,white,TRUE,FALSE,FALSE,completely,healthcare,employ
+2020,65,BIO,n/a,F,unknown,FALSE,TRUE,FALSE,slightly,healthcare,fellow
+2020,75,BCM,n/a,M,asian-amer,FALSE,TRUE,TRUE,completely,healthcare,employ
+2020,41,IND,n/a,F,white,TRUE,TRUE,FALSE,not at all,law/legal services,gradsch
+2020,64,BIO,n/a,F,international,TRUE,FALSE,FALSE,moderately,law/legal services,gradsch
+2020,14,POL,n/a,F,white,TRUE,FALSE,TRUE,completely,research/science,employ
+2020,25,CSC,n/a,F,white,TRUE,FALSE,TRUE,moderately,research/science,employ
+2020,27,BIO,n/a,M,white,TRUE,TRUE,FALSE,moderately,research/science,employ
+2020,28,CSC,n/a,F,white,TRUE,TRUE,TRUE,moderately,research/science,service
+2020,35,BCM,FRN,F,white,FALSE,TRUE,FALSE,slightly,research/science,employ
+2020,42,SOC,GWSS,F,white,FALSE,FALSE,TRUE,moderately,research/science,gradsch
+2020,45,PSY,n/a,F,international,TRUE,FALSE,TRUE,moderately,research/science,gradsch
+2020,47,BCM,n/a,F,white,TRUE,TRUE,FALSE,moderately,research/science,employ
+2020,49,ECN,ARTS,F,white,TRUE,FALSE,TRUE,slightly,research/science,employ
+2020,50,ECN,n/a,M,two+,TRUE,TRUE,TRUE,slightly,research/science,employ
+2020,52,CHM,n/a,M,unknown,TRUE,TRUE,FALSE,not at all,research/science,service
+2020,55,ENG,n/a,F,white,TRUE,FALSE,TRUE,slightly,research/science,fellow
+2020,78,ARTH,MAT,M,asian-amer,TRUE,TRUE,TRUE,moderately,research/science,employ
+2020,81,HIS,n/a,F,white,FALSE,TRUE,TRUE,moderately,research/science,gradsch
+2020,82,CSC,n/a,M,asian-amer,TRUE,FALSE,TRUE,completely,research/science,employ
+2020,85,BIO,n/a,F,white,FALSE,TRUE,TRUE,moderately,research/science,employ
+2020,93,ANT,n/a,F,white,FALSE,TRUE,FALSE,moderately,research/science,other/seek
+2020,96,PHY,n/a,F,international,FALSE,FALSE,TRUE,slightly,research/science,employ
+2020,97,BCM,FRN,F,international,FALSE,TRUE,TRUE,completely,research/science,employ
+2020,98,PSY,ENG,M,unknown,FALSE,TRUE,TRUE,slightly,research/science,gradsch
+2020,46,ARTH,n/a,M,white,TRUE,FALSE,FALSE,moderately,sales/marketing,service
+2020,48,ANT,n/a,M,white,TRUE,TRUE,TRUE,not at all,sales/marketing,employ
+2020,88,BIO,n/a,M,international,FALSE,TRUE,TRUE,not at all,sales/marketing,employ
+2020,22,GPSY,n/a,F,international,FALSE,FALSE,TRUE,moderately,social services,employ
+2020,40,PHI,PSY,F,hispanic,TRUE,FALSE,FALSE,moderately,social services,employ
+2020,59,BIO,n/a,F,white,TRUE,TRUE,TRUE,completely,social services,employ
+2020,79,BCM,n/a,F,white,TRUE,TRUE,TRUE,moderately,social services,gradsch

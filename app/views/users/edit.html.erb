@@ -1,0 +1,23 @@
+<h1 class="page_title">Update your profile</h1>
+
+<!--For more info about CSS classes, see app/assets/stylesheets/sessions.scss-->
+<div class="login-form">
+    <%= form_with(model: @user, local: true) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+  <div class="login-form-section">
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control' %>
+  </div>
+  <div class="login-form-section">
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control' %>
+  </div>
+  <div class="login-form-section">
+      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.password_field :password_confirmation, class: 'form-control' %>
+  </div>
+  <div class="login-form-section">
+      <%= f.submit "Save changes", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

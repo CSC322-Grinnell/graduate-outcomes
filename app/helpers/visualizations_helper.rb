@@ -2,6 +2,7 @@ module VisualizationsHelper
 
     def get_form_variable_names
         [
+          # These represent the display names and the actual values
             ["class_year", "class_year"],
             ["major1", "major1"],
             ["major2", "major2"],
@@ -11,7 +12,11 @@ module VisualizationsHelper
             ["research", "research"],
             ["service", "service"],
             ["career_related", "career_related"],
-            ["job_field", "job_field"]
+            ["job_field", "job_field"],
+            ["FDS_cat", "FDS_cat"],
+            ["gs_select", "gs_select"],
+            ["gs_level", "gs_level"],
+            ["gs_type", "gs_type"]
         ]
         # Student.column_names.reject {|c| ["id", "student_id", "updated_at", "created_at"].include? c}
     end
@@ -42,6 +47,7 @@ module VisualizationsHelper
         [
             ["From..To", "from_to"],
             ["Equals", "equals"],
+            ["Not Equal To", "not_equals"],
             ["Is Greater Than", "greater_than"],
             ["Is Greater Than Or Equal To", "greater_than_or_equal"],
             ["Is Less Than", "less_than"],
@@ -50,7 +56,7 @@ module VisualizationsHelper
         ]
     end
 
-    # not being used yet. In future allow user to select kind of summarization. 
+    # not being used yet. In future allow user to select kind of summarization.
     def get_form_summarize_methods
         [
             ["count"],
@@ -98,10 +104,15 @@ module VisualizationsHelper
         value2 = filter_model.value2
 
         case filter_type
-            when 'equals_to'
+            when 'equals'
                 filter_hash = Hash.new
                 filter_hash[variable_name] = value1
                 data = data.where(filter_hash)
+
+            when 'not_equals'
+                filter_hash = Hash.new
+                filter_hash[variable_name] = value1
+                data = data.where.not(filter_hash)
 
             when 'greater_than'
                 data = data.where("#{variable_name} > ?", value1)
@@ -125,7 +136,7 @@ module VisualizationsHelper
 
 
     def set_variable(data, variable_model, chart_type)
-        
+
         role = variable_model.role
         variable_name = variable_model.name
         #TO DO: add more variable types (Independent, Dependent)
@@ -145,7 +156,7 @@ module VisualizationsHelper
         end
     end
 
-    # Not being used yet. 
+    # Not being used yet.
     def summarize(data, summarization_method, variable=nil)
         case summarization_method
             when 'sum'
@@ -178,13 +189,19 @@ module VisualizationsHelper
 
         Student.column_names
             .reject{|c| ["id", "student_id", "updated_at", "created_at"].include? c}
-            .each do |name|  
+            .each do |name|
                 possible_values = Student.distinct.pluck(name)
-                possible_values.each do |value| 
+                possible_values.each do |value|
                     options = options + [["#{name}:#{value}", "#{value}"]]
                 end
             end
         return options
     end
 
+    def shorten_title(title)
+        if title.length > 45
+            return title[0..45] + "..."
+        else return title
+        end
+    end
 end

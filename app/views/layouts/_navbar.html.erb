@@ -1,18 +1,59 @@
 <nav class="navbar-container">
     <ul>
-        <%= link_to visualizations_path do %>
-            <li class="nav-item"> 
-                <%= image_tag  "navbar/bar-chart.svg" %> 
-                <div class="nav-text">Visualize</div>
-            </li>
-        <%end%>
         
-         <%= link_to uploads_path do %>
-            <li class="nav-item"> 
-                <%= image_tag  "navbar/upload.svg" %> 
-                <div class="nav-text">Upload</div>
-            </li>
-        <%end%>
+        <% if logged_in? %>
 
+            <%= link_to visualizations_path do %>
+                <li class="nav-item"> 
+                    <%= image_tag("navbar/bar-chart.svg", alt: "Visualize button") %> 
+                    <div class="nav-text">Visualize</div>
+                </li>
+            <%end%>
+        
+            <%= link_to uploads_path do %>
+                <li class="nav-item"> 
+                    <%= image_tag("navbar/upload.svg", alt: "Upload button") %> 
+                    <div class="nav-text">Upload</div>
+                 </li>
+            <%end%>
+
+             <%= link_to valid_emails_path do %>
+                <li class="nav-item"> 
+                     <%= image_tag("navbar/person.svg", alt: "Approve Emails button") %> 
+                    <div class="nav-text">Approve Emails</div>
+                </li>
+            <%end%>
+
+            <%= link_to edit_user_path(current_user) do %>
+                <li class="nav-item"> 
+                    <%= image_tag("navbar/person.svg", alt: "Settings button") %> 
+                    <div class="nav-text">Settings</div>
+                </li>
+            <%end%>
+
+            <%= link_to logout_path, method: :delete, data: {confirm: "Are you sure you want to log out?"} do %>
+                <li class="nav-item"> 
+                    <%= image_tag("navbar/person.svg", alt: "Log Out button") %> 
+                    <div class="nav-text">Log Out</div>
+                </li>
+            <%end%>
+
+        <% else %>
+
+            <%= link_to login_path do %>
+                <li class="nav-item"> 
+                    <%= image_tag("navbar/person.svg",alt: "Log In Button") %> 
+                    <div class="nav-text">Log In</div>
+                </li>
+            <%end%>
+
+            <%= link_to signup_path do %>
+                <li class="nav-item"> 
+                    <%= image_tag("navbar/person.svg", alt: "Sign Up Button") %> 
+                    <div class="nav-text">Sign Up</div>
+                 </li>
+            <%end%>
+
+        <% end %>
     </ul>
 </nav>

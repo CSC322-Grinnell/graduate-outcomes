@@ -1,13 +1,18 @@
+<!-- Render thumbnail views of all visualizations -->
+<!--(visualization page displays all existing visualizations in this way) -->
 <div class="viz-thumbnail-wrapper">
+    
+    <%= link_to visualization_path(locals[:visualization]), class: "viz-thumbnail" do %>
+        <%= render "thumbnail_chart", locals: {id: locals[:visualization].id}%>
+    <%end%> <!-- Render thumbnails -->
 
-    
-<%= link_to visualization_path(locals[:visualization]), class: "viz-thumbnail" do %>
-    <%= render "thumbnail_chart", locals: {id: locals[:visualization].id}%>
-    
-    <div class="viz-thumbnail-info">
-        <p class="viz-thumbnail-title"><%= locals[:visualization].chart_title%></p>
+    <div class="viz-thumbnail-info"> <!-- Render title and delete icon -->
+        <p class="viz-thumbnail-title"><%= shorten_title(locals[:visualization].chart_title)%></p>
         <p class="">Last edited @<%= locals[:visualization].updated_at%></p>
+        <p class="viz-thumbnail-delete" align="right"> <%= link_to delete_visualization_visualizations_path(:id => locals[:visualization].id), method: :get, class: "viz-thumbnail-trash", data: {confirm: "Are you sure you want to delete?"} do%>
+            <span class="icon trash-2"></span>
+            <%end%>
+        </p> 
     </div>
-<%end%>
 </div>
     

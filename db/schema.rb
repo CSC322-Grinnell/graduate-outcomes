@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_08_142920) do
+ActiveRecord::Schema.define(version: 2021_03_02_170853) do
 
   create_table "filters", force: :cascade do |t|
     t.integer "visualization_id", null: false
@@ -35,6 +35,23 @@ ActiveRecord::Schema.define(version: 2020_10_08_142920) do
     t.string "service"
     t.string "career_related"
     t.string "job_field"
+    t.string "FDS_cat"
+    t.string "gs_select"
+    t.string "gs_level"
+    t.string "gs_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email"
+    t.string "password_digest"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "valid_emails", force: :cascade do |t|
+    t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

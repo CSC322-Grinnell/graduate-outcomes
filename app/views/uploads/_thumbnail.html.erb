@@ -1,5 +1,5 @@
 <div class="uploads-thumbnail">
-   <%= link_to delete_class_year_uploads_path(:class_year => locals[:year_hash][:class_year]), method: :get, class: "uploads-thumbnail-trash" do%>
+   <%= link_to delete_class_year_uploads_path(:class_year => locals[:year_hash][:class_year]), method: :get, class: "uploads-thumbnail-trash", data: {confirm: "Are you sure you want to delete?"} do%>
      <%= image_tag  "trash-2.svg" %>
     <%end%>       
 

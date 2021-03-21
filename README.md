@@ -4,10 +4,11 @@ A Ruby on Rails application visualizing the graduate outcome data of Grinnell st
 
 * Fall 1 Contributors: [Rexford Essilfie](https://github.com/RexfordEssilfie), [Tal Rastopchin](https://github.com/trastopchin), [Michael Spicer](https://github.com/Citywideiowa0), [Vijeeth Guggilla](https://github.com/vijeethguggilla), [Giang Khuat](https://github.com/giangkhuat)
 * Fall 2 Contributors: [Caio Carnauba](https://github.com/ccarnauba), [Seoyeon (Stella) Lee](https://github.com/stellasylee), [Reina Shahi](https://github.com/shahirei), [Clare Simpson](https://github.com/clasky777)
+* Spring 1 Contributors: [Ally R](https://github.com/Ally-R), [Vidush Goswami](https://github.com/vidushg), [Erin Scherl](https://github.com/thehelpfulfrog), [Gabby Masini](https://github.com/masiniga), [Xuanhe Chen](https://github.com/Rhopala)
 * Alumni Mentor: Ian Young
 * Professor: Barbara Johnson, Fernanda Eliott
 * Community Partner: Sarah Barks
-* Timeline: Fall 1 & 2 2020
+* Timeline: Fall 1 & 2 2020, Spring 1 2021
 
 ## Description
 
@@ -18,6 +19,7 @@ The goal of this project is to create an efficient web application that facilita
 - The user should be able to create, edit, and delete a variety of visualizations. The visualization have default value of chart title and x,y axis title.
 - The user should be able to toggle variables and apply filters to selected data to create meaningful visualizations and analyses. The selection of possible value changed dynamically as the user chooses the variable.
 - The user should be able to preview and manage all of the visualizations they created so far. This includes seeing what they have created so far, exporting the visualizations as images, and going back and being able to edit visualizations.
+- The user should be able to create an account, log in, and add to a database of emails that are approved to create new accounts.
 
 # Prerequisites
 
@@ -27,7 +29,7 @@ The goal of this project is to create an efficient web application that facilita
 * Rails verson 6.0.3.2
 * Ubuntu Operating System (optional)
 
-# Setting up the project on Amazon C9:
+# Setting up the project:
 
 1. If you are using an Amazon Cloud9 environment, follow Hartl's tutorial to properly set one up. We highly recommend that instead of using the free Cloud9 tier, apply for a free [AWS education account](https://aws.amazon.com/education/awseducate/). Then, when creating a new environment select the largest education tier, `m5.xlarge`. Alternatively, you can set up everything on your local computer without Cloud9.
 
@@ -57,13 +59,19 @@ After this, navigate to the project directory in your C9 environment (if applica
 
 `rails server`
 
+# Running SimpleCov
+
+SimpleCov will run when `rails test` is called. To view a detailed breakdown of test coverage, run this command: 
+
+`open coverage/index.html`
+
 # Project Components
 
 In this section we will give a high level description of the components of this Ruby on Rails application. Following the Rails project directory convention, most of the important project files are located in the `/app`, `/db`, and `/test` directories. Our models, views, controllers, and tests are all defined and located in their respective named directories.
 
 ## Models
 
-Our project uses a `student` model to encode individual students, and a `visualization`, `variable`, and `filter` to encode a single visualization. You can view our original UML model / class diagrams visually detailing our models in the xyz directory. You can view the current state of the database tables in the `/db/schema.rb` file.
+Our project uses a `student` model to encode individual students, and a `visualization`, `variable`, and `filter` to encode a single visualization. There is also a `user` model to encode the profiles of different users of the site, as well as a `valid_email` model to encode the list of emails that are approved to make accounts. You can view our original UML model / class diagrams visually detailing our models in the xyz directory. You can view the current state of the database tables in the `/db/schema.rb` file.
 
 - The `student` model attributes are hard coded based on the sample dummy input data that our community partner shared with us. The model validates the presence of every attribute, and only validates the uniqueness of the `student_id` attribute.
 
@@ -73,6 +81,10 @@ Our project uses a `student` model to encode individual students, and a `visuali
 
 - The `filter` model represents a rule or constraint that meaningfully relates an dependent variable to an independent variable. Each filter has a filter type attribute, which describes the effect of the filter (such as `Equals`, for example) and a variable name, which represents what variable the filter influences. Each filter also has a value1 attribute and an optional value2 attribute. While a filter with filter type `Equals` only needs one input, `From..To` is a filter that can take two values, Eg. from the class year of 2019 to the class year of 2020. So, filter keeps track of a second conditional attribute value2.
 
+- The `user` model includes an email and password digest associated with a user. A user can be created by signing up, but the email used to sign up must already exist in the valid_email database.
+
+- The `valid_email` model consists of an email. In order for a user to be created, a valid_email must exist that corresponds to the email that the user inputs. valid_emails can be added to the database by a logged in user.
+
 It is important to note that designing a model that can represent the many different ways one can visualize data is very complicated. So, we had to make some compromises with our model design so that we could have something to start to work with. We believe that our model design works really well to create visualizations with one dependent variable, one independent variable, two filters, and a displayed count. We encourage developers to take advantage of the fact that each `visualization` has many variables and filters, instead of completely redesigning the model from scratch, when expanding the visualization configuration capabilities.
 
 ## Views
@@ -81,7 +93,7 @@ Our projects views use the `form_with` Rails method to create integrated and val
 
 ## Controllers
 
-Our project has two controllers, a `VisualizationsController` and an `UploadsController`. Both controllers follow the RESTful routes and actions conventions created by including `resources :visualizations` and `resources :uploads` in the `/config/routes.rb` routing file. To get a view of which named routes correspond to which named actions, run the
+Our project has a `VisualizationsController`, an `UploadsController`, a `SessionsController`, a `UsersController`, and a `ValidEmailsController`. The controllers follow the RESTful routes and actions conventions created by including `resources :visualizations`, `resources :uploads`, `resources :users`, and `resources :valid_emails` in the `/config/routes.rb` routing file. The `VisualizationsController` contains the code that controlls dynamic addition and deletion of variables and filters for the visualization form, and these methods need to be updated to be less dangerous. More information about this is in the team report. To get a view of which named routes correspond to which named actions, run the
 ```
 rake routes
 ```
@@ -89,41 +101,41 @@ Rails command.
 
 ## Tests
 
-Our project includes controller, integration, and model tests. We have extensive student model testing, but all testing needs to be expanded upon. Part of the reason why we are missing a lot of the `visualization`, `variable`, and `filter` tests was because we were still wrapping our heads around everything works together until the last sprint. Now that we have a basic functionality that allows users to create and view their visualizations, we need to create rigorous model tests.
+Our project includes controller, integration, and model tests. We have extensive student model testing, but all testing needs to be expanded upon. 
 
 - Our controller tests just make sure that we get responses when getting the appropriately named paths. These can by expanded upon.
 
-- We have one integration test that checks to make sure that the proper HTML links appear in the navigation bar. This can be expanded on.
-
 - Our `student` model test has the proper presence and uniqueness tests for each of the model's attributes.
-
-- We do not have specific `visualization` or `variable` tests, and these needs to be implemented.
 
 - Our `filter` model test only validates a valid filter. We need to create more tests for invalid filters, as well as add a conditional validation for the presence of the `value2` attribute in the model.
 
+- Our `user` model validates the presence of a secure password and the existence of an email in the `valid_emails` database.
+
+- Our `valid_emails` model vaidates the presence and correct formatting of the email.
+
 # To-Dos
-- Accommodating more variables for files
-- Live previews of the chart while form is being created/edited
-- Change form depending on what chart type user selects
-- Restore user selection when the user tries to edit the visualization
-- Add more chart types (i.e. scatter plots, line charts)
-- Have variables automatically determine what chart type is used
-- Add & remove multiple filters functionality (so user can add as many filters as needed)
-- More comprehensive integration test
+- Display previews of visualization while form is being edited
+- Have variables automatically determine what chart type to use
 - Comprehensive testing for visualization
-- Paying attention to the color scheme of the visualization itself
-- Fixing position of the delete icons in the Visualize page
+- Create homepage and make it the new landing page for the site (along with login)
+- Making the number of variables more flexible when uploading CSV files
+   * Ability to upload entries that have certain blank fields (e.g. gs_level blank if gs_select is 'no')
+- Create a “User Guide” page that instructs people in the CLS, who may have little to no prior experience, on how to build visualizations that may be useful to them
+- Better visualization handling of more than two variables
+- Restrict number of variables to 1 for pie charts - currently creates empty graph with label "undefined". Other similar changes to help users create meaningful forms.
+- Implement functionality behind independent and dependent selections for variables. Currently these selections do nothing (default back to group by).
+- Fix implementation of adding and deleting variables and filters to be more safe (see `app/controllers/visualizations_controller.rb`)
+
 
 # Notes & Considerations
-- Currently, empty filters are being saved into the database on form creation due to a lack of robust validation.  Moving forward, we would like to add more conditional validations that check if a filter is empty before attempting to save -- this is an issue we have because if we validate the model, the form does not allow an empty filter input.
 - In the form, we hard coded all graphs to display variables by count.  Eventually, users should be able to choose to display graphs by count, average, max, min, etc.
-- In the form, we hard coded two filter options.  Eventually, users should be able to choose how many filters they want to apply.
-- In the form, we hard coded two variables options.  Eventually, useres should be able to choose how many variables, depending on the chart type, they want to apply.
+- Eventually, the number of variables the user chooses should be restricted by the chart type they chose.
 
 # Tools & Learning Resources
 - Ruby on Rails Tutorial by Hartl 
 - [Filter Graph](https://filtergraph.com/)
 - [Chartkick](https://chartkick.com/)
+- [SimpleCov](https://github.com/simplecov-ruby/simplecov)
 - [Figma](https://figma.com/)
 - [Upload Functionality:](https://mattboldt.com/importing-massive-data-into-rails/)
 - [jQuery event calling](https://api.jquery.com/on/)
@@ -140,14 +152,15 @@ Pushing a branch other than master to Heroku:
 ## Database Management
 * Update database on Heroku:
 `heroku run rails db:migrate`
-* Reset database locally (removes all data including uploaded datasets):
+* Reset database locally (removes all data including uploaded datasets, visualizations, and accounts):
 `rails db:migrate:reset`
 * Seed database:
 `rails db:seed`
-  * Data currently from lib/seeds/dummy_data.csv
+  * Data currently from lib/seeds/dummy_data3.csv
 * Reset Heroku database: `heroku pg:reset`
+  * __NOTE: The project is at a stage where this is a bad idea unless absolutely necessary.__ This will re-set all created visualizations, will remove access to all users except Sarah, and will reset Sarah's password to the default, which is not secure (it is visible on GitHub). If you must do this, please talk with our community partner first as it will delete their work if they are using the site.
   * Deletes database -- destructive action, will yield warning and require confirmation
-  * Will break your app until you run command to update Heroku database `heroku run rails db:migrate` (Don't worry, it's fine!)
+  * Will break your app until you run command to update Heroku database `heroku run rails db:migrate`
 
 # References
 

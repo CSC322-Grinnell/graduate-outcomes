@@ -12,6 +12,10 @@ class CreateStudents < ActiveRecord::Migration[6.0]
       t.string :service
       t.string :career_related
       t.string :job_field
+      t.string :FDS_cat
+      t.string :gs_select
+      t.string :gs_level
+      t.string :gs_type
 
       t.timestamps
     end

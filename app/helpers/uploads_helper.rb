@@ -1,7 +1,8 @@
 module UploadsHelper
-
+    # gets unique class years from uploaded data
     def get_unique_class_years
         years_with_created_at = []
+        # get distinct class years
         years = Student.distinct.pluck(:class_year)
         years.each do |y|
             hash = Hash.new

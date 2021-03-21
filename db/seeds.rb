@@ -6,9 +6,13 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+
+# Note that when uploading a csv file, currently all attributes of students are required.
+# Also, note that the current dummy data (dummy_data3.csv) does not necessarily make sense as real data,
+# and they are just filled with a lot of place holder values for the sake of testing.
 require 'csv'
 
-csv_text = File.read(Rails.root.join('lib', 'seeds', 'dummy_data.csv'))
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'dummy_data3.csv'))
 
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 
@@ -25,7 +29,18 @@ csv.each do |row|
   s.service = row['service']
   s.career_related = row['career_related']
   s.job_field = row['job_field']
+  s.FDS_cat = row['FDS_cat']
+  s.gs_select = row['gs_select']
+  s.gs_level = row['gs_level']
+  s.gs_type = row['gs_type']
+
   s.save
 end
 
 puts "There are now #{Student.count} records stored"
+
+#Adds Sarah to the approved emails database (must be first step!)
+ValidEmail.create({email: 'barks@grinnell.edu'})
+
+#Adds Sarah's login info to the users database
+User.create({email: 'barks@grinnell.edu', password:'gradoutcomes', password_confirmation:'gradoutcomes'})
