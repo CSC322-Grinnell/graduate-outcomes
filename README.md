@@ -59,6 +59,12 @@ After this, navigate to the project directory in your C9 environment (if applica
 
 `rails server`
 
+# Running SimpleCov
+
+SimpleCov will run when `rails test` is called. To view a detailed breakdown of test coverage, run this command: 
+
+`open coverage/index.html`
+
 # Project Components
 
 In this section we will give a high level description of the components of this Ruby on Rails application. Following the Rails project directory convention, most of the important project files are located in the `/app`, `/db`, and `/test` directories. Our models, views, controllers, and tests are all defined and located in their respective named directories.
