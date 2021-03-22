@@ -33,6 +33,8 @@ We suggest that the next team experiment themselves in creating different visual
 ### Other visualization options
 * Download button: Users can download a visualization with the light gray button that appears when hovering over a completed visualization (top right of the graph area of the visualization)
 
+![Download Button Image](download-button-img.png?raw=true)
+
 ## About uploading data
 * In order to upload a .csv file, its categories (column headers) must exactly match those listed on the uploads page of the website
 * If any cell in a row is empty, that entire row/entry is currently rejected
