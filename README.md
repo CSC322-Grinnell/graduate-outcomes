@@ -10,6 +10,9 @@ A Ruby on Rails application visualizing the graduate outcome data of Grinnell st
 * Community Partner: Sarah Barks
 * Timeline: Fall 1 & 2 2020, Spring 1 2021
 
+## NOTE: Site Prototype Link (Forgot to include in report!)
+We forgot to include this in our report, but the first group (Fall 1) created a wireframe/prototype of the website on Figma, a UI design website. You can access this wireframe here: https://www.figma.com/file/puXUzvp9MJaMspDpzQxNQK/Graduate-Outcomes. The design they came up with is quite different from the direction future groups took the site, including us, and we are not suggesting that you should significantly change the site to fit the wireframe. The wireframe was an initial idea of how the site may look; we think that the current design of the site works well and our community partner seems satisfied with it as well, even though it is not the same as the wireframe. However, the wireframe also contains some ideas that may be helpful for implementing the to-do items, such as the ability to preview visualizations while editing the form, among other things. Note also that we aren't sure whether the wireframe uses official Grinnell colors, but the site should. See `app/assets/stylesheets/grin_colors.scss` for all official Grinnell colors that you may use for the site.
+
 ## Description
 
 The goal of this project is to create an efficient web application that facilitates the data analysis process so that the CLS can visualize graduate outcomes data based on demographic factors. The web application should provide the flexibility to explore various visualizations of the data based on the choice of specific dependent and independent variables. Ultimately, by using this tool, the CLS can identify any disparities in student trajectories and target key points of intervention. For example, if it is discovered that students identifying as ‘Hispanic’ are finding significantly less career-related jobs after graduation than other students, the CLS may develop certain programming in collaboration with organizations such as the Student Organization of Latinxs (SOL).
@@ -116,6 +119,7 @@ Our project includes controller, integration, and model tests. We have extensive
 - Have variables automatically determine what chart type to use
 - Comprehensive testing for visualization
 - Create homepage and make it the new landing page for the site (along with login)
+   * Note: Please use official Grinnell colors for the site, found in `app/assets/stylesheets/grin_colors.scss` and on the [Grinnell website](https://www.grinnell.edu/about-grinnell/leadership-and-administration/offices-and-services/communications/our-brand-story).
 - Making the number of variables more flexible when uploading CSV files
    * Ability to upload entries that have certain blank fields (e.g. gs_level blank if gs_select is 'no')
 - Create a “User Guide” page that instructs people in the CLS, who may have little to no prior experience, on how to build visualizations that may be useful to them
@@ -129,6 +133,7 @@ Our project includes controller, integration, and model tests. We have extensive
 # Notes & Considerations
 - In the form, we hard coded all graphs to display variables by count.  Eventually, users should be able to choose to display graphs by count, average, max, min, etc.
 - Eventually, the number of variables the user chooses should be restricted by the chart type they chose.
+- The site should use official Grinnell colors, found in `app/assets/stylesheets/grin_colors.scss` and on the [Grinnell website](https://www.grinnell.edu/about-grinnell/leadership-and-administration/offices-and-services/communications/our-brand-story).
 
 # Tools & Learning Resources
 - Ruby on Rails Tutorial by Hartl 
