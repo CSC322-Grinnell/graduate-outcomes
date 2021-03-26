@@ -130,7 +130,7 @@ Our project includes controller, integration, and model tests. We have extensive
 - Fix implementation of adding and deleting variables and filters to be more safe (see `app/controllers/visualizations_controller.rb`)
 
 
-# Notes & Considerations
+## Notes & Considerations
 - In the form, we hard coded all graphs to display variables by count.  Eventually, users should be able to choose to display graphs by count, average, max, min, etc.
 - Eventually, the number of variables the user chooses should be restricted by the chart type they chose.
 - The site should use official Grinnell colors, found in `app/assets/stylesheets/grin_colors.scss` and on the [Grinnell website](https://www.grinnell.edu/about-grinnell/leadership-and-administration/offices-and-services/communications/our-brand-story).
