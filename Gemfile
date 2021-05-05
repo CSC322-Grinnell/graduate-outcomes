@@ -20,6 +20,7 @@ gem 'jbuilder',                   '2.10.0'
 gem 'bootsnap',                   '1.4.6', require: false
 gem "chartkick"
 gem 'simplecov', require: false, group: :test
+gem 'mimemagic',                  '0.3.10'
 
 group :development, :test do
   gem 'sqlite3', '1.4.2'
@@ -52,5 +53,5 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 # Uncomment the following line if you're running Rails
 # on a native Windows system:
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+#gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
