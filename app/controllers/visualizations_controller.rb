@@ -10,15 +10,12 @@ class VisualizationsController < ApplicationController
   def index
     @visualizations = Visualization.order(updated_at: :desc)
   end
-  
-  def destroy
-  end
 
   # Deletes the current visualization.
   # set associated model's foreign keys to nil
   # or find associated models and delete them
   # destroy variables and filters
-  def delete_visualization
+  def destroy
     @id = Visualization.find(params[:id])
     Visualization.find(params[:id]).filters.destroy_all
     Visualization.find(params[:id]).variables.destroy_all
