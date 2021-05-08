@@ -67,7 +67,7 @@ class VisualizationsControllerTest < ActionDispatch::IntegrationTest
   
   test "destroy should delete viz" do
     delete visualization_path(@viz1.id)
-    assert_response :success
+    assert_redirected_to controller: "visualizations", action: "index"
     assert (Visualization.find_by(chart_title: @viz1.chart_title) == nil)
   end
   
