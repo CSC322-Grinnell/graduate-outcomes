@@ -21,7 +21,7 @@ class VisualizationsController < ApplicationController
     Visualization.find(params[:id]).variables.destroy_all
     @id.destroy
     flash[:success] = "You have deleted the visualization!"
-    redirect_to visualizations_path
+    redirect_to visualizations_url
   end
 
   def show
