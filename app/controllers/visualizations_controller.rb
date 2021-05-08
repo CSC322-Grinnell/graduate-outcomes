@@ -1,25 +1,22 @@
-# Controller for all visualizations, form and rendering
-
-# Soruce for dynamic form fields:
+# Source for dynamic form fields:
 # https://rbudiharso.wordpress.com/2010/07/07/dynamically-add-and-remove-input-field-in-rails-without-javascript/
 
 class VisualizationsController < ApplicationController
   before_action :set_visualization, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_user
 
+  # shows a listing (i.e. previews) of existing visualizations stored in the database
   def index
     @visualizations = Visualization.order(updated_at: :desc)
   end
 
-  # Deletes the current visualization.
-  # set associated model's foreign keys to nil
-  # or find associated models and delete them
-  # destroy variables and filters
+  # removes an existing visualization from the database 
+  # and sends the user to the index page
   def destroy
-    @id = Visualization.find(params[:id])
-    Visualization.find(params[:id]).filters.destroy_all
-    Visualization.find(params[:id]).variables.destroy_all
-    @id.destroy
+    viz = Visualization.find(params[:id])
+    viz.filters.destroy_all
+    viz.variables.destroy_all
+    viz.destroy
     flash[:success] = "You have deleted the visualization!"
     redirect_to visualizations_url
   end
