@@ -12,26 +12,23 @@ class VisualizationsController < ApplicationController
 
   # removes an existing visualization from the database 
   # and sends the user to the index page
+  # prereq: call to set_visualization
   def destroy
-    viz = Visualization.find(params[:id])
-    viz.filters.destroy_all
-    viz.variables.destroy_all
-    viz.destroy
+    @visualization.filters.destroy_all
+    @visualization.variables.destroy_all
+    @visualization.destroy
     flash[:success] = "You have deleted the visualization!"
     redirect_to visualizations_url
   end
 
+  # retrieves an existing visualization from the database and displays it
+  # prereq: call to set_visualization
   def show
-  end
-
-  # Editing visualization:
-  # Gets visualization params for edit form
-  def edit
-    @visualization = Visualization.find(params[:id])
   end
 
   # Creates new visualization and adds initial variable and filter fields
   # for visualization form
+  # renders a form for user to specify options for a new visualization
   def new
     @visualization = Visualization.new
     @visualization.variables.build
@@ -70,6 +67,11 @@ class VisualizationsController < ApplicationController
         render 'new'  # show errors and stay on form
       end
     end
+  end
+  
+  # renders a form for user to change (options for) an existing visualization
+  # prereq: call to set_visualization  
+  def edit
   end
 
   # Upon submitting edit form, updates the visualization based on selections.
