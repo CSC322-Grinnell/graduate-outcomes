@@ -79,7 +79,7 @@ module VisualizationsHelper
 
         # Reverse since for some reason it groups in the wrong order without reversing.
         visualization.variables.reverse.each_with_index do |variable, index|
-            data = set_variable(data, variable, chart_type)
+            data = group_by_variable(data, variable)
             puts ">> Set variable #{index + 1} : #{variable.inspect}"
         end
 
@@ -134,29 +134,18 @@ module VisualizationsHelper
         end
     end
 
-
-    def set_variable(data, variable_model, chart_type)
-
-        role = variable_model.role
-        variable_name = variable_model.name
-        #TO DO: add more variable types (Independent, Dependent)
-        if variable_name.length == 0
-            return data
-        end
-
-        case role
-            when 'group'
-                data = data.group(variable_name)
-            when 'independent'
-                data = data.group(variable_name)
-            when 'dependent'
-                data = data.group(variable_name)
-            else
-                data.count
+    # Group rows in table 'data' that have the same value for column 'variable_model'
+    # prereq: column 'variable_model' must appear in table 'data'
+    # returns: new table with grouped rows
+    def group_by_variable(data_table, var) 
+        # TODO: in future, group the table differently based on variable role
+        if (data_table.is_a?(ActiveRecord::Relation) && var.is_a?(Variable) && data_table.has_attribute?(var.name))
+            return data_table.group(var.name)
+        else
+            raise "group_by_variable was improperly used."
         end
     end
-
-    # Not being used yet.
+    
     def summarize(data, summarization_method, variable=nil)
         case summarization_method
             when 'sum'
