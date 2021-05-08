@@ -10,6 +10,9 @@ class VisualizationsController < ApplicationController
   def index
     @visualizations = Visualization.order(updated_at: :desc)
   end
+  
+  def destroy
+  end
 
   # Deletes the current visualization.
   # set associated model's foreign keys to nil
@@ -151,6 +154,7 @@ class VisualizationsController < ApplicationController
     end
 
     # Parameters for each visualization
+    # takes form of a nested hash with variables_attributes and filters_attributes pointing to arrays
     def visualization_params
       params.require(:visualization)
             .permit(:chart_type, 
