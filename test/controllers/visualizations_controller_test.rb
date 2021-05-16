@@ -59,8 +59,12 @@ class VisualizationsControllerTest < ActionDispatch::IntegrationTest
     }
     assert_response :success
     
-    assert (Visualization.last.chart_title == title), "Could not find created visualization in database"
+    error_msg = "Could not find created visualization in database.\n"
+    error_msg +=  "Got: " + Visualization.last.chart_title + "\n"
+    error_msg +=  "Expected: " + title + "\n"
+    assert (Visualization.last.chart_title == title), error_msg
     assert_template "show"
+    
     
     Visualization.last.destroy()
   end
