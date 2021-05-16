@@ -34,16 +34,16 @@
 	<%= f.fields_for :variables do |variables_form| %>
 	<li class="form-row">
 
-	  <!--dropdown for variable roles-->
+	  <!--dropdown for group names-->
 	  <div class="viz-form-group">
-	    <label for="role">Role</label>
-	    <%= variables_form.select :role, options_for_select(get_form_variable_roles, @visualization.variables[variables_form.index].role), prompt: "Select role", class: 'form-control' %>
+	    <label for="name">Group</label></label>
+	    <%= variables_form.select :name, options_for_select(get_group_variable_names, @visualization.variables[variables_form.index].name), prompt: "Select variable", class: 'form-control' %>
 	  </div>
-
-	  <!--dropdown for variable names-->
+	  
+	  <!--dropdown for outcome names-->
 	  <div class="viz-form-group">
-	    <label for="name">Variable</label>
-	    <%= variables_form.select :name, options_for_select(get_form_variable_names, @visualization.variables[variables_form.index].name), prompt: "Select variable", class: 'form-control' %>
+	    <label for="name">Outcome</label></label>
+	    <%= variables_form.select :name, options_for_select(get_outcome_variable_names, @visualization.variables[variables_form.index].name), prompt: "Select variable", class: 'form-control' %>
 	  </div>
 
 	  <!--check-box for deleting variable-->
@@ -54,10 +54,6 @@
 	</li>
 	<% end %>
       </ul>
-
-      <!-- Buttons for adding and deleting varibales -->
-      <%= f.submit 'Add variable', :name => 'add_variable' %>
-      <%= f.submit 'Delete checked variables', :name => 'remove_variable' %>
     </div>
     <br><br>
 
