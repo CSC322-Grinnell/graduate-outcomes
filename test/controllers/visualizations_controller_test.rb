@@ -59,7 +59,7 @@ class VisualizationsControllerTest < ActionDispatch::IntegrationTest
     }
     assert_response :success
     
-    assert (Visualization.last.chart_title == title)
+    assert (Visualization.last.chart_title == title), "Could not find created visualization in database"
     assert_template "show"
     
     Visualization.last.destroy()
@@ -95,12 +95,14 @@ class VisualizationsControllerTest < ActionDispatch::IntegrationTest
     }
     
     updated_viz1 = Visualization.find(@viz1.id)
-    assert (updated_viz1.chart_title == title)
-    assert (updated_viz1.x_axis_title == xt)
-    assert (updated_viz1.y_axis_title == yt)
-    assert (updated_viz1.chart_type == type)
-    assert (updated_viz1.variables.first().name == var_name)
-    assert (updated_viz1.variables.first().role == var_role)
+    assert (updated_viz1.chart_title == title), "Title from updated chart is unexpected"
+    assert (updated_viz1.x_axis_title == xt), "x-axis title from updated chart is unexpected"
+    assert (updated_viz1.y_axis_title == yt), "y-axis title from updated chart is unexpected"
+    assert (updated_viz1.chart_type == type), "chart type from updated chart is unexpected"
+    assert (updated_viz1.variables.first().name == var_name), 
+      "variable name from updated chart is unexpected"
+    assert (updated_viz1.variables.first().role == var_role), 
+      "variable role from updated chart is unexpected"
     
     # revert the visualization db back to setup state
     Visualization.update(@viz1.id, @viz1.attributes)
