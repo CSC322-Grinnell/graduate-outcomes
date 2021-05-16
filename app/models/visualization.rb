@@ -28,6 +28,7 @@ class Visualization < ApplicationRecord
   validate :has_data                      # data exists in the student table
   before_validation :chart_title_default  # run title autofill before validating
   
+  # TODO: Fix, this is broken. Doesn't work e.g. when chart_title is nil!
   private
   def chart_title_default # auto-fill chart titles if no user input
     if chart_title.empty?
