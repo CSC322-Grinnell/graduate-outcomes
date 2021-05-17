@@ -5,4 +5,4 @@
     <%= link_to 'Delete', visualization_path(@visualization.id), method: :delete, 
         data: {confirm: "Are you sure you want to delete?"} %>
 </div>
-<%= render "chart", locals: {id: params[:id]}%>
+<%= render "chart", locals: {id: @visualization.id}%>

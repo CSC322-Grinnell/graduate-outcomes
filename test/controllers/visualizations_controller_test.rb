@@ -13,9 +13,9 @@ class VisualizationsControllerTest < ActionDispatch::IntegrationTest
       gender: "M", fed_group: "white", intern: "TRUE", research: "FALSE", 
       service: "TRUE", career_related: "moderately", job_field: "consulting", FDS_cat: "employ", 
       gs_select: "TRUE", gs_level: "doctoral", gs_type: "science")
+    var = Variable.new(name: "class_year", role: "Group By")
     @viz1 = Visualization.new(chart_title: "test chart", x_axis_title: "hor", 
-      y_axis_title: "vert", chart_type: "Bar")
-    @viz1.variables.build([{name: "class_year", role: "Group By"}])
+      y_axis_title: "vert", chart_type: "Bar", variables: [var])
     assert @viz1.save()
   end
   
@@ -53,8 +53,8 @@ class VisualizationsControllerTest < ActionDispatch::IntegrationTest
     
     post visualizations_path, params: { 
       visualization: { 
-      chart_type: type, x_axis_title: xt, y_axis_title: yt, chart_title: title, 
-      variables_attributes: [var_name, var_role]
+        "chart_type" => type, "x_axis_title" => xt, "y_axis_title" => yt, "chart_title" => title, 
+        "variables_attributes" => {"0"=> {"role"=>var_role, "name"=>var_name}}
       } 
     }
     assert_response :success
@@ -92,13 +92,13 @@ class VisualizationsControllerTest < ActionDispatch::IntegrationTest
     
     patch visualization_path(@viz1.id), params: { 
       visualization: { 
-      chart_type: type, x_axis_title: xt, y_axis_title: yt, 
-      chart_title: title, 
-      variables_attributes: [var_name, var_role]
+        "chart_type" => type, "x_axis_title" => xt, "y_axis_title" => yt, "chart_title" => title, 
+        "variables_attributes" => {"0"=> {"role"=>var_role, "name"=>var_name}}
       } 
     }
     
     updated_viz1 = Visualization.find(@viz1.id)
+    
     assert (updated_viz1.chart_title == title), "Title from updated chart is unexpected"
     assert (updated_viz1.x_axis_title == xt), "x-axis title from updated chart is unexpected"
     assert (updated_viz1.y_axis_title == yt), "y-axis title from updated chart is unexpected"
