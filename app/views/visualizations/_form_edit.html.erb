@@ -45,12 +45,6 @@
 	    <label for="name">Outcome</label></label>
 	    <%= variables_form.select :name, options_for_select(get_outcome_variable_names, @visualization.variables[variables_form.index].name), prompt: "Select variable", class: 'form-control' %>
 	  </div>
-
-	  <!--check-box for deleting variable-->
-	  <div class="viz-form-group">
-	    <label for="name">Delete</label>
-	    <%= variables_form.check_box :_destroy %>
-	  </div>
 	</li>
 	<% end %>
       </ul>
