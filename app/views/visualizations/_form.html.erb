@@ -3,92 +3,102 @@
 <!-- Note: Possibly may work for edit.html.erb as well, see documentation in -->
 <!--       _form_edit.html.erb for more info. -->
 <div class="col-md-10 col-md-offset-1">
-  
-  <!-- Setup -->
-  <%= form_with(model: @visualization, local: true) do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
+	
+	<!-- Setup -->
+  <%= form_with(model: @visualization, local: true) do | form_builder | %>
+  <%= render 'shared/error_messages', object: form_builder.object %>
 
 	<!--Section 1: Chart Type [required]-->
   <div class="viz-form-section">
-    <h4 class="viz-step">Step 1 - Select Chart Type</h4>
+    <h4 class="viz-step">Step 1 - Select Chart Type (required) </h4>
+    
     <div class="form-row">
+      
       <div class="viz-form-group">
-	<label for="chart_type">Chart Type <span style="color:red;">*</span></label>
-	<%= f.select :chart_type, options_for_select(get_form_chart_types, @visualization.chart_type), prompt: "Select chart", class: 'form-control' %>
-	<!--dropdown for char types-->
-	<!--how options_for_select works: -->
-	<!--  options_for_select([value1, value2, value3], default) -->
+				<label for="chart_type">Chart Type <span style="color:red;">*</span></label>
+				<%= form_builder.select :chart_type, options_for_select(get_form_chart_types, @visualization.chart_type), 
+					prompt: "Select chart", class: 'form-control' 
+				%>
+				<!-- 2nd arg to options_for_select is default value -->
       </div>
+      
     </div>
+    
   </div>
 
-  <!-- Section 2: Chart Variable(s) [at least 1 required] -->
+  <!-- Section 2: Chart Variables  -->
   <div class="viz-form-section">
-    <h4 class="viz-step">Step 2 - Select Chart Variables</h4>
+    <h4 class="viz-step">Step 2 - Select Chart Variables (both required) </h4>
+    
     <div class="chart-variables">
       <b>Chart Variables <span style="color:red;">*</span></b>
+      
       <ul>
-      	
-			<!-- Iterate through variables: -->
-			<%= f.fields_for :variables do |variables_form| %>
-			<li class="form-row">
-
-				<%= 
-				if (variables_form.index == 0)
-					var_role = "Group"
-					var_name_options = get_group_variable_names
-				else
-					var_role = "Outcome"
-					var_name_options = get_outcome_variable_names
-				end
-				%>
+				<!-- Iterate through variables: -->
+				<%= form_builder.fields_for :variables do |var_form| %>
 				
-	  		<!--dropdown to select variable name-->
-	  		<div class="viz-form-group">
-	    		<label for="name"><%= var_role %> Variable</label>
-	    		<%= variables_form.select :name, 
-	    			options_for_select(var_name_options, @visualization.variables[variables_form.index].name), 
-	    			prompt: "Select variable", class: 'form-control' 
-	    		%>
-	  		</div>
-	  
-				<!-- set variable role -->
-				<%= variables_form.hidden_field :role, value: var_role %>
+				<li class="form-row">
+					<% 
+						if (var_form.index == 0)
+						var_role = "Group"
+						var_name_options = get_group_variable_names
+						else
+						var_role = "Outcome"
+						var_name_options = get_outcome_variable_names
+						end
+					%>
+				
+
+	  			<div class="viz-form-group">
+	  				<!--dropdown to select variable name-->
+	    			<label for="name"><%= var_role %> Variable</label>
+	    			<%= var_form.select :name, 
+	    				options_for_select(var_name_options, @visualization.variables[var_form.index].name), 
+	    				prompt: "Select variable", class: 'form-control' 
+	    			%>
 	  		
-			</li>
-			<% end %>
+	  				<!-- set variable role -->
+						<%= var_form.hidden_field :role, value: var_role %>
+	  			</div>
+	  		
+				</li>
+				<% end %>
 	
       </ul>
+      
     </div>
-    <br><br>
+  </div>
+  <br><br>
 
     <!-- Section 3: Chart and Axis Titles [optional; auto-fills] -->
-    <div class="viz-form-section">
-      <h4 class="viz-step">Step 3 - Fill Chart Details (optional) </h4>
-      <div class="chart-details form-row">
+  <div class="viz-form-section">
+    <h4 class="viz-step">Step 3 - Fill Chart Details (optional) </h4>
+      
+    <div class="chart-details form-row">
 
-	<!--write-in field for chart title-->
-	<div class="viz-form-group">
-	  <label for="chart_title">Chart Title</label>
-	  <%= f.text_field :chart_title, class: 'form-control' %>
-	</div>
+			<!--write-in field for chart title-->
+			<div class="viz-form-group">
+	  		<label for="chart_title">Chart Title</label>
+	  		<%= form_builder.text_field :chart_title, class: 'form-control' %>
+			</div>
 
-	<!--write-in field for x axis title-->
-	<div class="viz-form-group">
-	  <label for="x_axis_title">X Axis Title</label>
-	  <%= f.text_field :x_axis_title, class: 'form-control' %>
-	</div>
+			<!--write-in field for x axis title-->
+			<div class="viz-form-group">
+	  		<label for="x_axis_title">X Axis Title</label>
+	  		<%= form_builder.text_field :x_axis_title, class: 'form-control' %>
+			</div>
 
-	<!--write-in field for y axis title-->
-	<div class="viz-form-group">
-	  <label for="y_axis_title">Y Axis Title </label>
-	  <%= f.text_field :y_axis_title, class: 'form-control' %>
-	</div>
-      </div>
+			<!--write-in field for y axis title-->
+			<div class="viz-form-group">
+	  		<label for="y_axis_title">Y Axis Title </label>
+	  		<%= form_builder.text_field :y_axis_title, class: 'form-control' %>
+			</div>
+				
     </div>
+      
   </div>
 
   <!-- FORM SUBMIT BUTTON -->
-  <%= f.submit "Create Visualization!", class: "btn btn-primary" %>
+  <%= form_builder.submit "Create Visualization!", class: "btn btn-primary" %>
   <% end %>
 </div>
