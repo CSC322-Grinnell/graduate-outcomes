@@ -28,23 +28,36 @@
     <div class="chart-variables">
       <b>Chart Variables <span style="color:red;">*</span></b>
       <ul>
-	<!-- Iterate through variables: -->
-	<%= f.fields_for :variables do |variables_form| %>
-	<li class="form-row">
+      	
+			<!-- Iterate through variables: -->
+			<%= f.fields_for :variables do |variables_form| %>
+			<li class="form-row">
 
-	  <!--dropdown for group names-->
-	  <div class="viz-form-group">
-	    <label for="name">Group Variable</label></label>
-	    <%= variables_form.select :name, options_for_select(get_group_variable_names, @visualization.variables[variables_form.index].name), prompt: "Select variable", class: 'form-control' %>
-	  </div>
+				<%= 
+				if (variables_form.index == 0)
+					var_role = "Group"
+					var_name_options = get_group_variable_names
+				else
+					var_role = "Outcome"
+					var_name_options = get_outcome_variable_names
+				end
+				%>
+				
+	  		<!--dropdown to select variable name-->
+	  		<div class="viz-form-group">
+	    		<label for="name"><%= var_role %> Variable</label>
+	    		<%= variables_form.select :name, 
+	    			options_for_select(var_name_options, @visualization.variables[variables_form.index].name), 
+	    			prompt: "Select variable", class: 'form-control' 
+	    		%>
+	  		</div>
 	  
-	  <!--dropdown for outcome names-->
-	  <div class="viz-form-group">
-	    <label for="name">Outcome Variable</label></label>
-	    <%= variables_form.select :name, options_for_select(get_outcome_variable_names, @visualization.variables[variables_form.index].name), prompt: "Select variable", class: 'form-control' %>
-	  </div>
-	</li>
-	<% end %>
+				<!-- set variable role -->
+				<%= variables_form.hidden_field :role, value: var_role %>
+	  		
+			</li>
+			<% end %>
+	
       </ul>
     </div>
     <br><br>

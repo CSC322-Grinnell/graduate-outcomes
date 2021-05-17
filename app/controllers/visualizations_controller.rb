@@ -38,11 +38,12 @@ class VisualizationsController < ApplicationController
   def new
     @visualization = Visualization.new
     @visualization.variables.build
-    @visualization.filters.build
+    @visualization.variables.build
   end
 
   # Upon submitting form, creates the visualization based on selections.
   def create
+    puts params.inspect
     @visualization = Visualization.new(visualization_params) # get params
 
     ## Adding and Deleting Variables: ##
