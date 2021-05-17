@@ -39,7 +39,7 @@ class Visualization < ApplicationRecord
     end
     
     if y_axis_title.empty?
-      self.y_axis_title = "Count"
+      self.y_axis_title = "Percentages"
     end
   end
 

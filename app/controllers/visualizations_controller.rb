@@ -152,6 +152,8 @@ class VisualizationsController < ApplicationController
 
     # Parameters for each visualization
     def visualization_params
+      ActionController::Parameters.permit_all_parameters = true
+      
       params.require(:visualization)
             .permit(:chart_type, 
                     :x_axis_title, 

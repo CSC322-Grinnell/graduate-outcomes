@@ -66,25 +66,56 @@ module VisualizationsHelper
         ]
     end
 
+    # Returns chart info, containing its data, chart type, and options
     def get_chart_info(visualization_id)
         data = Student.all;
         visualization = Visualization.find(visualization_id)
         chart_type = visualization.chart_type
 
         # Repeatedly apply each filter on the dataset
+        total = 0
         visualization.filters.each_with_index do |filter, index|
             data = apply_filter(data, filter)
+            total = total + summarize(data, 'count')
             puts ">> Applied filter #{index + 1}: #{filter.inspect}"
         end
 
         # Reverse since for some reason it groups in the wrong order without reversing.
         visualization.variables.reverse.each_with_index do |variable, index|
-            data = set_variable(data, variable, chart_type)
+            data = group_by_variable(data, variable)
             puts ">> Set variable #{index + 1} : #{variable.inspect}"
         end
-
+        
         # Final summarization before rendering. Make this more dynamic in the future to support max, min, etc.
+        #total = apply_filter(temp, visualization.filters.first).count
         data = summarize(data, 'count')
+        
+        variable_length = visualization.variables.length
+        if (variable_length > 1)
+          data.each do |key, value|                               # Building percentages for each subgroup. Ex. "CSC" in major1
+            filter_hash = Hash.new                                # New hash to build a filter
+            var = visualization.variables.first #major1           # Calculate 
+            filter_hash[var.name] = key
+            total = Student.all.where(filter_hash).count
+            data[key] = value/total.to_f
+          end
+        else
+          data.each do |key, value| 
+            data[key] = value/total.to_f
+          end
+        end
+        
+       # data[key] = value/total.to_f
+       #data.each do |key, value|                               # Building percentages for each subgroup. Ex. "CSC" in major1
+        #  filter_hash = Hash.new                                # New hash to build a filter
+        #  var = visualization.variables.first #major1           # Calculate 
+        #  filter_hash[var.name] = key
+        #  total = Student.all.where(filter_hash).count
+        #  data[key] = value/total.to_f
+        #end
+          #group_by_variable(Student.all, CSC) - helper function to check?
+        #data.each { |n| n = n/total}
+        #data = data/total.to_f
 
         chart_info = Hash.new
         chart_info[:data] = data
@@ -135,24 +166,15 @@ module VisualizationsHelper
     end
 
 
-    def set_variable(data, variable_model, chart_type)
-
-        role = variable_model.role
-        variable_name = variable_model.name
-        #TO DO: add more variable types (Independent, Dependent)
-        if variable_name.length == 0
-            return data
-        end
-
-        case role
-            when 'group'
-                data = data.group(variable_name)
-            when 'independent'
-                data = data.group(variable_name)
-            when 'dependent'
-                data = data.group(variable_name)
-            else
-                data.count
+    # Group rows in table 'data' that have the same value for column 'variable_model'
+    # prereq: column 'variable_model' must appear in table 'data'
+    # returns: new table with grouped rows
+    def group_by_variable(data_table, var) 
+        # TODO: in future, group the table differently based on variable role
+        if (data_table.is_a?(ActiveRecord::Relation) && var.is_a?(Variable) && data_table.has_attribute?(var.name))
+            return data_table.group(var.name)
+        else
+            raise "group_by_variable was improperly used."
         end
     end
 
