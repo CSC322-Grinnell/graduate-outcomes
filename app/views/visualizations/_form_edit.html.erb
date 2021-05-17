@@ -28,7 +28,7 @@
   <div class="viz-form-section">
     <h4 class="viz-step">Step 2 - Select Chart Variables</h4>
     <div class="chart-variables">
-      <b>Chart Variables (at least one required) <span style="color:red;">*</span></b>
+      <b>Chart Variables <span style="color:red;">*</span></b>
       <ul>
 	<!-- Iterate through variables: -->
 	<%= f.fields_for :variables do |variables_form| %>
@@ -36,13 +36,13 @@
 
 	  <!--dropdown for group names-->
 	  <div class="viz-form-group">
-	    <label for="name">Group</label></label>
+	    <label for="name">Group Variable</label></label>
 	    <%= variables_form.select :name, options_for_select(get_group_variable_names, @visualization.variables[variables_form.index].name), prompt: "Select variable", class: 'form-control' %>
 	  </div>
 	  
 	  <!--dropdown for outcome names-->
 	  <div class="viz-form-group">
-	    <label for="name">Outcome</label></label>
+	    <label for="name">Outcome Variable</label></label>
 	    <%= variables_form.select :name, options_for_select(get_outcome_variable_names, @visualization.variables[variables_form.index].name), prompt: "Select variable", class: 'form-control' %>
 	  </div>
 	</li>
@@ -51,9 +51,9 @@
     </div>
     <br><br>
 
-    <!-- Section 4: Chart and Axis Titles [optional; auto-fills] -->
+    <!-- Section 3: Chart and Axis Titles [optional; auto-fills] -->
     <div class="viz-form-section">
-      <h4 class="viz-step">Step 4 - Fill Chart Details (optional) </h4>
+      <h4 class="viz-step">Step 3 - Fill Chart Details (optional) </h4>
       <div class="chart-details form-row">
 
 	<!--write-in field for chart title-->
