@@ -1,11 +1,14 @@
 <!-- New visualizaion form-->
 <h1 class="page-title">Visualize</h1>
+
 <div class="navigation-options">
   <%= link_to '< Back', visualizations_path %>
 </div>
+
 <div class="viz-page">
-  <%=render 'form'%>
-  <!-- to see form, go to app/helpers/visualizations_helper.rb-->
+  <%= form_with(model: @visualization, local: true) do | form_builder |
+    render 'form', locals: { fb: form_builder }
+    end %>
 </div>
 
 

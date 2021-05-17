@@ -5,7 +5,7 @@
 <div class="col-md-10 col-md-offset-1">
 	
 	<!-- Setup -->
-  <%= form_with(model: @visualization, local: true) do | form_builder | %>
+	<% form_builder = locals[:fb] %>
   <%= render 'shared/error_messages', object: form_builder.object %>
 
 	<!--Section 1: Chart Type [required]-->
@@ -100,5 +100,4 @@
 
   <!-- FORM SUBMIT BUTTON -->
   <%= form_builder.submit "Create Visualization!", class: "btn btn-primary" %>
-  <% end %>
 </div>
