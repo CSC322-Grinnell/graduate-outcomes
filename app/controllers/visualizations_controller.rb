@@ -61,7 +61,9 @@ class VisualizationsController < ApplicationController
     len = variables_params.to_h.length
     (0...len).each() do |i|
       var = @visualization.variables[i]
-      is_success = is_success && var.update(variables_params["#{i}"])
+      var_name = variables_params["#{i}"]["name"]
+      var_role = variables_params["#{i}"]["role"]
+      is_success = is_success && var.update(name: var_name, role: var_role)
     end
     # is_success is true if and only if ALL update calls yielded true
     
