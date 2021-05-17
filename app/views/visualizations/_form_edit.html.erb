@@ -6,10 +6,10 @@
 <div class="col-md-10 col-md-offset-1">
 
   <!-- Setup (different from _form.html.erb) -->
-  <%= form_with(model: @visualization, local: true, url: visualization_path(@visualization), method: "patch") do |f| %>
+  <%= form_with(model: @visualization, local: true, url: visualization_path(@visualization), method: "patch") do |f| %> 
   <%= render 'shared/error_messages', object: f.object %>
 
-<!--Section 1: Chart Type [required]-->
+	<!--Section 1: Chart Type [required]-->
   <div class="viz-form-section">
     <h4 class="viz-step">Step 1 - Select Chart Type</h4>
     <div class="form-row">
@@ -22,7 +22,6 @@
       </div>
     </div>
   </div>
-
 
   <!-- Section 2: Chart Variable(s) [at least 1 required] -->
   <div class="viz-form-section">
