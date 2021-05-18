@@ -81,8 +81,15 @@ class VisualizationsController < ApplicationController
       @visualization = Visualization.find(params[:id])
     end
 
+<<<<<<< HEAD
     # Checks Requirements for Strong Parameters coming from submitted (new and edit) forms
     def permitted_params
+=======
+    # Parameters for each visualization
+    def visualization_params
+      ActionController::Parameters.permit_all_parameters = true
+      
+>>>>>>> ben-edits
       params.require(:visualization)
             .permit(:chart_type, 
                     :x_axis_title, 
