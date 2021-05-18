@@ -9,7 +9,7 @@ class VisualizationTest < ActiveSupport::TestCase
     @student = Student.create(class_year: "2018", student_id: "12345", major1: "BIO", major2: "CSC", gender: "M", fed_group: "white", intern: "TRUE", research: "FALSE", service: "TRUE", career_related: "moderately", job_field: "consulting", FDS_cat: "employ", gs_select: "TRUE", gs_level: "doctoral", gs_type: "science")
     @Vis1 = Visualization.new(chart_title: "Dummy", x_axis_title: "x-axis", y_axis_title: "y-axis", chart_type: "bar")
     @Vis2 = Visualization.new(chart_title: "Dummy", x_axis_title: "x-axis", y_axis_title: "y-axis", chart_type: "bar")
-    @Vis2.variables.new(name: "dingleberry", role: "fun") # add a variable to Vis2 to make it valid
+    @Vis2.variables.build(name: "dingleberry", role: "fun") # add a variable to Vis2 to make it valid
   end
 
   # Due to lacking any variables, Vis1 should be invalid

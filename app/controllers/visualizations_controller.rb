@@ -1,147 +1,78 @@
-# Controller for all visualizations, form and rendering
-
-# Soruce for dynamic form fields:
-# https://rbudiharso.wordpress.com/2010/07/07/dynamically-add-and-remove-input-field-in-rails-without-javascript/
-
 class VisualizationsController < ApplicationController
   before_action :set_visualization, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_user
 
+  # shows a listing (i.e. previews) of existing visualizations stored in the database
   def index
     @visualizations = Visualization.order(updated_at: :desc)
   end
 
-  # Deletes the current visualization.
-  # set associated model's foreign keys to nil
-  # or find associated models and delete them
-  # destroy variables and filters
-  def delete_visualization
-    @id = Visualization.find(params[:id])
-    Visualization.find(params[:id]).filters.destroy_all
-    Visualization.find(params[:id]).variables.destroy_all
-    @id.destroy
+  # removes an existing visualization from the database 
+  # and sends the user to the index page
+  # prereq: call to set_visualization
+  def destroy
+    @visualization.filters.destroy_all
+    @visualization.variables.destroy_all
+    @visualization.destroy
     flash[:success] = "You have deleted the visualization!"
-    redirect_to visualizations_path
+    redirect_to visualizations_url
   end
 
+  # retrieves an existing visualization from the database and displays it
+  # prereq: call to set_visualization
   def show
   end
 
-  # Editing visualization:
-  # Gets visualization params for edit form
-  def edit
-    @visualization = Visualization.find(params[:id])
-  end
-
-  # Creates new visualization and adds initial variable and filter fields
-  # for visualization form
+  # Renders a form for user to specify options for a new visualization
   def new
+    # instantiate to allow use of same form for both new and edit actions
     @visualization = Visualization.new
     @visualization.variables.build
     @visualization.filters.build
   end
 
-  # Upon submitting form, creates the visualization based on selections.
+  # Reads chart options specified by new form. Then, creates and renders 
+  # a new visualization with the appropriate chart options
   def create
-    @visualization = Visualization.new(visualization_params) # get params
-
-    ## Adding and Deleting Variables: ##
-    if params[:add_variable] # if user clicked "Add variable" button
-      @visualization.variables.build # create new variable
-      render 'new' # re-render form
-    elsif params[:remove_variable] # if user clicked "Delete checked variables"
-      # nested models that have _destroy attribute == 1 automatically deleted
-      render 'new' # re-render form
-
-    ## Adding and Deleting Filters: ##
-    elsif params[:add_filter] # if user clicked "Add filter" button
-      # add empty filter associated with @visualization
-      @visualization.filters.build
-      render 'new' # re-render form
-    elsif params[:remove_filter] # if user clicked "Delete checked filters"
-      # nested models that have _destroy attribute == 1 automatically deleted
-      render 'new' # re-render form
-
-    ## Creating the Form ##
-       # (if user clicked "Create Visualization!" button)
+    @visualization = Visualization.new(permitted_params) 
+    
+    if @visualization.save()
+      flash[:success] = "Visualization created!" # confirmation message
+      render 'show'
     else
-      # save the form
-      if @visualization.save
-         flash[:success] = "Visualization created!" # confirmation message
-         redirect_to @visualization and return #show the created visualization
-      else
-        render 'new'  # show errors and stay on form
-      end
+      flash[:error] = "Visualization could not be created."
+      render 'new'
     end
   end
+  
+  # renders a form for user to change (options for) an existing visualization
+  # prereq: call to set_visualization  
+  def edit
+  end
 
-  # Upon submitting edit form, updates the visualization based on selections.
+  # Reads new chart options for an existing visualization specified by edit form.
+  # Then, creates and renders updated version of that visualization.
+  # prereq: call to set_visualization  
   def update
-    @visualization = Visualization.find(params[:id]) # fetch visualzation params
-    params.permit! ## ** UNSAFE -- Should change at some point! (Ask mentor) **
-
-    ## Adding Variables: ##
-    if params[:add_variable] # if user clicked "Add variable" button
-    	# rebuild the variable attributes that don't have an id
-    	unless params[:visualization][:variables_attributes].blank?
-	  for attribute in params[:visualization][:variables_attributes]
-	    @visualization.variables.build(attribute.last.except(:_destroy)) unless attribute.last.has_key?(:id)
-	  end
-    	end
-      # add one more empty variable attribute
-        @visualization.variables.build
-        render 'edit' # re-render form
-
-    ## Deleting Variables: ##
-    elsif params[:remove_variable] # if user clicked "Delete checked variables"
-      # physically delete the variables from database
-      for attribute in params[:visualization][:variables_attributes]
-        @visualization.variables.destroy(attribute.last[:id]) if (attribute.last.has_key?(:id) && attribute.last[:_destroy].to_i == 1)
-      end
-      flash[:success] = "Variables removed."
-      for attribute in params[:visualization][:variables_attributes]
-      	# rebuild variables attributes that don't have an id
-        # and whose _destroy attribute is not 1
-        @visualization.variables.build(attribute.last.except(:_destroy)) if (!attribute.last.has_key?(:id) && attribute.last[:_destroy].to_i == 0)
-      end
-      render 'edit'
-
-    ## Adding Filters: ##
-    elsif params[:add_filter] # if user clicked "Add filter" button
-    	# rebuild the filter attributes that don't have an id
-    	unless params[:visualization][:filters_attributes].blank?
-	  for attribute in params[:visualization][:filters_attributes]
-	    @visualization.filters.build(attribute.last.except(:_destroy)) unless attribute.last.has_key?(:id)
-	  end
-    	end
-        @visualization.filters.build # add one more empty filter attribute
-        render 'edit' # re-render
-
-    ## Deleting Filters: ##
-    elsif params[:remove_filter] # if user clicked "Delete checked filters"
-      # physically delete the filters from database
-      for attribute in params[:visualization][:filters_attributes]
-        @visualization.filters.destroy(attribute.last[:id]) if (attribute.last.has_key?(:id) && attribute.last[:_destroy].to_i == 1)
-      end
-      flash[:success] = "Filters removed."
-      for attribute in params[:visualization][:filters_attributes]
-      	# rebuild filter attributes that dont't have an id
-        # and whose _destroy attribute is not 1
-        @visualization.filters.build(attribute.last.except(:_destroy)) if (!attribute.last.has_key?(:id) && attribute.last[:_destroy].to_i == 0)
-      end
-      render 'edit' # re-render
-
-    ## Updating the Form ##
-      # (if user clicked "Create Visualization!" button)
+    is_success = @visualization.update(permitted_params)
+    
+    # update variables in visualization one by one
+    variables_params = permitted_params["variables_attributes"]
+    len = variables_params.to_h.length
+    (0...len).each() do |i|
+      var = @visualization.variables[i]
+      var_name = variables_params["#{i}"]["name"]
+      var_role = variables_params["#{i}"]["role"]
+      is_success = is_success && var.update(name: var_name, role: var_role)
+    end
+    # is_success is true if and only if ALL update calls yielded true
+    
+    if is_success
+      flash[:success] = "Visualization updated!"
+      render 'show'
     else
-      # save changes
-      if @visualization.update(visualization_params)
-        flash[:success] = "Visualization updated!"
-        redirect_to @visualization and return # display updated visualization
-      else
-        flash[:error] = "Visualization could not be updated. Please fill all fields and try again!"
-        render 'edit' # show errors and stay on form
-      end
+      flash[:error] = "Visualization could not be updated. Please fill all fields and try again!"
+      render 'edit'
     end
   end
   
@@ -150,8 +81,8 @@ class VisualizationsController < ApplicationController
       @visualization = Visualization.find(params[:id])
     end
 
-    # Parameters for each visualization
-    def visualization_params
+    # Checks Requirements for Strong Parameters coming from submitted (new and edit) forms
+    def permitted_params
       params.require(:visualization)
             .permit(:chart_type, 
                     :x_axis_title, 
