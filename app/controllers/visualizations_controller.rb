@@ -25,7 +25,7 @@ class VisualizationsController < ApplicationController
 
   # Renders a form for user to specify options for a new visualization
   def new
-    # instantiate to allow use of same form for both new and edit actions
+    # informs "new visualization" form about what a visualization model is
     @visualization = Visualization.new
     @visualization.variables.build
     @visualization.variables.build
