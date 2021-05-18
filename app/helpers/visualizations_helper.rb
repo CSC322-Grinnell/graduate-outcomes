@@ -91,33 +91,21 @@ module VisualizationsHelper
         data = summarize(data, 'count')
         
         variable_length = visualization.variables.length
-        if (variable_length > 1)
+        if (variable_length == 2)
           data.each do |key, value|                               # Building percentages for each subgroup. Ex. "CSC" in major1
             filter_hash = Hash.new                                # New hash to build a filter
-            var = visualization.variables.first #major1           # Calculate 
-            filter_hash[var.name] = key
-            total = Student.all.where(filter_hash).count
+            var = visualization.variables.first #major1           # Filter by the first variable - the "Group By" variable
+            filter_hash[var.name] = key                           # Adding entry into hash
+            total = Student.all.where(filter_hash).count          # Calculates the total to divide the data entry (to produce percentages)
             data[key] = value/total.to_f
           end
-        else
-          data.each do |key, value| 
-            data[key] = value/total.to_f
+        else                                                      # Else, divide all data entries by the # of all data entries.
+          data.each do |key, value|                               # Ex. say there are 100 students. If we have "Group by" "major1", the CSC entry would be interpreted
+            data[key] = value/total.to_f                          # as "X % of students are CSC majors in major1"
           end
         end
-        
-       # data[key] = value/total.to_f
-       #data.each do |key, value|                               # Building percentages for each subgroup. Ex. "CSC" in major1
-        #  filter_hash = Hash.new                                # New hash to build a filter
-        #  var = visualization.variables.first #major1           # Calculate 
-        #  filter_hash[var.name] = key
-        #  total = Student.all.where(filter_hash).count
-        #  data[key] = value/total.to_f
-        #end
-          #group_by_variable(Student.all, CSC) - helper function to check?
-        #data.each { |n| n = n/total}
-        #data = data/total.to_f
 
-        chart_info = Hash.new
+        chart_info = Hash.new                                     # Building chart_info hash
         chart_info[:data] = data
         chart_info[:chart_type] = chart_type
         chart_info[:options] = get_chart_options(visualization_id)
