@@ -1,6 +1,6 @@
 module VisualizationsHelper
 
-    def get_form_variable_names
+    def get_group_variable_names
         [
           # These represent the display names and the actual values in form [<Display Name>, <Value>]
             ["Class Year", "class_year"],
@@ -11,16 +11,20 @@ module VisualizationsHelper
             ["Did Internship", "intern"],
             ["Did Research", "research"],
             ["Did Service Learning", "service"],
+        ]
+        # Student.column_names.reject {|c| ["id", "student_id", "updated_at", "created_at"].include? c}
+    end
+
+    def get_outcome_variable_names
+        [
             ["Career Related to Interest", "career_related"], 
             ["Job Field", "job_field"],
             ["Outcome Category", "FDS_cat"],
             ["Graduate School", "gs_select"],
             ["Grad School Level", "gs_level"],
-            ["Grad School Type", "gs_type"]
-        ]
-        # Student.column_names.reject {|c| ["id", "student_id", "updated_at", "created_at"].include? c}
+            ["Grad School Type", "gs_type"]   
+        ] 
     end
-
 
     def get_form_chart_types
         # Each element has format [<Display Name>, <Value>]

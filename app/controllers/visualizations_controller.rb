@@ -28,7 +28,7 @@ class VisualizationsController < ApplicationController
     # instantiate to allow use of same form for both new and edit actions
     @visualization = Visualization.new
     @visualization.variables.build
-    @visualization.filters.build
+    @visualization.variables.build
   end
 
   # Reads chart options specified by new form. Then, creates and renders 
