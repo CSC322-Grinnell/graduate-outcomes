@@ -79,7 +79,7 @@ class VisualizationsControllerTest < ActionDispatch::IntegrationTest
     get edit_visualization_path(@viz1.id)
     assert_response :success
     assert_template "edit"
-    assert_template :partial => "_form_edit"
+    assert_template :partial => "_form"
   end
 
   test "should patch update" do
