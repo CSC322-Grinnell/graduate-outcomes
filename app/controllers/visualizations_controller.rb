@@ -1,4 +1,4 @@
-class VisualizationsController < ApplicationController
+  class VisualizationsController < ApplicationController
   before_action :set_visualization, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_user
 
@@ -81,15 +81,9 @@ class VisualizationsController < ApplicationController
       @visualization = Visualization.find(params[:id])
     end
 
-<<<<<<< HEAD
-    # Checks Requirements for Strong Parameters coming from submitted (new and edit) forms
+
+     # Checks Requirements for Strong Parameters coming from submitted (new and edit) forms
     def permitted_params
-=======
-    # Parameters for each visualization
-    def visualization_params
-      ActionController::Parameters.permit_all_parameters = true
-      
->>>>>>> ben-edits
       params.require(:visualization)
             .permit(:chart_type, 
                     :x_axis_title, 
@@ -99,4 +93,4 @@ class VisualizationsController < ApplicationController
                     filters_attributes: [:variable_name, :filter_type, :value1, :value2, :_destroy, :id])
       
     end
-end
+  end
