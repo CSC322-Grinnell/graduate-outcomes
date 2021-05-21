@@ -44,6 +44,8 @@ Then, when creating a new environment select the largest education tier, `m5.xla
 
 Alternatively, you can set up everything on your local computer without Cloud9.
 
+
+
 2. Make sure that you have all the required prerequisites.
 
 If you need to install Rails (and space is tight--e.g. you are using AWS Cloud9), run
@@ -60,6 +62,8 @@ to actually install Rails.
 If you need to install yarn, run the following command:
 `source <(curl -sL https://cdn.learnenough.com/yarn_install)`
 
+
+
 3. Clone this repository to your computer with
 
 `git clone https://github.com/CSC322-Grinnell/graduate-outcomes.git` 
@@ -73,6 +77,8 @@ and
 
 `git config --global user.email $YOUR_GITHUB_EMAIL`.
 
+
+
 4. Install the necessary gems.
 
 First, configure your environment to skip installing the production gems:
@@ -80,6 +86,8 @@ First, configure your environment to skip installing the production gems:
 `bundle config set --local without 'production'`.
 
 Then, run `bundle install` to actually install the gems.
+
+
 
 5. Ask the Heroku Account Owner to add your Heroku account as a collaborator (if you are planning on deploying the project). 
 
@@ -96,6 +104,8 @@ Set up a git remote to the existing grad-outcomes Heroku app with
 `heroku git:remote -a grad-outcomes`.
 
 You are now set up to deploy when ready.
+
+
 
 # Running the project:
 
