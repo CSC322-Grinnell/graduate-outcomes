@@ -10,6 +10,7 @@
   # removes an existing visualization from the database 
   # and sends the user to the index page
   # prereq: call to set_visualization
+  # filters are NOT implemented anymore. Refactor code.
   def destroy
     @visualization.filters.destroy_all
     @visualization.variables.destroy_all
@@ -81,7 +82,7 @@
       @visualization = Visualization.find(params[:id])
     end
 
-
+     # Filters_attributes may be unused. Remove or fix as a feature (due to unused apply_filter method in app/helpers/visualizations_helper.rb)
      # Checks Requirements for Strong Parameters coming from submitted (new and edit) forms
     def permitted_params
       params.require(:visualization)
