@@ -5,56 +5,97 @@ A Ruby on Rails application visualizing the graduate outcome data of Grinnell st
 * Fall 1 Contributors: [Rexford Essilfie](https://github.com/RexfordEssilfie), [Tal Rastopchin](https://github.com/trastopchin), [Michael Spicer](https://github.com/Citywideiowa0), [Vijeeth Guggilla](https://github.com/vijeethguggilla), [Giang Khuat](https://github.com/giangkhuat)
 * Fall 2 Contributors: [Caio Carnauba](https://github.com/ccarnauba), [Seoyeon (Stella) Lee](https://github.com/stellasylee), [Reina Shahi](https://github.com/shahirei), [Clare Simpson](https://github.com/clasky777)
 * Spring 1 Contributors: [Ally R](https://github.com/Ally-R), [Vidush Goswami](https://github.com/vidushg), [Erin Scherl](https://github.com/thehelpfulfrog), [Gabby Masini](https://github.com/masiniga), [Xuanhe Chen](https://github.com/Rhopala)
+* Spring 2 Contributors: Stefan Ilic, [Cameron Leung](https://github.com/leungcam), [Ben Phung](https://github.com/bphung45), Jax Seiler
 * Alumni Mentor: Ian Young
 * Professor: Barbara Johnson, Fernanda Eliott
-* Community Partner: Sarah Barks
-* Timeline: Fall 1 & 2 2020, Spring 1 2021
-
-## NOTE: Site Prototype Link (Forgot to include in report!)
-We forgot to include this in our report, but the first group (Fall 1) created a wireframe/prototype of the website on Figma, a UI design website. You can access this wireframe here: https://www.figma.com/file/puXUzvp9MJaMspDpzQxNQK/Graduate-Outcomes. The design they came up with is quite different from the direction future groups took the site, including us, and we are not suggesting that you should significantly change the site to fit the wireframe. The wireframe was an initial idea of how the site may look; we think that the current design of the site works well and our community partner seems satisfied with it as well, even though it is not the same as the wireframe. However, the wireframe also contains some ideas that may be helpful for implementing the to-do items, such as the ability to preview visualizations while editing the form, among other things. Note also that we aren't sure whether the wireframe uses official Grinnell colors, but the site should. See `app/assets/stylesheets/grin_colors.scss` for all [official Grinnell colors](https://www.grinnell.edu/about-grinnell/leadership-and-administration/offices-and-services/communications/our-brand-story) that you may use for the site.
+* Community Partner: Sarah Barks, on behalf of the Grinell College Center for Careers, Life, and Service (CLS)
+* Timeline: 2020-2021 academic year
 
 # Description
 
-The goal of this project is to create an efficient web application that facilitates the data analysis process so that the CLS can visualize graduate outcomes data based on demographic factors. The web application should provide the flexibility to explore various visualizations of the data based on the choice of specific dependent and independent variables. Ultimately, by using this tool, the CLS can identify any disparities in student trajectories and target key points of intervention. For example, if it is discovered that students identifying as ‘Hispanic’ are finding significantly less career-related jobs after graduation than other students, the CLS may develop certain programming in collaboration with organizations such as the Student Organization of Latinxs (SOL).
+The goal of this project is to create an intuitive web application that allows CLS advisers to visualize graduate outcomes data based on demographic factors, while assuming little to no technical or statistical knowledge. 
+The web application allows authorized users to create column and bar charts that show the percentage of students who fall into particular identity groups (e.g. identify with a particular ethnic group) that experienced a particular outcome (e.g. had a research experience while at Grinnell). 
+
+Ultimately, we hope that this tool can help the CLS identify systemic inequalities in different students' experiences and outcomes at Grinnell. 
+For example, if CLS advisers were to find that students identifying as ‘Hispanic’ are finding disproportionately fewer jobs related to their career ambitions than other students, the CLS may develop specific resources to address this inequality.
 
 # Functionalities
 - The user should be able to upload data containing student records. The web application should validate the data and inform the user of erroneous input. The uploaded data should follow the same format (same columns) as the description on the webpage.
-- The user should be able to create, edit, and delete a variety of visualizations. The visualization have default value of chart title and x,y axis title.
-- The user should be able to toggle variables and apply filters to selected data to create meaningful visualizations and analyses. The selection of possible value changed dynamically as the user chooses the variable.
-- The user should be able to preview and manage all of the visualizations they created so far. This includes seeing what they have created so far, exporting the visualizations as images, and going back and being able to edit visualizations.
+
+- The user should be able to create, show, list, update, and delete a bar and column charts, which show how a 'Group Variable' interacts with an 'Outcome Variable'. Users should also be able to export saved visualizations as images.
+
 - The user should be able to create an account, log in, and add to a database of emails that are approved to create new accounts.
 
 # Prerequisites
 
-* Amazon Cloud9 setup (optional)
 * Yarn
 * Ruby version 2.6.3
 * Rails verson 6.0.3.2
-* Ubuntu Operating System (optional)
+* Heroku
+
+Some recommend using the Amazon Cloud9 development environment, which some contributors have used successfully in the past.
+Also, we recommend following Michael Hartl's Ruby on Rails [tutorial](https://www.learnenough.com/ruby-on-rails-6th-edition-tutorial) to learn how to use Ruby on Rails. We use many of his instructions and commands when explaining how to set up the project.
 
 # Setting up the project:
 
-1. If you are using an Amazon Cloud9 environment, follow Hartl's tutorial to properly set one up. We highly recommend that instead of using the free Cloud9 tier, apply for a free [AWS education account](https://aws.amazon.com/education/awseducate/). Then, when creating a new environment select the largest education tier, `m5.xlarge`. Alternatively, you can set up everything on your local computer without Cloud9.
+1. Set up an Amazon Cloud9 environment (if you want, it's optional).
+If you are a college student (you most likely are), we highly recommend applying for a free [AWS education account](https://aws.amazon.com/education/awseducate/) instead of using the free Cloud9 tier. 
+Then, when creating a new environment select the largest education tier, `m5.xlarge`. 
+
+Alternatively, you can set up everything on your local computer without Cloud9.
 
 2. Make sure that you have all the required prerequisites.
 
-3. Make sure yarn is installed
+If you need to install Rails (and space is tight--e.g. you are using AWS Cloud9), run
 
+`echo "gem: --no-document" >> ~/.gemrc`
+
+to configure your the gem installer to skip downloading the Rails documentation.
+Then, run
+
+`gem install rails -v 6.0.3.2`
+
+to actually install Rails.
+
+If you need to install yarn, run the following command:
 `source <(curl -sL https://cdn.learnenough.com/yarn_install)`
 
-4. Clone the repository to your computer
+3. Clone this repository to your computer with
 
-`https://github.com/CSC322-Grinnell/graduate-outcomes.git                                                             `
+`git clone https://github.com/CSC322-Grinnell/graduate-outcomes.git` 
 
-After this, navigate to the project directory in your C9 environment (if applicable)
+Don't forget to move to the project directory. 
 
-5. Install necessary gems
+You may need to configure your development environment to know your git user name and email with 
+`git config --global user.name $YOUR_GITHUB_USERNAME`
 
-`bundle install --without production`
+and
 
-6. Connect to Heroku (ask prof for details) or create new deployment.
-  * See Hartl tutorial "1.4.1: Heroku setup and deployment" for both
-  * Also resources on Heroku website https://devcenter.heroku.com/articles/getting-started-with-ruby
+`git config --global user.email $YOUR_GITHUB_EMAIL`.
+
+4. Install the necessary gems.
+
+First, configure your environment to skip installing the production gems:
+
+`bundle config set --local without 'production'`.
+
+Then, run `bundle install` to actually install the gems.
+
+5. Ask the Heroku Account Owner to add your Heroku account as a collaborator (if you are planning on deploying the project). 
+
+First, if you don't have Heroku already, you can install it with 
+
+`source <(curl -sL https://cdn.learnenough.com/heroku_install)`.
+
+Then, log in to your heroku account with 
+
+`heroku login --interactive`.
+
+Set up a git remote to the existing grad-outcomes Heroku app with 
+
+`heroku git:remote -a grad-outcomes`.
+
+You are now set up to deploy when ready.
 
 # Running the project:
 
@@ -64,11 +105,11 @@ After this, navigate to the project directory in your C9 environment (if applica
 
 # Running SimpleCov
 
-SimpleCov will run when `rails test` is called. To view a detailed breakdown of test coverage, run `open coverage/index.html`. If the code coverage seems to low, try running `Spring stop` before `rails test`.
+SimpleCov will run when `rails test` is called. To view a detailed breakdown of test coverage, run `open coverage/index.html`. If the code coverage seems unexpectedly low, try running `Spring stop` before `rails test`.
 
 # Project Components
 
-In this section we will give a high level description of the components of this Ruby on Rails application. Following the Rails project directory convention, most of the important project files are located in the `/app`, `/db`, and `/test` directories. Our models, views, controllers, and tests are all defined and located in their respective named directories.
+In this section, we will give a high level description of the components of this Ruby on Rails application. Following the Rails project directory convention, most of the important project files are located in the `/app`, `/db`, and `/test` directories. Our models, views, controllers, and tests are all defined and located in their respective named directories.
 
 ## Models
 
