@@ -1,6 +1,7 @@
-module VisualizationsHelper
 
-    def get_form_variable_names
+
+module VisualizationsHelper
+     def get_group_variable_names
         [
           # These represent the display names and the actual values in form [<Display Name>, <Value>]
             ["Class Year", "class_year"],
@@ -11,17 +12,45 @@ module VisualizationsHelper
             ["Did Internship", "intern"],
             ["Did Research", "research"],
             ["Did Service Learning", "service"],
+        ]
+        # Student.column_names.reject {|c| ["id", "student_id", "updated_at", "created_at"].include? c}
+    end
+
+    def get_outcome_variable_names
+        [
             ["Career Related to Interest", "career_related"], 
             ["Job Field", "job_field"],
             ["Outcome Category", "FDS_cat"],
             ["Graduate School", "gs_select"],
             ["Grad School Level", "gs_level"],
-            ["Grad School Type", "gs_type"]
+            ["Grad School Type", "gs_type"]   
+        ] 
+    end
+    
+    
+    def get_form_variable_names
+        [
+          # These represent the display names and the actual values
+            ["class_year", "class_year"],
+            ["major1", "major1"],
+            ["major2", "major2"],
+            ["gender", "gender"],
+            ["fed_group", "fed_group"],
+            ["intern", "intern"],
+            ["research", "research"],
+            ["service", "service"],
+            ["career_related", "career_related"],
+            ["job_field", "job_field"],
+            ["FDS_cat", "FDS_cat"],
+            ["gs_select", "gs_select"],
+            ["gs_level", "gs_level"],
+            ["gs_type", "gs_type"]
         ]
         # Student.column_names.reject {|c| ["id", "student_id", "updated_at", "created_at"].include? c}
     end
 
-
+    
+    # Line and Pie charts are NOT SUPPORTED any more. They can still be used, but their results aren't guaranteed
     def get_form_chart_types
         # Each element has format [<Display Name>, <Value>]
         [
@@ -42,7 +71,8 @@ module VisualizationsHelper
         ]
     end
 
-
+    
+    # UNUSED. Filters are not implemented anymore. REMOVE
     def get_form_filter_types
         [
             ["From..To", "from_to"],
@@ -65,28 +95,53 @@ module VisualizationsHelper
             ["minimum"]
         ]
     end
-
+    
+    # Uses apply_filter but does not really do anything to the data
+    # Refactor to remove apply_filter method
+    # Returns chart info, containing its data, chart type, and options
     def get_chart_info(visualization_id)
         data = Student.all;
         visualization = Visualization.find(visualization_id)
         chart_type = visualization.chart_type
 
         # Repeatedly apply each filter on the dataset
+        total = 0
         visualization.filters.each_with_index do |filter, index|
             data = apply_filter(data, filter)
+            total = total + summarize(data, 'count')
             puts ">> Applied filter #{index + 1}: #{filter.inspect}"
         end
 
         # Reverse since for some reason it groups in the wrong order without reversing.
         visualization.variables.reverse.each_with_index do |variable, index|
-            data = group_by_variable(data, variable)
-            puts ">> Set variable #{index + 1} : #{variable.inspect}"
+            if (not variable.name.blank?)
+                data = group_by_variable(data, variable)
+                puts ">> Set variable #{index + 1} : #{variable.inspect}"
+            else
+                puts "Blank variable name encountered....Skipped grouping by that variable"
+            end
+        end
+        
+        # Final summarization before rendering. Make this more dynamic in the future to support max, min, etc.
+        #total = apply_filter(temp, visualization.filters.first).count
+        data = summarize(data, 'count')
+        
+        variable_length = visualization.variables.length
+        if (variable_length == 2)
+          data.each do |key, value|                               # Building percentages for each subgroup. Ex. "CSC" in major1
+            filter_hash = Hash.new                                # New hash to build a filter
+            var = visualization.variables.first #major1           # Filter by the first variable - the "Group By" variable
+            filter_hash[var.name] = key                           # Adding entry into hash
+            total = Student.all.where(filter_hash).count          # Calculates the total to divide the data entry (to produce percentages)
+            data[key] = value/total.to_f
+          end
+        else                                                      # Else, divide all data entries by the # of all data entries.
+          data.each do |key, value|                               # Ex. say there are 100 students. If we have "Group by" "major1", the CSC entry would be interpreted
+            data[key] = value/total.to_f                          # as "X % of students are CSC majors in major1"
+          end
         end
 
-        # Final summarization before rendering. Make this more dynamic in the future to support max, min, etc.
-        data = summarize(data, 'count')
-
-        chart_info = Hash.new
+        chart_info = Hash.new                                     # Building chart_info hash
         chart_info[:data] = data
         chart_info[:chart_type] = chart_type
         chart_info[:options] = get_chart_options(visualization_id)
@@ -95,7 +150,7 @@ module VisualizationsHelper
     end
 
 
-
+    # UNUSED filter method
     # Applies a single filter on the dataset
     def apply_filter(data, filter_model)
         filter_type = filter_model.filter_type
@@ -134,6 +189,7 @@ module VisualizationsHelper
         end
     end
 
+
     # Group rows in table 'data' that have the same value for column 'variable_model'
     # prereq: column 'variable_model' must appear in table 'data'
     # returns: new table with grouped rows
@@ -142,11 +198,15 @@ module VisualizationsHelper
         if (data_table.is_a?(ActiveRecord::Relation) && var.is_a?(Variable) && data_table.has_attribute?(var.name))
             return data_table.group(var.name)
         else
+            puts "Check data table type (expected true) got: " + data_table.is_a?(ActiveRecord::Relation).to_s
+            puts "Check variable is a variable: " + var.is_a?(Variable).to_s
+            puts "Check data table #{data_table} has that variable #{var.name} as a column: " + data_table.has_attribute?(var.name).to_s
+            
             raise "group_by_variable was improperly used."
         end
     end
-    
-    # gives summary of data in given method (total, maximum, or number of points)
+
+    # Not being used yet.
     def summarize(data, summarization_method, variable=nil)
         case summarization_method
             when 'sum'
@@ -174,7 +234,6 @@ module VisualizationsHelper
     end
 
 
-    # gets values to give as options when filtering values
     def get_form_filter_values
         options = []
 
@@ -189,7 +248,6 @@ module VisualizationsHelper
         return options
     end
 
-    # changes title to first 45 characters if longer than that
     def shorten_title(title)
         if title.length > 45
             return title[0..45] + "..."

@@ -17,7 +17,8 @@
 
 class Visualization < ApplicationRecord
   has_many :variables, inverse_of: :visualization # many slots for chart vars
-  has_many :filters, inverse_of: :visualization   # many slots for filters
+  has_many :filters, inverse_of: :visualization   # many slots for filters ----> As of implementation, filters are unused. Refactor
+                                                  # to remove stablely.
   # attributes for vars and filters can overlap
   accepts_nested_attributes_for :variables, :filters, allow_destroy: true
   validates :chart_title, presence: true  # chart titles exist
@@ -28,6 +29,7 @@ class Visualization < ApplicationRecord
   validate :has_data                      # data exists in the student table
   before_validation :chart_title_default  # run title autofill before validating
   
+  # TODO: Fix, this is broken. Doesn't work e.g. when chart_title is nil!
   private
   def chart_title_default # auto-fill chart titles if no user input
     if chart_title.empty?
@@ -39,7 +41,7 @@ class Visualization < ApplicationRecord
     end
     
     if y_axis_title.empty?
-      self.y_axis_title = "Count"
+      self.y_axis_title = "Percentages"
     end
   end
 

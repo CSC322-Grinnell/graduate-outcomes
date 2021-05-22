@@ -1,145 +1,100 @@
-<!-- Form for creating visualizations -->
-<!-- Used in app/views/visualizations/new.html.erb -->
-<!-- Note: Possibly may work for edit.html.erb as well, see documentation in -->
-<!--       _form_edit.html.erb for more info. -->
+<!-- Form for creating and editing visualizations -->
 <div class="col-md-10 col-md-offset-1">
-  
-  <!-- Setup -->
-  <%= form_with(model: @visualization, local: true) do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
+	
+	<!-- Setup -->
+	<% form_builder = locals[:fb] %>
+  <%= render 'shared/error_messages', object: form_builder.object %>
 
-
-  <!--Section 1: Chart Type [required]-->
+	<!--Section 1: Chart Type [required]-->
   <div class="viz-form-section">
-    <h4 class="viz-step">Step 1 - Select Chart Type</h4>
+    <h4 class="viz-step">Step 1 - Select Chart Type (required) </h4>
+    
     <div class="form-row">
+      
       <div class="viz-form-group">
-	<label for="chart_type">Chart Type <span style="color:red;">*</span></label>
-	<%= f.select :chart_type, options_for_select(get_form_chart_types, @visualization.chart_type), prompt: "Select chart", class: 'form-control' %>
-	<!--dropdown for char types-->
-	<!--how options_for_select works: -->
-	<!--  options_for_select([value1, value2, value3], default) -->
+				<label for="chart_type">Chart Type <span style="color:red;">*</span></label>
+				<%= form_builder.select :chart_type, options_for_select(get_form_chart_types, @visualization.chart_type), 
+					prompt: "Select chart", class: 'form-control' 
+				%>
+				<!-- 2nd arg to options_for_select is default value -->
       </div>
+      
     </div>
+    
   </div>
 
-
-  <!-- Section 2: Chart Variable(s) [at least 1 required] -->
+  <!-- Section 2: Chart Variables  -->
   <div class="viz-form-section">
-    <h4 class="viz-step">Step 2 - Select Chart Variables</h4>
+    <h4 class="viz-step">Step 2 - Select Chart Variables (both required) </h4>
+    
     <div class="chart-variables">
-      <b>Chart Variables (at least one required) <span style="color:red;">*</span></b>
+      <b>Chart Variables <span style="color:red;">*</span></b>
+      
       <ul>
-	<!-- Iterate through variables: -->
-	<%= f.fields_for :variables do |variables_form| %>
-	<li class="form-row">
+				<!-- Iterate through variables: -->
+				<%= form_builder.fields_for :variables do |var_form| %>
+				
+				<li class="form-row">
+					<% 
+						if (var_form.index == 0)
+						var_role = "Group"
+						var_name_options = get_group_variable_names
+						else
+						var_role = "Outcome"
+						var_name_options = get_outcome_variable_names
+						end
+					%>
+				
 
-	  <!--dropdown for variable roles-->
-	  <div class="viz-form-group">
-	    <label for="role">Role</label>
-	    <%= variables_form.select :role, options_for_select(get_form_variable_roles, @visualization.variables[variables_form.index].role), prompt: "Select role", class: 'form-control' %>
-	  </div>
-
-	  <!--dropdown for variable names-->
-	  <div class="viz-form-group">
-	    <label for="name">Variable</label>
-	    <%= variables_form.select :name, options_for_select(get_form_variable_names, @visualization.variables[variables_form.index].name), prompt: "Select variable", class: 'form-control' %>
-	  </div>
-
-	  <!--check-box for deleting variable-->
-	  <div class="viz-form-group">
-	    <label for="name">Delete</label>
-	    <%= variables_form.check_box :_destroy %>
-	  </div>
-	</li>
-	<% end %>
+	  			<div class="viz-form-group">
+	  				<!--dropdown to select variable name-->
+	    			<label for="name"><%= var_role %> Variable</label>
+	    			<%= var_form.select :name, 
+	    				options_for_select(var_name_options, @visualization.variables[var_form.index].name), 
+	    				prompt: "Select variable", class: 'form-control' 
+	    			%>
+	  		
+	  				<!-- set variable role -->
+						<%= var_form.hidden_field :role, value: var_role %>
+	  			</div>
+	  		
+				</li>
+				<% end %>
+	
       </ul>
-
-      <!-- Buttons for adding and deleting varibales -->
-      <%= f.submit 'Add variable', :name => 'add_variable' %>
-      <%= f.submit 'Delete checked variables', :name => 'remove_variable' %>
+      
     </div>
-    <br><br>
+  </div>
+  <br><br>
 
+    <!-- Section 3: Chart and Axis Titles [optional; auto-fills] -->
+  <div class="viz-form-section">
+    <h4 class="viz-step">Step 3 - Fill Chart Details (optional) </h4>
+      
+    <div class="chart-details form-row">
 
-    <!-- Section 3: Filter(s) [optional] -->
-    <div class="viz-form-section">
-      <h4 class="viz-step">Step 3 - Add Filter(s) (optional)</h4>
-      <ul>
+			<!--write-in field for chart title-->
+			<div class="viz-form-group">
+	  		<label for="chart_title">Chart Title</label>
+	  		<%= form_builder.text_field :chart_title, class: 'form-control' %>
+			</div>
 
-	<!-- Iterate through filters: -->
-	<%= f.fields_for :filters do |filters_form| %>
-	<li class="form-row">
+			<!--write-in field for x axis title-->
+			<div class="viz-form-group">
+	  		<label for="x_axis_title">X Axis Title</label>
+	  		<%= form_builder.text_field :x_axis_title, class: 'form-control' %>
+			</div>
 
-	  <!--dropdown for filter variables-->
-	  <div class="viz-form-group">
-	    <label for="variable_name">Variable</label>
-	    <div class="filter_var">
-	      <%= filters_form.select :variable_name, options_for_select(get_form_variable_names, @visualization.filters[filters_form.index].variable_name), prompt: "Select variable", class: 'form-control' %>
-	    </div>
-	  </div>
-
-	  <!--dropdown for filter types-->
-	  <div class="viz-form-group">
-	    <label for="filter_type">Filter Type</label>
-	    <%= filters_form.select :filter_type, options_for_select(get_form_filter_types, @visualization.filters[filters_form.index].filter_type), prompt: "Select filter", class: 'form-control' %>
-	  </div>
-
-	  <!--dropdown for filter value 1-->
-	  <div class="viz-form-group">
-	    <label for="value1">Value1</label>
-	      <%= filters_form.select :value1, options_for_select(get_form_filter_values, @visualization.filters[filters_form.index].value1), prompt: "Select value", class: 'form-control' %>
-            </div>
-
-	  <!--dropdown for filter value 2-->
-	  <div class="viz-form-group">
-	    <label for="value2">Value2</label>
-	    <%= filters_form.select :value2, options_for_select(get_form_filter_values, @visualization.filters[filters_form.index].value2), prompt: "Select value", class: 'form-control' %>
-	  </div>
-
-	  <!--check-box for deleting filter-->
-	  <div class="viz-form-group">
-	    <label for="name">Delete</label>
-	    <%= filters_form.check_box :_destroy %>
-	  </div>
-	</li>
-	<% end %>
-      </ul>
-
-      <!-- Buttons for adding and deleting varibales -->
-      <%= f.submit 'Add filter', :name => 'add_filter' %>
-      <%= f.submit 'Delete checked filters', :name => 'remove_filter' %>
+			<!--write-in field for y axis title-->
+			<div class="viz-form-group">
+	  		<label for="y_axis_title">Y Axis Title </label>
+	  		<%= form_builder.text_field :y_axis_title, class: 'form-control' %>
+			</div>
+				
     </div>
-    <br>
-       
-
-    <!-- Section 4: Chart and Axis Titles [optional; auto-fills] -->
-    <div class="viz-form-section">
-      <h4 class="viz-step">Step 4 - Fill Chart Details (optional) </h4>
-      <div class="chart-details form-row">
-
-	<!--write-in field for chart title-->
-	<div class="viz-form-group">
-	  <label for="chart_title">Chart Title</label>
-	  <%= f.text_field :chart_title, class: 'form-control' %>
-	</div>
-
-	<!--write-in field for x axis title-->
-	<div class="viz-form-group">
-	  <label for="x_axis_title">X Axis Title</label>
-	  <%= f.text_field :x_axis_title, class: 'form-control' %>
-	</div>
-
-	<!--write-in field for y axis title-->
-	<div class="viz-form-group">
-	  <label for="y_axis_title">Y Axis Title </label>
-	  <%= f.text_field :y_axis_title, class: 'form-control' %>
-	</div>
-      </div>
-    </div>
+      
   </div>
 
   <!-- FORM SUBMIT BUTTON -->
-  <%= f.submit "Create Visualization!", class: "btn btn-primary" %>
-  <% end %>
+  <%= form_builder.submit "Create Visualization!", class: "btn btn-primary" %>
 </div>

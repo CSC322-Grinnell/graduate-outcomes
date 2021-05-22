@@ -9,16 +9,9 @@ Rails.application.routes.draw do
   #resources :uploads do
   #  collection { post :import }
   #end
-  #get 'visualization/index'
-  #get 'visualization/show'
-  #get 'visualization/new'
-  resources :visualizations do
-    get '/visualizations/:id/edit', to: 'visualizations#edit', as: :edit_visualization
-    patch '/visualizations/:id', to: 'visualizations#update'
-    collection do
-      get 'delete_visualization'
-    end
-  end
+
+  resources :visualizations
+  
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'

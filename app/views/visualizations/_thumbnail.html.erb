@@ -9,7 +9,9 @@
     <div class="viz-thumbnail-info"> <!-- Render title and delete icon -->
         <p class="viz-thumbnail-title"><%= shorten_title(locals[:visualization].chart_title)%></p>
         <p class="">Last edited @<%= locals[:visualization].updated_at%></p>
-        <p class="viz-thumbnail-delete" align="right"> <%= link_to delete_visualization_visualizations_path(:id => locals[:visualization].id), method: :get, class: "viz-thumbnail-trash", data: {confirm: "Are you sure you want to delete?"} do%>
+        <p class="viz-thumbnail-delete" align="right"> 
+            <%= link_to visualization_path(locals[:visualization].id), method: :delete, 
+                class: "viz-thumbnail-trash", data: {confirm: "Are you sure you want to delete?"} do%>
             <span class="icon trash-2"></span>
             <%end%>
         </p> 
