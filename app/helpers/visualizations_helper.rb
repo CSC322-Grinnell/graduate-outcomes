@@ -114,8 +114,12 @@ module VisualizationsHelper
 
         # Reverse since for some reason it groups in the wrong order without reversing.
         visualization.variables.reverse.each_with_index do |variable, index|
-            data = group_by_variable(data, variable)
-            puts ">> Set variable #{index + 1} : #{variable.inspect}"
+            if (not variable.name.blank?)
+                data = group_by_variable(data, variable)
+                puts ">> Set variable #{index + 1} : #{variable.inspect}"
+            else
+                puts "Blank variable name encountered....Skipped grouping by that variable"
+            end
         end
         
         # Final summarization before rendering. Make this more dynamic in the future to support max, min, etc.
