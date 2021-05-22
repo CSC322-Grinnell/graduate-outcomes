@@ -49,7 +49,8 @@ module VisualizationsHelper
         # Student.column_names.reject {|c| ["id", "student_id", "updated_at", "created_at"].include? c}
     end
 
-
+    
+    # Line and Pie charts are NOT SUPPORTED any more. They can still be used, but their results aren't guaranteed
     def get_form_chart_types
         # Each element has format [<Display Name>, <Value>]
         [
@@ -70,7 +71,8 @@ module VisualizationsHelper
         ]
     end
 
-
+    
+    # UNUSED. Filters are not implemented anymore. REMOVE
     def get_form_filter_types
         [
             ["From..To", "from_to"],
@@ -93,7 +95,9 @@ module VisualizationsHelper
             ["minimum"]
         ]
     end
-
+    
+    # Uses apply_filter but does not really do anything to the data
+    # Refactor to remove apply_filter method
     # Returns chart info, containing its data, chart type, and options
     def get_chart_info(visualization_id)
         data = Student.all;
@@ -142,7 +146,7 @@ module VisualizationsHelper
     end
 
 
-
+    # UNUSED filter method
     # Applies a single filter on the dataset
     def apply_filter(data, filter_model)
         filter_type = filter_model.filter_type
