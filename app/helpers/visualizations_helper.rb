@@ -190,6 +190,10 @@ module VisualizationsHelper
         if (data_table.is_a?(ActiveRecord::Relation) && var.is_a?(Variable) && data_table.has_attribute?(var.name))
             return data_table.group(var.name)
         else
+            puts "Check data table type (expected true) got: " + data_table.is_a?(ActiveRecord::Relation)
+            puts "Check variable is a variable: " + var.is_a?(Variable)
+            puts "Check datatable has that variable as a column: " + data_table.has_attribute?(var.name)
+            
             raise "group_by_variable was improperly used."
         end
     end
